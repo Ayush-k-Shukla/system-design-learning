@@ -22,9 +22,9 @@
    1. Here the node(servers) and users(request) are put on the same ring, and whenever a request comes we traverse clockwise which ever server is found first that will serve the request.
 
       1. The server nodes can be placed at random locations on this ring which can be done using hashing.
-      2. ![image.png](images/image3.png)
+         ![image.png](images/image3.png)
 
-      3. But suppose if node 2 fails then all the load of node 2 will be transefered to node 5 that will be an issue. so to solve this problem what we did we make the virtual servers
+      2. But suppose if node 2 fails then all the load of node 2 will be transefered to node 5 that will be an issue. so to solve this problem what we did we make the virtual servers
          1. like the servers are placed on the ring by using one hash function but what if we use multiple (let say k) hash function and we can place same server at k different places. this will solve above problem.
          2. the best solution is not to use K hash functions, but to generate K replica ids for each server id. Designing K hash functions while maintaining random uniformity and consistency is hard. Generating K replica ids is easy: xxx gives K replicas xxx + '1', xxx + '2', ..., xxx + 'K'. Then you take these replicas and generate K points on the ring with the same hash function
 

@@ -2,7 +2,7 @@
 
 ### Domain Name System
 
-![image.png](DNS,%20CDN,%20Load%20balancer,%20Proxies%2015abef10f52180bbb201e806fe2a1cbf/image.png)
+![image.png](DNS,%20CDN,%20Load%20balancer,%20Proxies/image.png)
 
 ### CDN
 

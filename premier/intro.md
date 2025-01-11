@@ -28,4 +28,4 @@ Pending to read
    1. **Latency** is the time it takes a single request to be processed or a task to be completed. typically measured in milliseconds or seconds.
    2. **Throughput** refers to the rate at which a system process requests or tasks. typically measured in operations per second (ops), transactions per second.
    3. **Generally we thrive for maximal throughput with acceptable latency**
-3. **Availability vs consistency - see in page [Availability and Consistency](Premier%20122bef10f5218057beefd3ee44e8f84f/Availability%20and%20Consistency%2014bbef10f52180658abffba7131bc721.md)**
+3. **Availability vs consistency - see in page [Availability and Consistency](Availability-Consistency.md)**

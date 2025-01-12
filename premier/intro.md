@@ -6,6 +6,8 @@
 
 [DNS, CDN, Load balancer, Proxies](DNS-CDN-Load_balancer-Proxies.md)
 
+[Databases](Databases.md)
+
 [Things to Know when building Microservice](Things-to-Know-when-building-Microservice.md)
 
 Pending to read

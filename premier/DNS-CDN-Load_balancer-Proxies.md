@@ -133,3 +133,8 @@
 
 1. Deploying a load balancer is useful when you have multiple servers. Often, load balancers route traffic to a set of servers serving the same function.
 2. Reverse proxies can be useful even with just one web server or application server, opening up the benefits described in the previous section.
+
+Pending things
+
+1. Nginx architecture
+2. HAProxy architecture

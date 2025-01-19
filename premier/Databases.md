@@ -118,3 +118,7 @@
       3. They organize data into tables with a flexible and dynamic column structure. They are designed to handle large-scale, distributed data storage and provide high scalability and performance.
       4. e.g. HBase, Google Bigtable, Apache Cassandra
       5. ![Image](./images/wide-column-db-1.png) ![Image](./images/wide-column-db-2.png)
+
+## SQL vs NoSql
+
+![Image](./images/SQl-vs-Nosql.png)

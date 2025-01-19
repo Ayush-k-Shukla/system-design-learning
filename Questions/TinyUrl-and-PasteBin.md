@@ -14,7 +14,7 @@
    3. so if key “ab45de12” is taken then next key will be “ab45de13”
 4. Assigning URLs : Replication
    1. How we can try to maximize write throughput where possible
-   2. we can’t use multi leader replication as then there will be issue if two same key generated written
+   2. we can’t use multi master replication as then there will be issue if two same key generated written and also as our service is read heavy so.
    3. So we will be using single leader replication
 5. Assigning URLs : Caching
    1. We can’t use caching as well then there will be issue of multi leader

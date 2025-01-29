@@ -8,16 +8,28 @@
 
 [Databases](Databases.md)
 
+[Asynchronism](Asynchronism.md)
+
 [Things to Know when building Microservice](Things-to-Know-when-building-Microservice.md)
 
 Pending to read
 
-1. MS architecture in depth
-2. DB
-   1. RDBMS
-   2. NOSQL
-3. Caching more
-4. Ash
+1. Ashynchronism
+   1. Message Queues
+   2. Task Queues
+   3. Back Pressure
+2. Background jobs
+   1. event driven
+   2. schedule driven
+   3. Returning results
+3. Communication and different protocols
+   1. HTTP
+   2. TCP
+   3. UDP
+   4. RPC
+   5. REST
+   6. gRPC
+   7. Graphql
 
 **High level Tradeoffs**
 

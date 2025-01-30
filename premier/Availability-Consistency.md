@@ -89,6 +89,6 @@ Availability = Uptime / (Uptime + Downtime);
          3. Systems like Cassandra allow configuring the level of consistency on a per-query basis, providing flexibility.
          4. Applications needing different consistency levels for different operations, such as e-commerce platforms where order processing requires strong consistency but product recommendations can tolerate eventual consistency.
 
-   ### **PACELC theorem**
+## **PACELC theorem**
 
-   1. If a partition occurs (P), a system must choose between Availability (A) and Consistency (C). Else (E), when there is no partition, the system must choose between Latency (L) and Consistency (C).
+1.  If a partition occurs (P), a system must choose between Availability (A) and Consistency (C). Else (E), when there is no partition, the system must choose between Latency (L) and Consistency (C).

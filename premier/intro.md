@@ -1,31 +1,12 @@
 # Premier
 
-[Scalability](Scalability.md)
-
-[Availability and Consistency](Availability-Consistency.md)
-
-[DNS, CDN, Load balancer, Proxies](DNS-CDN-Load_balancer-Proxies.md)
-
-[Databases](Databases.md)
-
-[Asynchronism](Asynchronism.md)
-
-[Things to Know when building Microservice](Things-to-Know-when-building-Microservice.md)
-
 Pending to read
 
-1. Background jobs
-   1. event driven
-   2. schedule driven
-   3. Returning results
-2. Communication and different protocols
-   1. HTTP
-   2. TCP
-   3. UDP
-   4. RPC
-   5. REST
-   6. gRPC
-   7. Graphql
+1. Communication and different protocols
+   1. RPC
+   2. REST
+   3. gRPC
+   4. Graphql
 
 **High level Tradeoffs**
 

@@ -14,15 +14,11 @@
 
 Pending to read
 
-1. Ashynchronism
-   1. Message Queues
-   2. Task Queues
-   3. Back Pressure
-2. Background jobs
+1. Background jobs
    1. event driven
    2. schedule driven
    3. Returning results
-3. Communication and different protocols
+2. Communication and different protocols
    1. HTTP
    2. TCP
    3. UDP

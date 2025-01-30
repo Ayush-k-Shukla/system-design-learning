@@ -111,15 +111,24 @@
 ### **Best practices for implementing**
 
 1. **Idempotency**
+   1. Ensure that duplicate messages are handled correctly.
 2. **Message Durability**
+   1. Based on usecase implement persistent or transient messages. as persistent comes with some tradeoff.
 3. **Error Handeling**
+   1. Implement robust error handling by including retirs, DLQ, and alerting mechanism for failed message processing.
 4. **Security**
+   1. Implement security by encryption, authentication.
 5. **Monitoring**
+   1. Setup monitoring to check performance and health of the message queues, including throughput, queue length, and consumer lag.
 6. **Scalability**
 
 ### **Popular Message Queue**
 
 1. **Apache Kafka**
+   1. It is distributed streaming platform that excels at handling large volumes of data. Most widely used for high throughput and event driven systems.
 2. **RabbitMQ**
+   1. widely used open source message broker that supports multiple messaging protocols, including AMQP. Supports P2P, Pub/Sub, Priority.
 3. **Google Cloud Pub/Sub**
+   1. A fully managed message queue service offered by Google Cloud, designed for real-time analytics and event-driven applications.
 4. **Amazon SQS**
+   1. A fully managed message queue service provided by AWS. SQS is highly scalable and integrates well with other AWS services.

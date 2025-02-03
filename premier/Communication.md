@@ -38,12 +38,79 @@
    2. Late data is worse than loss of data
    3. You want to implement your own error correction
 
------PENDING-----
-
 ## Remote Procedure Call (RPC)
+
+1. RPC focuses on calling functions (procedures) on a remote server, like calling a local function in code. It is more action-oriented than REST.
+2. RPC abstracts the complexity of the communication process, allowing developers to focus on the logic of the procedure.
+3. **Key Characteristics**
+   1. **Action oriented**
+   2. **Function calls** - It allows you to call functions or method directly on a remote server. The client sends a reuest to execute a specific method and server returns the result.
+   3. **Synchronous Communication** - Client wait for the server to complete the called procedure.
+   4. **Variety of Protocols** - RPC can be implemented using different protocols, such as JSON-RPC, XML-RPC, or gRPC.
+   5. **Interface Definition Language** - RPC system often used an IDL to define the interface between client and server.
+4. **Advantages**
+   1. High Performance
+   2. Simpler to implement when need to perform specific actions
+   3. More flexible in handeling complex which do not fit CRUD model
+5. **Disadvantages**
+   1. Tight coupling of client and server
+   2. Less standardization
+   3. Limited Tooling
 
 ## Representational state transfer (REST)
 
-## GRPC
+1. It is an architectural style for designing networked applications.
+2. **Key Characteristics**
+   1. **Stateless**
+   2. **Resource oriented** - REST treats everything as a resource, such as users, products, or orders. Each resource is identified by a unique URL.
+   3. Leverages Standard HTTP methods
+   4. Follow client server architecture
+   5. **Cacheable** - REST response can be cached
+3. **Advantages**
+   1. **Scalability**
+   2. **Flexibility** - Allows different data formats likes JSON, XML or plaintext
+   3. **Standardization** - follow a standarized approcah that makes them easy to understand
+   4. **Wide Adoption**
+4. **Disadvantages**
+   1. **Verbosity** - when dealing with complex objects or relationships can be verbose
+   2. **Over-fetching/Under-fetching**
+   3. Inefficient for real-time applications (websockets and gRPC are better)
+
+## Google Remote Procedure Call(gRPC)
+
+1. gRPC is a high-performance, open-source RPC framework that uses Protocol Buffers (Protobuf) for communication instead of JSON. It supports streaming and is widely used in microservices.
+2. **Advantages**
+   1. **Fast & Efficient** – Uses Protobuf (binary format) instead of JSON, reducing payload size.
+   2. **Streaming Support** – Supports real-time communication (unlike REST).
+   3. **Strong Typing** – Uses `.proto` files for schema definition
+   4. **Great for Microservices** – Optimized for inter-service communication
+3. **Disadvantages**
+   1. **Not Human-Readable** – Protobuf is binary, making debugging harder.
+   2. **More Complex Setup** – Requires defining .proto files and generating client/server code.
+   3. **Limited Browser Support** – Requires a gRPC-web proxy to work in web applications.
 
 ## GraphQL
+
+1. GraphQL is a query language that allows clients to request exactly the data they need, avoiding over-fetching and under-fetching.
+2. **Advantage**
+   1. No over/under fetching
+   2. Strog typing
+   3. Single endpoint
+   4. flexible queries - can fetch multiple related resources in one request
+3. **Disadvantages**
+   1. Complex to learn anf more setup than REST
+   2. Caching is harder
+   3. Increased server load (as we fetch all data from DB , only we dont send it to client)
+
+## Comparison
+
+| Feature               | REST                   | RPC                           | GraphQL            | gRPC                                 |
+| --------------------- | ---------------------- | ----------------------------- | ------------------ | ------------------------------------ |
+| **Data Structure**    | Resource-based (nouns) | Function-based (verbs)        | Query-based        | Function-based                       |
+| **Communication**     | HTTP (JSON/XML)        | HTTP (JSON)                   | HTTP (JSON)        | HTTP/2 (Protobuf)                    |
+| **Performance**       | Medium                 | Medium                        | Medium-High        | High (Binary)                        |
+| **Over-fetching**     | Yes                    | Yes                           | No                 | No                                   |
+| **Under-fetching**    | Yes                    | Yes                           | No                 | No                                   |
+| **Streaming Support** | No                     | No                            | No                 | Yes                                  |
+| **Caching**           | Easy (HTTP Caching)    | Hard                          | Hard               | Hard                                 |
+| **Best Use Case**     | Web APIs, Public APIs  | Simple actions, Internal APIs | Client-driven APIs | Microservices, High-performance APIs |

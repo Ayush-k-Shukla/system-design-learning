@@ -36,11 +36,18 @@ Notes for System Design Learning (In Progress)
 
 ### [Things to Know when building Microservice](premier/Things-to-Know-when-building-Microservice.md)
 
-- [Microservice Architecture](premier/Things-to-Know-when-building-Microservice.md#microservice-architecture)
-- [Issues and Resolutions](premier/Things-to-Know-when-building-Microservice.md#issues-and-resolutions)
-
 ### [Communication](premier/Communication.md)
 
 - [HTTP](premier/Communication.md#http)
 - [Transmission Control Protocol (TCP)](premier/Communication.md#transmission-control-protocol-tcp)
 - [User Datagram Protocol (UDP)](premier/Communication.md#user-datagram-protocol-udp)
+- [Remote Procedure Call](premier/Communication.md#remote-procedure-call-rpc)
+- [Representational State Transfer](premier/Communication.md#representational-state-transfer-rest)
+- [gRPC](premier/Communication.md#google-remote-procedure-callgrpc)
+- [GraphQL](premier/Communication.md#graphql)
+
+### [High level Tradeoffs](premier/High-level-tradeoffs.md)
+
+- [Performance vs Scalability](premier/High-level-tradeoffs.md#performance-vs-scalability)
+- [Latency vs Throughput](premier/High-level-tradeoffs.md#latency-vs-throughput)
+- [Availability vs Consistency](premier/High-level-tradeoffs.md#availability-vs-consistency---see-in-page-availability-and-consistency)

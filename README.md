@@ -55,3 +55,7 @@ Notes for System Design Learning (In Progress)
 - [Performance vs Scalability](premier/High-level-tradeoffs.md#performance-vs-scalability)
 - [Latency vs Throughput](premier/High-level-tradeoffs.md#latency-vs-throughput)
 - [Availability vs Consistency](premier/High-level-tradeoffs.md#availability-vs-consistency---see-in-page-availability-and-consistency)
+
+### Uncategorized
+
+- [Heartbeat](premier/Uncategorized/Heartbeat.md)

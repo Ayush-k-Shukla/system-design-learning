@@ -33,3 +33,38 @@
        3. Solution for this problem is to use a API gateway which is simply a proxy which is aware of all the services registered with it. It take care os supporting all protocols and authentication and communicating with services in a common protocol (mostly HTTP).
           ![Image](https://i2.wp.com/cloudncode.files.wordpress.com/2016/07/api-gateway.png)
        4. Some popular gateways are Apigee, Mashery and Amazon API Gateway
+
+### Service Discovery
+
+1. As in a scalable application there can be dozens of service which scale up and down dynamically thus we need a way to communicate with these.
+2. Service Discovery is a mechanism that allows services to find and communicate with each other in a distributed system
+   e.g. ![Image](./images/service-dis.jpg)
+3. A service registery typically stores
+   1. **Basic:** service name, IP, port, status
+   2. **Metadata:** version, environment, region, tag
+   3. **Health:** status, last health check done on
+   4. **Secure Communication:** certificates, protocola
+4. **Benefits**
+   1. Reduced Manual config
+   2. Risk of failure
+   3. Improved scalability
+5. **Service Registration Options**
+   1. **Manual Registration**
+      1. Done by dev manually, not favoured in scalability point of view.
+   2. **Self Registrations**
+      1. when ever a service starts it register itself to the registery by sending api with all details(name, port, ip,..etc)
+      2. To insure registery upto date, service sends [heartbeat](Uncategorized/Heartbeat.md) signal periodically to let registry know it is active and healthy
+   3. **Third Party Registration**
+      1. Another process handles service registration.
+      2. follows `sidecar` pattern.
+   4. **Automatic Registration by Orchestrators**
+      1. In modern orchestrated environments like Kubernetes, service registration happens automatically. The orchestration platform manages the lifecycle of services and updates the service registry as services start, stop, or scale
+6. **Types of Service Discovery**
+   1. **Client side**
+      1. Here all responsibility is of client (usually a microservice or API gateway) to query registery and route accordingly.
+      2. registery responds with all instances of requested service and then it's on client to route based on usually load balancing algo.
+      3. It is easy to implement and reduces load on central LB
+      4. Netflix's open-source lib **Eureka** is a popular tool for this.
+   2. **Server side**
+      1. Here a central load balancer handles all routing and logic.
+      2. Instead, the client simply sends a request to a central server (load balancer or api gateway), which handles the rest.

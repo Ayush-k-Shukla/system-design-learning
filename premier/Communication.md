@@ -1,6 +1,6 @@
 # **Communication**
 
-    ![Image](./images/communication.jpg)
+![Image](./images/communication.jpg)
 
 ## **HTTP**
 
@@ -114,3 +114,56 @@
 | **Streaming Support** | No                     | No                            | No                 | Yes                                  |
 | **Caching**           | Easy (HTTP Caching)    | Hard                          | Hard               | Hard                                 |
 | **Best Use Case**     | Web APIs, Public APIs  | Simple actions, Internal APIs | Client-driven APIs | Microservices, High-performance APIs |
+
+## Websockets
+
+1. It enables full-duplex, bidirectional communication between a client over a single TCP connection.
+
+### Working
+
+![Image](images/ws-working.jpg)
+
+1. **Handshake**
+   1. The client initiates connection request using HTTP GET with and `upgrade` header set to `websocket`
+   2. if server support ws and accepts the request, it responds with a special `101` statud code, indicating protocol will be changed to websocket.
+2. **Connection**
+   1. Once handshake complete, the ws connection is established, connection will remain open untill it is closed by either the client and server.
+3. **Data transfer**
+   1. Both the client and server now sends message in realtime. these messages are sent in small packets called `frames`, and carry minimal overhead compared to HTTP.
+4. **Closure**
+   1. closed by with a `close` frame.
+
+### Usecase
+
+1. Real time collaboration tools
+2. Real time chat apps
+3. Live notifications
+4. Multiplayer online game
+5. Live streaming
+
+### Challenges and Considerations
+
+1. Some Proxy server don't support WS, and some firewall can also block.
+2. There should be a `fallback` implemented in case if client or network don't support WS. fallback mechanism can be `long-polling`.
+3. Need to secure by authentication and secure ws connection(wss://).
+
+### Long Polling
+
+![Image](images/long-polling.png)
+
+### Polling
+
+![Image](images/polling.jpg)
+
+## WebSocket vs. Long Polling vs. Polling
+
+| Feature                 | WebSocket                                   | Long Polling                            | Polling                        |
+| ----------------------- | ------------------------------------------- | --------------------------------------- | ------------------------------ |
+| **Communication Type**  | Full-duplex (bidirectional)                 | Half-duplex (client-initiated)          | Half-duplex (client-initiated) |
+| **Latency**             | Very low                                    | Medium                                  | High                           |
+| **Efficiency**          | High (persistent connection)                | Medium (delayed responses)              | Low (frequent requests)        |
+| **Connection Overhead** | Single handshake, then persistent           | New request for each update             | New request for each update    |
+| **Server Load**         | Low                                         | Higher than WebSockets                  | Very high                      |
+| **Client Requests**     | Only one per session                        | Multiple but less frequent              | Frequent requests              |
+| **Best Use Cases**      | Real-time apps (chats, games, live updates) | Notifications, moderate real-time needs | Basic periodic updates         |
+| **Scalability**         | High                                        | Moderate                                | Low                            |

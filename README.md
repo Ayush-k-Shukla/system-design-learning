@@ -36,6 +36,8 @@ Notes for System Design Learning (In Progress)
 
 ### [Things to Know when building Microservice](premier/Things-to-Know-when-building-Microservice.md)
 
+- [Service Discovery](premier/Things-to-Know-when-building-Microservice.md#service-discovery)
+
 ### [Communication](premier/Communication.md)
 
 - [HTTP](premier/Communication.md#http)
@@ -45,6 +47,8 @@ Notes for System Design Learning (In Progress)
 - [Representational State Transfer](premier/Communication.md#representational-state-transfer-rest)
 - [gRPC](premier/Communication.md#google-remote-procedure-callgrpc)
 - [GraphQL](premier/Communication.md#graphql)
+- [Websockets](premier/Communication.md#websockets)
+- [Websockets vs Long polling vs Polling](premier/Communication.md#websocket-vs-long-polling-vs-polling)
 
 ### [High level Tradeoffs](premier/High-level-tradeoffs.md)
 

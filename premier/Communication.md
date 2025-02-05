@@ -121,7 +121,9 @@
 
 ### Working
 
-![Image](images/ws-working.jpg)
+<p align="center">
+   <img src="images/ws-working.jpg">
+</p>
 
 1. **Handshake**
    1. The client initiates connection request using HTTP GET with and `upgrade` header set to `websocket`
@@ -149,11 +151,15 @@
 
 ### Long Polling
 
-![Image](images/long-polling.png)
+<p align="center">
+   <img src="images/long-polling.png">
+</p>
 
 ### Polling
 
-![Image](images/polling.jpg)
+<p align="center">
+   <img src="images/polling.jpg">
+</p>
 
 ## WebSocket vs. Long Polling vs. Polling
 

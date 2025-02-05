@@ -56,6 +56,22 @@ Notes for System Design Learning (In Progress)
 - [Latency vs Throughput](premier/High-level-tradeoffs.md#latency-vs-throughput)
 - [Availability vs Consistency](premier/High-level-tradeoffs.md#availability-vs-consistency---see-in-page-availability-and-consistency)
 
+PENDING Ones
+
+- [Batch vs Stream Processing]()
+- [Concurrency vs Parallelism]()
+- [Stateful vs Stateless]()
+
 ### Uncategorized
 
 - [Heartbeat](premier/Uncategorized/Heartbeat.md)
+- [Bloom Filters](premier/Uncategorized/Bloom-filters.md)
+  - [Traditional vs Scalable vs Counting](/premier/Uncategorized/Bloom-filters.md#traditional-vs-counting-vs-scalable-bloom-filter)
+
+Pending
+
+1. Consensus in DS
+2. Gossip protocol
+3. Distributed Locking
+4. Serverless Arch
+5. Client server arch

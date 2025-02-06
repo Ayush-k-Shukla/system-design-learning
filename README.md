@@ -55,12 +55,12 @@ Notes for System Design Learning (In Progress)
 - [Performance vs Scalability](premier/High-level-tradeoffs.md#performance-vs-scalability)
 - [Latency vs Throughput](premier/High-level-tradeoffs.md#latency-vs-throughput)
 - [Availability vs Consistency](premier/High-level-tradeoffs.md#availability-vs-consistency---see-in-page-availability-and-consistency)
+- [Batch vs Stream Processing](premier/High-level-tradeoffs.md#batch-vs-stream-processing)
+- [Stateful vs Stateless](premier/High-level-tradeoffs.md#stateful-vs-stateless-design)
 
-PENDING Ones
+PENDING
 
-- [Batch vs Stream Processing]()
 - [Concurrency vs Parallelism]()
-- [Stateful vs Stateless]()
 
 ### Uncategorized
 

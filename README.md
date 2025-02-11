@@ -67,11 +67,11 @@ PENDING
 - [Heartbeat](premier/Uncategorized/Heartbeat.md)
 - [Bloom Filters](premier/Uncategorized/Bloom-filters.md)
   - [Traditional vs Scalable vs Counting](/premier/Uncategorized/Bloom-filters.md#traditional-vs-counting-vs-scalable-bloom-filter)
+- [Client server Architecture](premier/Uncategorized/client-server-architecture.md)
+- [Serverless Architecture](premier/Uncategorized/serverless-arch.md)
 
 Pending
 
 1. Consensus in DS
 2. Gossip protocol
 3. Distributed Locking
-4. Serverless Arch
-5. Client server arch

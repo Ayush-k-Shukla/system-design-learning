@@ -57,10 +57,7 @@ Notes for System Design Learning (In Progress)
 - [Availability vs Consistency](premier/High-level-tradeoffs.md#availability-vs-consistency---see-in-page-availability-and-consistency)
 - [Batch vs Stream Processing](premier/High-level-tradeoffs.md#batch-vs-stream-processing)
 - [Stateful vs Stateless](premier/High-level-tradeoffs.md#stateful-vs-stateless-design)
-
-PENDING
-
-- [Concurrency vs Parallelism]()
+- [Concurrency vs Parallelism](premier/High-level-tradeoffs.md#concurrency-vs-parallelism)
 
 ### Uncategorized
 

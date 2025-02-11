@@ -56,15 +56,67 @@
 
 1. System remembers client data from one request to next.
 2. It maintains a record of the client's state, which can include session information, transaction details, or any other data relevant to the ongoing interaction.
-
 3. **Advantages**
+
    1. Personalized experience
    2. Contextual continuity
    3. Reduced payload
+
 4. **Disadv**
+
    1. Scalability
    2. Failure prone
    3. Complex
+
 5. **Examples**
+
    1. REST APIs with session storage
    2. In Banking, E-commerce (cart), Multiplayer games
+
+## Concurrency vs Parallelism
+
+Concurrency is about managing multiple tasks simultaneously, while Parallelism is about executing multiple tasks at the same time.
+
+### Concurrency
+
+<p align="center">
+   <img src="./images/concurrency.png">
+</p>
+
+1. Concurrency means an application is making progress on more than one task at the same time.
+2. Even on a single CPU core. This is achieved through context switching, where the CPU rapidly switches between tasks, giving the illusion of simultaneous execution.
+3. This seamless switching—enabled by modern CPU designs—creates the illusion of multitasking and gives the appearance of tasks running in parallel.
+4. The primary objective of concurrency is to maximize CPU utilization by minimizing idle time.
+5. Cost : Although Context switching enables concurrency but it also introduce overhead
+   1. every switch require saving and restoring task states
+6. Examples
+   1. Modern web browsers perform multiple task concurrently (like loading html/css, responding user clicks etc.)
+   2. Used in web servers handling multiple client requests, even on a single CPU.
+   3. Chat apps
+
+### Parallelism
+
+<p align="center">
+   <img src="./images/parallelism.png">
+</p>
+<p align="center">
+   <img src="./images/parallelism2.png">
+</p>
+
+1. Multiple tasks are executed simultaneously.
+2. To achieve parallelism, an application divides its tasks into smaller, independent subtasks. These subtasks are distributed across multiple CPUs, CPU cores, GPU cores, or similar processing units, allowing them to be processed in parallel.
+3. Modern CPUs consist of multiple cores. Each core can independently execute a task. Parallelism divides a problem into smaller parts and assigns each part to a separate core for simultaneous processing.
+4. Examples
+   1. ML training - train modesls by dividing datasets into smaller batches
+   2. Web crawlers - breaks list of URls into smaller chunks and process in parallel
+   3. Data processing
+
+| **Aspect**               | **Concurrency**                                                                             | **Parallelism**                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **Execution**            | Achieved through context switching on a single core or thread.                              | Requires multiple cores or processors to execute tasks simultaneously.       |
+| **Focus**                | Managing multiple tasks and maximizing resource utilization.                                | Splitting a single task into smaller sub-tasks for simultaneous execution.   |
+| **Use Case**             | Best suited for I/O-bound tasks like handling multiple network requests or file operations. | Ideal for CPU-bound tasks like data processing or machine learning training. |
+| **Resource Requirement** | Can be implemented on a single core or thread.                                              | Requires multiple cores or threads.                                          |
+| **Outcome**              | Improves responsiveness by efficiently managing task switching.                             | Reduces overall execution time by performing tasks simultaneously.           |
+| **Examples**             | Asynchronous APIs, chat applications, or web servers handling multiple requests.            | Video rendering, machine learning training, or scientific simulations.       |
+| **Analogy**              | A single chef multitasking—preparing multiple dishes by working on them in parts.           | Multiple chefs working on different dishes at the same time.                 |

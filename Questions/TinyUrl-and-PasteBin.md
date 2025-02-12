@@ -1,5 +1,9 @@
 # TinyUrl + PasteBin (WIP)
 
+<p align="center">
+   <image src='./images/tinyurl-hld.png'>
+</p>
+
 1. Problem Requirements
    1. Generate unique URLs
    2. track number of clicks

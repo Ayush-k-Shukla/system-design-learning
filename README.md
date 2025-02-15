@@ -76,6 +76,6 @@ Pending
 
 # Questions
 
-- [How to answer](questions/steps-to-answer-sd.md)
-- [TinyUrl](questions/TinyUrl.md)
-- [Leaderboard](questions/leader-board.md) - in progress
+- [How to answer](Questions/steps-to-answer-sd.md)
+- [TinyUrl](Questions/TinyUrl.md)
+- [Leaderboard](Questions/leader-board.md) - in progress

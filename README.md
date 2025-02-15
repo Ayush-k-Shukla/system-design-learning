@@ -72,3 +72,10 @@ Pending
 1. Consensus in DS
 2. Gossip protocol
 3. Distributed Locking
+4. Cache control header in browser REST
+
+# Questions
+
+- [How to answer](questions/steps-to-answer-sd.md)
+- [TinyUrl](questions/TinyUrl.md)
+- [Leaderboard](questions/leader-board.md) - in progress

@@ -74,6 +74,10 @@ Pending
 3. Distributed Locking
 4. Cache control header in browser REST
 
+# Technologies
+
+-[Redis sorted set](./Technologies/redis-sorted-set.md)
+
 # Questions
 
 - [How to answer](Questions/steps-to-answer-sd.md)

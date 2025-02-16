@@ -90,107 +90,113 @@
 
 #### Get a single player score
 
-1.  Request
-    ```
-    /players/:player-id
-    method: GET
-    authrorization: Bearer <token>
-    accept: application/json, text/html
-    user-agent: chrome
-    ```
-2.  Response
+1. Request
 
-    ```
-    status code: 200 OK
-    cache-control: private, no-cache, must-revalidate, max-age=5
-    content-encoding: gzip
-    content-type: application/json
+   ```
+   /players/:player-id
+   method: GET
+   authrorization: Bearer <token>
+   accept: application/json, text/html
+   user-agent: chrome
+   ```
 
-    {
-        player_id: <string>,
-        player_name: <string>,
-        score: <int>,
-        rank: <int>,
-        updated_at: <date_timestamp>
-    }
-    ```
+2. Response
 
-    ```
-    403 - Unauth
-    404 - not found
-    ```
+   ```
+   status code: 200 OK
+   cache-control: private, no-cache, must-revalidate, max-age=5
+   content-encoding: gzip
+   content-type: application/json
+
+   {
+       player_id: <string>,
+       player_name: <string>,
+       score: <int>,
+       rank: <int>,
+       updated_at: <date_timestamp>
+   }
+   ```
+
+   ```
+   403 - Unauth
+   404 - not found
+   ```
 
 #### Get top N player
 
-1.  Request
-    ```
-    /players/top/:count
-    method: GET
-    authrorization: Bearer <token>
-    accept: application/json, text/html
-    user-agent: chrome
-    ```
-2.  Response
+1. Request
 
-    ```
-    status code: 200 OK
-    cache-control: public, no-cache, must-revalidate, max-age=5
-    content-encoding: gzip
-    content-type: application/json
+   ```
+   /players/top/:count
+   method: GET
+   authrorization: Bearer <token>
+   accept: application/json, text/html
+   user-agent: chrome
+   ```
 
-    {
-        count: 10(count),
-        updated_at:<timestamp>,
-        data: [
-            {
-                player_id: <string>,
-                player_name: <string>,
-                score: <int>,
-                rank: <int>
-            }
-        ]
-    }
-    ```
+2. Response
 
-    ```
-    403 - Unauth
-    ```
+   ```
+   status code: 200 OK
+   cache-control: public, no-cache, must-revalidate, max-age=5
+   content-encoding: gzip
+   content-type: application/json
+
+   {
+       count: 10(count),
+       updated_at:<timestamp>,
+       data: [
+           {
+               player_id: <string>,
+               player_name: <string>,
+               score: <int>,
+               rank: <int>
+           }
+       ]
+   }
+   ```
+
+   ```
+   403 - Unauth
+   ```
 
 #### Get surrounding players score
 
-1.  Request
-    ```
-    /players/:player-id/:count
-    method: GET
-    authrorization: Bearer <token>
-    accept: application/json, text/html
-    user-agent: chrome
-    ```
-2.  Response
+1. Request
 
-    ```
-    status code: 200 OK
-    cache-control: public, no-cache, must-revalidate, max-age=5
-    content-encoding: gzip
-    content-type: application/json
+   ```
+   /players/:player-id/:count
+   method: GET
+   authrorization: Bearer <token>
+   accept: application/json, text/html
+   user-agent: chrome
+   ```
 
-    {
-        count: 10(count),
-        updated_at:<timestamp>,
-        data: [
-            {
-                player_id: <string>,
-                player_name: <string>,
-                score: <int>,
-                rank: <int>
-            }
-        ]
-    }
-    ```
+2. Response
 
-    ```
-    403 - Unauth
-    ```
+   ```
+   status code: 200 OK
+   cache-control: public, no-cache, must-revalidate, max-age=5
+   content-encoding: gzip
+   content-type: application/json
+
+   {
+       count: 10(count),
+       updated_at:<timestamp>,
+       data: [
+           {
+               player_id: <string>,
+               player_name: <string>,
+               score: <int>,
+               rank: <int>
+           }
+       ]
+   }
+   ```
+
+   ```
+   403 - Unauth
+   ```
 
 #### Service health
 
@@ -205,3 +211,116 @@ Response
 200 - OK
 500 - error
 ```
+
+### DB
+
+### SQL schema
+
+<p>
+    <img src="./images/leaderboard/leaderboard-schema-sql.svg"/>
+</p>
+
+### Redis schema
+
+<p>
+    <img src="./images/leaderboard/leaderboard-schema-redis.svg"/>
+</p>
+
+1. here Game and player table is having `1 to many` bsc one player can play multiple games
+2. Friends and player is like follower-followee relationship. (associate entity)
+3. Games and leaderboard is `1 to many` as one game can have multiple leaderboards like regional, global, friend_circle.
+4. Players and leaderboard is also `1 to many` as one player can be part of multiple games so multiple leaderboards.
+5. SQL database is good if we have to design system for mid level usage and for high usage system Relational DB is not favourable bcs of few reason
+
+   1. Everytime we have to calculate the rank the full table lookup is needed
+   2. Also if we do indexing the write will become expensive and it will not bring much speed
+   3. Caching will have stale data issue
+   4. the computation of rank in player will require nested queries will not be efficient.
+
+6. For our usecase we need a DB that store data in sorted manner so the fetch of data is very fast. [Redis sorted-set](../Technologies/redis-sorted-set.md) is a good option for this.
+7. So choice is
+
+   1. Redis sorted set , but as we know redis sorted set only store score and member identifier so we can use a combination of `Sorted set + Hash` to store data.
+   2. identifier can contain data like `user:id` .
+   3. In Hset we can store data like
+
+   ```sh
+   HSET user:123 name "John Doe" image "john.jpg" location "USA" email "john@example.com"
+   ```
+
+   4. Image can be stored in object storage Amazon S3
+
+8. How we will achieve other functionalities in case of redis DB
+
+   1. leaderboard based on game - make a new sorted set
+   2. Similar can be done for based on location and all
+   3. or another thing can be we can store other data in DB (other than redis) and fetch data based on user id
+
+### High Level Design
+
+<p>
+    <img src="./images/leaderboard/leaderboard-hld.svg"/>
+</p>
+
+1. The client creates a WebSocket connection to the load balancer for real-time communication
+2. The load balancer delegates the client’s request to the closest data center
+3. The server queries the cache server to display the leaderboard
+4. The server queries the relational database on a cache miss and populates the cache server with fetched data
+5. In cache miss we can use `LRU` policy.
+
+### Design Deep dive
+
+#### Get top 10 players
+
+```sh
+ZREVRANGE <key> <start> <stop>
+e.g.
+ZREVRANGE leaderboard 0 9
+```
+
+After this we can get metadata of the players using the command `HMGET` from the Hash.
+
+#### Get rank of a given player
+
+```sh
+
+ZREVRANK <key> <member>
+
+returns the rank of member in the sorted set stored at key, with the scores ordered from high to low. The rank is 0-based, which means that the member with the highest score has rank 0.
+
+e.g.
+ZREVRANK leaderboard "user:id"
+```
+
+#### Get surrounding player for a given game
+
+1. Fetch rank of given player
+2. Get surrounding players based on the rank-x to rank+x
+
+```sh
+ZREVRANK leaderboard "user:id"
+
+res : (integer) 11
+
+ZREVRANGE leaderboard 8 14
+```
+
+FOR MORE DESC visit : [Redis Sorted set](../Technologies/redis-sorted-set.md)
+
+#### How to send score notification update
+
+1. DB change can trigger (when score of a player is beaten by another) serverless function call to notify.
+2. We can also use the [Bloom filter](../premier/Uncategorized/Bloom-filters.md) to make sure user receives notifcation only once on rating change.
+3. we can use [Pub-sub](../premier/Scalability-files/Message-Queue.md#types) pattern for this.
+
+PENDING
+
+#### Global leaderboards
+
+#### Historical leaderboards
+
+#### Leaderboards based on time
+
+#### Leaderboards for friend circle
+
+....manythings yet to think Scaling

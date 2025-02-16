@@ -76,7 +76,7 @@ Pending
 
 # Technologies
 
--[Redis sorted set](./Technologies/redis-sorted-set.md)
+- [Redis sorted set](./Technologies/redis-sorted-set.md)
 
 # Questions
 

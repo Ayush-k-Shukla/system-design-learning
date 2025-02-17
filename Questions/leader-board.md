@@ -347,4 +347,25 @@ we can create a friend leaderboard
 | **Fetch Friend Leaderboard** | `ZRANGE leaderboard:<user_id> 0 -1 WITHSCORES` |
 | **Update Friend Leaderboard** | `ZADD leaderboard:<user_id> <updated_score> <friend_id>` |
 
-....manythings yet to think Scaling
+#### High Availability
+
+Enable autoscaling as using serverless functions
+
+#### Low latency
+
+Can deploy server in multiple region and also using cdn for some usecases. Although sorted set gives logarithmic time complexity.
+
+#### Scalability
+
+Caching layer is added for read-heavy loads as clients viewing leaderboard. we can also partition the data.
+
+#### Reliability
+
+We can setup monitoring with help of Prometheus as time series data and Grafana as dashboard.
+We can also implement circuit breaker for fault tolerance.
+
+#### Security
+
+1. JWT for auth
+2. rate limiting
+3. encrypt traffic

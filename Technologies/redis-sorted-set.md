@@ -67,6 +67,22 @@ ZREM <key> <member> [<member> …]
 ZREM leaderboard "Alice"
 ```
 
+### Union multiple set to create a global leaderboard
+
+```sh
+ZUNIONSTORE destination numkeys key [key ...] [WEIGHTS weight
+  [weight ...]] [AGGREGATE <SUM | MIN | MAX>]
+```
+
+It makes the union of multiple sorted sets passed as `key` and stores the result in location `destination`.
+Using WEIGHT option is to specify a multiplication factor for each set score before union, by default it is 1.
+Agreegate option is used to specify what we need from union, sum, max, min.
+If destination already exist will be overwritten
+
+```sh
+ZUNIONSTORE global_leaderboard 2 leader_board_game1 leader_board_game2 WEIGHTS 2 3
+```
+
 ## 4. Time Complexity
 
 - **ZADD**: O(log N) (Adding an element)
@@ -74,5 +90,6 @@ ZREM leaderboard "Alice"
 - **ZRANGEBYSCORE**: O(log N + M)
 - **ZREM**: O(log N) (Removing an element)
 - **ZREVRANK**: O(log N) (Getting reverse rank of an element)
+- **ZUNIONSTORE**: O(N) + O(M log M) (with N being the sum of the sizes of the input sorted sets, and M being the number of elements in the resulting sorted set.)
 
 Redis sorted sets efficiently handle ordered data, making them ideal for real-time applications requiring fast insertions, deletions, and queries.

@@ -216,13 +216,13 @@ Response
 
 ### SQL schema
 
-<p>
+<p align="center">
     <img src="./images/leaderboard/leaderboard-schema-sql.svg"/>
 </p>
 
 ### Redis schema
 
-<p>
+<p align="center">
     <img src="./images/leaderboard/leaderboard-schema-redis.svg"/>
 </p>
 
@@ -258,7 +258,7 @@ Response
 
 ### High Level Design
 
-<p>
+<p align="center">
     <img src="./images/leaderboard/leaderboard-hld.svg"/>
 </p>
 
@@ -282,7 +282,7 @@ After this we can get metadata of the players using the command `HMGET` from the
 
 #### Get rank of a given player
 
-```sh
+```
 
 ZREVRANK <key> <member>
 
@@ -317,10 +317,34 @@ PENDING
 
 #### Global leaderboards
 
+1. We can manage multiple sorted sets for distinct gaming scenarios. The global sorted-set can include the agreegated score across all gaming scenarios.
+2. Can use [ZUNIONSTORE](../Technologies/redis-sorted-set.md#union-multiple-set-to-create-a-global-leaderboard) command.
+
 #### Historical leaderboards
 
-#### Leaderboards based on time
+<p align="center">
+    <img src="./images/leaderboard/historical-leaderboard.svg"/>
+</p>
+1. We can use ttl based cache for historical leaderboards and also we can utilize REST instead of socket as global leaderboard can use polling, and big in size.
+2. Historical we can move to cols storage for cost efficiency
+3. Flow
+   1. Client checks in CDN for extremely popular leaderboards
+   2. client -> LB -> server -> serverless fn
+   3. serverless function is easy to scale and cost effetive, it checks cache first and if not found in cache then check relational DB, and for image fetch from object storage.
+
+#### Leaderboards based on daily, weekly, monthly
+
+A new sorted set can be created for different time ranges. At the time end we can calculate from existing and do.
 
 #### Leaderboards for friend circle
+
+we can create a friend leaderboard
+| Feature | Redis Implementation |
+|-----------------------------|----------------------------------------------------------|
+| **Global Leaderboard** | `ZADD global_leaderboard <score> <user_id>` |
+| **Store Friends** | `SADD friends:<user_id> <friend1> <friend2>` |
+| **Create Friend Leaderboard** | `ZADD leaderboard:<user_id> <score> <friend_id>` |
+| **Fetch Friend Leaderboard** | `ZRANGE leaderboard:<user_id> 0 -1 WITHSCORES` |
+| **Update Friend Leaderboard** | `ZADD leaderboard:<user_id> <updated_score> <friend_id>` |
 
 ....manythings yet to think Scaling

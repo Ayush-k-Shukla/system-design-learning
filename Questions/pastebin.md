@@ -104,7 +104,7 @@ Response
    visibility:<enum>,
    id:<string>, (optional)
    expiry:<dattime> (optional),
-   s3_link:<string> (optional) - if paste size is more than 100KB we will store some part of it to s3
+   s3_link:<string>
 }
 
 
@@ -126,8 +126,38 @@ authorization:...
    2. relational data
    3. need of complex joins
    4. lookup by index
-2. Also there is size very huge so we can store huge content on s3 as it will cost effectively and reduce DB io.
+2. Also there is size very huge so we can store huge content on s3 object storage as it will cost effectively and reduce DB io.
+3. Some alternative to S3 is mongodb.
 
 <p align="center">
    <img src="./images/pastebin/schema-design.svg"/>
 </p>
+
+## HLD
+
+### Encoding
+
+1. we need to encode our pasteId into some format for readability. we can use base58 format.
+2. base58 is similar to base62 bur it doesn't contain non-distinguishable char like (`O (uppercase O), 0 (zero), and I (capital I), l (lowercase L)`).
+3. so range of base58 - A-z a-z 0-9 (exclude above four char)
+4. Total paste id possible for a 8 length base58 id = 58^8 = **128 trillion**
+5.
+
+### Read paste
+
+<p align="center">
+   <img src="./images/pastebin/read.svg"/>
+</p>
+
+1. Using cache-aside pattern and for eviction use LRU
+2. We are introducing cache at following level
+   1. CDN (public cache) - reduce load on system
+   2. internal cache on data store
+   3. client side cache (browser)
+3. API gateway handles
+   1. rate limiting
+   2. Auth
+   3. compressing
+   4. filtering
+4. Bloom filter is used to avoid cache thrashing, we set bloom fiters when an element accessed more than twice, and if bloom found for paste then only it will be written to cache.
+5. We will shard the DB based on user_id

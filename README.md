@@ -73,6 +73,7 @@ Pending
 2. Gossip protocol
 3. Distributed Locking
 4. Cache control header in browser REST
+5. Twitter's snowflake
 
 # Technologies
 
@@ -82,4 +83,5 @@ Pending
 
 - [How to answer](Questions/steps-to-answer-sd.md)
 - [TinyUrl](Questions/TinyUrl.md)
-- [Leaderboard](Questions/leader-board.md) - in progress
+- [Leaderboard](Questions/leader-board.md)
+- [Pastebin](Questions/pastebin.md) - IN progress

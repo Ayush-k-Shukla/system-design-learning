@@ -141,7 +141,34 @@ authorization:...
 2. base58 is similar to base62 bur it doesn't contain non-distinguishable char like (`O (uppercase O), 0 (zero), and I (capital I), l (lowercase L)`).
 3. so range of base58 - A-z a-z 0-9 (exclude above four char)
 4. Total paste id possible for a 8 length base58 id = 58^8 = **128 trillion**
-5.
+
+### Write paste
+
+<p align="center">
+   <img src="./images/pastebin/write.svg"/>
+</p>
+
+1. Single machine solution will not scaleout so we move the Key Generation service (**KGS**) outside as a service.
+2. Operations done when client enters a paste
+   1. write call is rate limited
+   2. KGS creates a unique encoded pasteid
+   3. we get [pre-signed url](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html)
+      1. system requests a pres-signed url from the object storage.
+      2. A presigned URL allows the client to upload content directly to storage without needing authentication each time.
+   4. Paste url is created by appending pasteid.
+      1. `http://presigned-url/paste-id`
+   5. The paste content is transferred directly from the client to the object storage using the paste URL to optimize bandwidth expenses and performance
+   6. The object storage persists the paste using the paste URL
+   7. The metadata of the paste including the paste URL is persisted in the SQL database
+   8. The server returns the paste ID to the client for future access
+3. Some other things we can perform on server
+   1. Huffman encoding for reducing text size
+   2. content encryption
+   3. Use bloom filter in case if custom url is requested, we can check if custom url is already present or not
+4. **Random ID Generation**
+   1. we can pick one of the following multiple approach
+      1. Twitter's snowflake
+      2. MD5 + hashing (something that we followd in url shortener)
 
 ### Read paste
 
@@ -161,3 +188,21 @@ authorization:...
    4. filtering
 4. Bloom filter is used to avoid cache thrashing, we set bloom fiters when an element accessed more than twice, and if bloom found for paste then only it will be written to cache.
 5. We will shard the DB based on user_id
+
+// pending
+
+## Deep dive
+
+### Scalability
+
+### Rate limiting
+
+### Availability
+
+### Fault Tolerance
+
+### Analytics
+
+### DB cleanup
+
+### Security

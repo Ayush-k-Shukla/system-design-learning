@@ -189,20 +189,42 @@ authorization:...
 4. Bloom filter is used to avoid cache thrashing, we set bloom fiters when an element accessed more than twice, and if bloom found for paste then only it will be written to cache.
 5. We will shard the DB based on user_id
 
-// pending
-
 ## Deep dive
 
 ### Scalability
 
+1. Scalaing a system is a iterative process we can continuously perform these action
+   1. benchmark or load test
+   2. profiling for bottlenecks and SPOF
+2. We can keep the service stateless for horizontal scaling
+
 ### Rate limiting
+
+1. to prevent malicious attacks, we can use following entities to identify
+   1. token for loggedin user
+   2. request from free and premius clients are throttled diff based on the plan
 
 ### Availability
 
+Can be approved by following things
+
+1. LB run in active-active or active-passive mode
+2. same like KGS also run in both of above mentioned
+3. Backup DB atleast once a day
+
 ### Fault Tolerance
+
+1. we are already using MS arch so it will improve fault tolerance
+2. we can durther can implement circuit breaker and backpressure
 
 ### Analytics
 
+1. setup a Kafka for analytics purpose and process event asynchronously
+
 ### DB cleanup
 
-### Security
+We can remove expired data to reduce data cost by
+
+1. lazy removal
+2. dedicated cleanup service
+3. timer cleanup service

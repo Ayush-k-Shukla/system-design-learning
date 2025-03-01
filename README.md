@@ -78,10 +78,11 @@ Pending
 # Technologies
 
 - [Redis sorted set](./Technologies/redis-sorted-set.md)
+- [Twitter's snowflake](./Technologies/snowflake.md)
 
 # Questions
 
 - [How to answer](Questions/steps-to-answer-sd.md)
 - [TinyUrl](Questions/TinyUrl.md)
 - [Leaderboard](Questions/leader-board.md)
-- [Pastebin](Questions/pastebin.md) - IN progress
+- [Pastebin](Questions/pastebin.md)

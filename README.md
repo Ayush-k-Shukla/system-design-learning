@@ -77,8 +77,8 @@ Pending
 
 # Technologies
 
-- [Redis sorted set](./Technologies/redis-sorted-set.md)
-- [Twitter's snowflake](./Technologies/snowflake.md)
+- [Redis sorted set](Technologies/redis-sorted-set.md)
+- [Twitter's snowflake](Questions/snowflake.md)
 
 # Questions
 
@@ -86,3 +86,8 @@ Pending
 - [TinyUrl](Questions/TinyUrl.md)
 - [Leaderboard](Questions/leader-board.md)
 - [Pastebin](Questions/pastebin.md)
+
+# Implementations
+
+- [Learderboard in Redis](https://github.com/Ayush-k-Shukla/leaderboard-redis)
+- [Id Generation using Snowflake](https://github.com/Ayush-k-Shukla/small-dev-projects/tree/main/3.%20snowflake-id)

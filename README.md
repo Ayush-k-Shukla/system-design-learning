@@ -67,18 +67,10 @@ Notes for System Design Learning (In Progress)
 - [Client server Architecture](premier/Uncategorized/client-server-architecture.md)
 - [Serverless Architecture](premier/Uncategorized/serverless-arch.md)
 
-Pending
-
-1. Consensus in DS
-2. Gossip protocol
-3. Distributed Locking
-4. Cache control header in browser REST
-5. Twitter's snowflake
-
 # Technologies
 
 - [Redis sorted set](Technologies/redis-sorted-set.md)
-- [Twitter's snowflake](Questions/snowflake.md)
+- [Twitter snowflake](Questions/snowflake.md)
 
 # Questions
 
@@ -86,8 +78,25 @@ Pending
 - [TinyUrl](Questions/TinyUrl.md)
 - [Leaderboard](Questions/leader-board.md)
 - [Pastebin](Questions/pastebin.md)
+- [CDN](Questions/cdn.md) - In progress
 
 # Implementations
 
 - [Learderboard in Redis](https://github.com/Ayush-k-Shukla/leaderboard-redis)
 - [Id Generation using Snowflake](https://github.com/Ayush-k-Shukla/small-dev-projects/tree/main/3.%20snowflake-id)
+
+# Pending
+
+Theory
+
+1. Consensus in DS
+2. Gossip protocol
+3. Distributed Locking
+4. Cache control header in browser REST
+5. Idempotency and How can be handled
+6. How do DB index work (e.g. Ds used and implemented like B+...)
+
+Questions
+
+1. CDN design
+2. UPI

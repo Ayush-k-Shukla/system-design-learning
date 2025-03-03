@@ -41,11 +41,15 @@
 
 If we follow 80:20 rule for caching
 
-| Desc            | value                            |
-| --------------- | -------------------------------- |
-| storage per day | 500KBx100M = 50 TB \*0.8 = 40 TB |
+| Desc            | value                           |
+| --------------- | ------------------------------- |
+| storage per day | 500KBx100M = 50 TB\*0.8 = 40 TB |
 
 ## High Level Design
+
+<p align="center">
+   <img src="./images/cdn/hld.svg" />
+</p>
 
 ### Edge Servers (Point of Presence)
 
@@ -94,10 +98,97 @@ If we follow 80:20 rule for caching
 2. Token based auth for provate content
 3. SSL/TLS encryption for secure delivery
 
+### Read flow
+
+```mermaid
+sequenceDiagram
+participant User
+participant DNS as Global DNS
+participant LB as Load Balancer
+participant Edge as Edge Server (PoP)
+participant Cache as Regional Cache
+participant Origin as Origin Server
+participant DB as Metadata Database
+
+    User->>DNS: Request content (cdn.example.com)
+    DNS->>User: Resolve to nearest Edge PoP
+    User->>LB: Request content from resolved CDN server
+    LB->>Edge: Forward request to nearest Edge PoP
+    Edge->>Edge: Check local cache (Hit/Miss)
+    alt Cache Hit
+        Edge->>User: Serve cached content
+    else Cache Miss
+        Edge->>Cache: Request from Regional Cache
+        alt Regional Cache Hit
+            Cache->>Edge: Serve cached content
+            Edge->>User: Serve content
+        else Cache Miss
+            Cache->>Origin: Request from Origin Server
+            Origin->>DB: Retrieve content metadata
+            DB->>Origin: Return metadata
+            Origin->>Cache: Store content in Regional Cache
+            Cache->>Edge: Store content in Edge Cache
+            Edge->>User: Serve content
+        end
+    end
+```
+
+### Write flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant LB as Load Balancer
+    participant Edge as Edge Server (PoP)
+    participant Origin as Origin Server
+    participant DB as Metadata Database
+    participant Queue as Message Queue
+
+    User->>LB: Upload content to CDN
+    LB->>Edge: Forward request to nearest Edge PoP
+    Edge->>Origin: Forward content to Origin Server
+    Origin->>DB: Store metadata (URL, TTL, size, etc.)
+    DB->>Origin: Confirm metadata storage
+    Origin->>Queue: Publish cache invalidation event
+    Queue->>Edge: Notify Edge servers to refresh cache
+    Edge->>User: Return confirmation with CDN URL
+```
+
+## DB Design
+
+## API Design
+
+### Get data from cdn
+
+```sh
+GET /cdn/content/{content_id}
+
+Response: {"cdn_url": "<cdn_url>,"cache_hit": true}
+
+```
+
+### Upload to cdn
+
+```sh
+POST /cdn/upload
+body : {"file":binary}
+auth token
+
+Response: {"status":OK, "cdn_url": "<cdn_url>,"content_id": string}
+
+```
+
+### Update content (Invalidation)
+
+```sh
+PUT /cdn/content/{content_id}
+body : {"file":binary,"version":v2}
+auth token
+
+Response: {"status":OK, "version": "v2","content_id": string}
+
+```
+
 PENDING
 
-1. Diag for HLD
-2. Read flow
-3. Write flow
-4. DB design
-5. API design
+1. DB design

@@ -21,7 +21,7 @@ Availability = Uptime / (Uptime + Downtime);
       Availability (Total) = 1 - (1 - Availability (Foo)) * (1 - Availability (Bar))
       ```
 
-5. Sequential Availability
+5. **Sequential Availability**
 
    1. In a sequence setup, multiple components depend on each other. The overall system is only available if all components in the sequence are operational.
    2. A failure in any single component causes the entire system to fail.

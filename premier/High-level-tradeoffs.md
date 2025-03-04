@@ -89,7 +89,7 @@ Concurrency is about managing multiple tasks simultaneously, while Parallelism i
 4. The primary objective of concurrency is to maximize CPU utilization by minimizing idle time.
 5. Cost : Although Context switching enables concurrency but it also introduce overhead
    1. every switch require saving and restoring task states
-6. Examples
+6. **Examples**
    1. Modern web browsers perform multiple task concurrently (like loading html/css, responding user clicks etc.)
    2. Used in web servers handling multiple client requests, even on a single CPU.
    3. Chat apps
@@ -106,7 +106,7 @@ Concurrency is about managing multiple tasks simultaneously, while Parallelism i
 1. Multiple tasks are executed simultaneously.
 2. To achieve parallelism, an application divides its tasks into smaller, independent subtasks. These subtasks are distributed across multiple CPUs, CPU cores, GPU cores, or similar processing units, allowing them to be processed in parallel.
 3. Modern CPUs consist of multiple cores. Each core can independently execute a task. Parallelism divides a problem into smaller parts and assigns each part to a separate core for simultaneous processing.
-4. Examples
+4. **Examples**
    1. ML training - train modesls by dividing datasets into smaller batches
    2. Web crawlers - breaks list of URls into smaller chunks and process in parallel
    3. Data processing

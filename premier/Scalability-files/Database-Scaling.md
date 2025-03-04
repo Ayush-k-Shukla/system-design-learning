@@ -21,6 +21,9 @@ when our app grows the data we need to store also grows so we need to scale our 
          1. **Primary Index**
             1. Automatically created when a primary key constraint is defined. ensure uniqueness and fast lookup using primary key.
          2. **Clustered and non clustered(Secondary) index** [LINK](https://www.geeksforgeeks.org/difference-between-clustered-and-non-clustered-index/)
+            1. Clustered index will change the order of row in the physical table (like primary key will be sorted).
+            2. We can only have one clustered index per table.
+            3. Non Clustered is a normal index
       2. **Based on Data coverage**
          1. **Dense index**
             1. Has entry in table will have an entry in index.

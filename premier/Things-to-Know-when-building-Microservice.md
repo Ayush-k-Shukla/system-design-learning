@@ -42,7 +42,9 @@
        1. It is a common requirement for all services to support the common protocol like HTTP and AMQP (Advanced Message Queuing Protocol). and also services which are exposed publicly need to support the Authentication and Authorization.
        2. This is usually done using some common library which reduce code duplication.
        3. Solution for this problem is to use a API gateway which is simply a proxy which is aware of all the services registered with it. It take care os supporting all protocols and authentication and communicating with services in a common protocol (mostly HTTP).
+
           ![Image](https://i2.wp.com/cloudncode.files.wordpress.com/2016/07/api-gateway.png)
+
        4. Some popular gateways are Apigee, Mashery and Amazon API Gateway
 
 ### Service Discovery

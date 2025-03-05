@@ -39,12 +39,12 @@
             4. e.g. Transaction A updates `balance` to 1000 but doesn't commit yet. Transaction B can read the `balance` as 1000 eventhough it is not permanent yet.
          3. **Read Commited**
             1. A transaction can only read committed changes.
-            2. It guarantees No Dirty Reads (when a transaction reads data that has been modified by another transaction, but not yet committed), and can be Non Repeatable Read (a transaction reads data, and then another transaction modifies or deletes that data before the first transaction complete.)
+            2. It guarantees No **Dirty Reads** (when a transaction reads data that has been modified by another transaction, but not yet committed), and can be **Non Repeatable Read** (a transaction reads data, and then another transaction modifies or deletes that data before the first transaction complete.)
             3. Used in applications where exact consistency is less critical and performance is priority.
             4. e.g. TA reads `balance` as 1000 and continues and in between TB updates `balance` to 1002 so in second read TA will read inconsistent value.
          4. **Repeatable Read**
             1. Once a transaction reads data, It is locked until the transaction completes.
-            2. This guarantees no dirty reads, No Non Repeatable Reads. Phantom reads (occurs when two same queries are executed, but the rows retrieved by the two, are different, bcs new row is added or existing got deleted by some transaction) may occur.
+            2. This guarantees no dirty reads, No Non Repeatable Reads. **Phantom reads** (occurs when two same queries are executed, but the rows retrieved by the two, are different, bcs new row is added or existing got deleted by some transaction) may occur.
          5. **Serializable**
             1. Highest level of isolation.
             2. Transaction executed in a serializable manner, as if they run one after another.

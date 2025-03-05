@@ -8,33 +8,23 @@
 
 ![Image](../images/message-queue-components.jpg)
 
-1.**Publisher** - entity that sends messages to queue
-
-2.**Subscriber** - entity that reads message from queue
-
-3.**Queue** - Data structure that stores message untill they are consumed
-
-4.**Broker** - It is optional in some. It is a software that manages the message queues, handles that message are routed correctly between consumers and producers.
-
-5.**Message** - a unit of data sent. generally contains some payload, metadata (headers, timestamps, priority) about the message.
+1. **Publisher** - entity that sends messages to queue
+2. **Subscriber** - entity that reads message from queue
+3. **Queue** - Data structure that stores message untill they are consumed
+4. **Broker** - It is optional in some. It is a software that manages the message queues, handles that message are routed correctly between consumers and producers.
+5. **Message** - a unit of data sent. generally contains some payload, metadata (headers, timestamps, priority) about the message.
 
 ### **How does Message Queues work**
 
 ![Image](../images/message-queue-working.jpg)
 
-1.**Sending Message**
-
-2.**Queueing Message**
-
-1. Queue stores the message temporarily, making available for one or more consumer
-
-3.**Consuming Message**
-
-1. Message consumers retrieve messages from the queue when they are ready to process them. They can do this at their own pace, which enables asynchronous communication.
-
-4.**Acknowledgement (Optional)**
-
-1. In some message queue systems, consumers can send acknowledgments back to the queue, indicating that they have successfully processed a message. This is essential for ensuring message delivery and preventing message loss.
+1. **Sending Message**
+2. **Queueing Message**
+3. Queue stores the message temporarily, making available for one or more consumer
+4. **Consuming Message**
+5. Message consumers retrieve messages from the queue when they are ready to process them. They can do this at their own pace, which enables asynchronous communication.
+6. **Acknowledgement (Optional)**
+7. In some message queue systems, consumers can send acknowledgments back to the queue, indicating that they have successfully processed a message. This is essential for ensuring message delivery and preventing message loss.
 
 ### **Types**
 
@@ -44,7 +34,7 @@
 
    1. It is simplest type. When a producer sends a message the message is stored in the queue untill the consumer retrieves it.
    2. Once message is retrieved it is removed from the queue and can not be processed by another consumer.
-   3. Used in
+   3. **Used in**
       1. Task processing system
       2. Log processing system
       3. Order processing system
@@ -55,11 +45,10 @@
 
    1. In this model, messages are published to a topic and multiple consumers can subscribe to that topic to receive messages.
    2. Publishes messages to a topic instead of directly sending them to a queue.
-   3. Message Broker (Pub/Sub System) routes messages
-      A central system (e.g., Kafka, Google Pub/Sub, Redis) distributes messages to all subscribers.
+   3. A Message Broker (Pub/Sub system) is a central system (e.g., Kafka, Google Pub/Sub, Redis) that distributes messages from publishers to all subscribed consumers.
    4. Subscribers receive messages
       Any service subscribed to the topic will get the message.
-   5. Usecase
+   5. **Usecase**
       1. Inventory Service → Updates stock
       2. Payment Service → Processes the payment
       3. Shipping Service → Starts delivery
@@ -68,7 +57,7 @@
 3. **Priority Queue**
 
    1. Messages in the queue are assigned priorities, and higher-priority messages are processed before lower-priority ones.
-   2. Usecase
+   2. **Usecase**
       1. emergency alerts system
       2. Healthcare (critical patients alert)
       3. Customer support system(e.g. premium customer get faster response)
@@ -78,7 +67,7 @@
    ![Image](../images/dlq.jpg)
 
    1. Stores messages that could not be processed successfully after multiple retries.
-   2. Usecase
+   2. **Usecase**
       1. Handeling failed transaction in e-commerce
       2. Useful for troubleshooting and handeling failed messages
 

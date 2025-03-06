@@ -167,7 +167,7 @@ authorization:...
    3. Use bloom filter in case if custom url is requested, we can check if custom url is already present or not
 4. **Random ID Generation**
    1. we can pick one of the following multiple approach
-      1. Twitter's snowflake
+      1. [Twitter's snowflake](./snowflake.md)
       2. MD5 + hashing (something that we followd in url shortener)
 
 ### Read paste

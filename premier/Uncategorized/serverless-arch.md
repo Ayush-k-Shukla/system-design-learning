@@ -1,7 +1,7 @@
 # Serverless Architecture
 
 1. It is a approach that allows developers to build and run services without having to manage the underlying infra.
-2. Developers just write thier codr and deploy, while a cloud provider provisions server to run their applications, databases and storage systems at any scale.
+2. Developers just write thier code and deploy, while a cloud provider provisions server to run their applications, databases and storage systems at any scale.
 
 ## Working
 
@@ -9,7 +9,7 @@
 2. There are some other popular are serverless containers.
 
 <p>
-<img src='../images/faas.jpg'>
+<img src='../images/faas.jpg'/>
 </p>
 
 ## Benefits

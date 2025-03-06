@@ -70,7 +70,6 @@ Notes for System Design Learning (In Progress)
 # Technologies
 
 - [Redis sorted set](Technologies/redis-sorted-set.md)
-- [Twitter snowflake](Questions/snowflake.md)
 
 # Questions
 
@@ -78,6 +77,7 @@ Notes for System Design Learning (In Progress)
 - [TinyUrl](Questions/TinyUrl.md)
 - [Leaderboard](Questions/leader-board.md)
 - [Pastebin](Questions/pastebin.md)
+- [Distributed Unique Id generator based on snowflake](Questions/snowflake.md)
 - [CDN](Questions/cdn.md) - In progress
 
 # Implementations
@@ -95,6 +95,7 @@ Theory
 4. Cache control header in browser REST
 5. Idempotency and How can be handled
 6. How do DB index work (e.g. Ds used and implemented like B+...)
+7. Web app firewall
 
 Questions
 

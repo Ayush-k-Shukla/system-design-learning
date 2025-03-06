@@ -3,13 +3,13 @@
 ## High level design
 
 <p align="center">
-   <image src='./images/tinyurl-hld.png'>
+   <image src='./images/tinyurl-hld.png'/>
 </p>
 
 ## Estimation
 
 <p align="center">
-   <image src='../diagrams/tinyurl.drawio.svg'>
+   <image src='../diagrams/tinyurl.drawio.svg'/>
 </p>
 
 ## Requirement Gathering

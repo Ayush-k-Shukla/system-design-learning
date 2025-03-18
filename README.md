@@ -66,6 +66,8 @@ Notes for System Design Learning (In Progress)
   - [Traditional vs Scalable vs Counting](/premier/Uncategorized/Bloom-filters.md#traditional-vs-counting-vs-scalable-bloom-filter)
 - [Client server Architecture](premier/Uncategorized/client-server-architecture.md)
 - [Serverless Architecture](premier/Uncategorized/serverless-arch.md)
+- [Cache Control in HTTP](premier/Uncategorized/browser-cache-control.md)
+- [Gossip protocol](premier/Uncategorized/gossip-protocol.md) - in progress
 
 # Technologies
 
@@ -90,12 +92,11 @@ Notes for System Design Learning (In Progress)
 Theory
 
 1. Consensus in DS
-2. Gossip protocol
-3. Distributed Locking
-4. Cache control header in browser REST
-5. Idempotency and How can be handled
-6. How do DB index work (e.g. Ds used and implemented like B+...)
-7. Web app firewall
+2. Distributed Locking
+3. Normal locking
+4. Idempotency and How can be handled
+5. How do DB index work (e.g. Ds used and implemented like B+...)
+6. Web app firewall
 
 Questions
 

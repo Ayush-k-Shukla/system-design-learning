@@ -97,8 +97,14 @@ Theory
 4. Idempotency and How can be handled
 5. How do DB index work (e.g. Ds used and implemented like B+...)
 6. Web app firewall
+7. Sse and comp with ws and implementation (support over http1 and http2)
+8. little in details of http1 vs 2 vs 3
 
 Questions
 
 1. CDN design
 2. UPI
+
+Impl
+
+1. something related to mq

@@ -67,7 +67,7 @@ Notes for System Design Learning (In Progress)
 - [Client server Architecture](premier/Uncategorized/client-server-architecture.md)
 - [Serverless Architecture](premier/Uncategorized/serverless-arch.md)
 - [Cache Control in HTTP](premier/Uncategorized/browser-cache-control.md)
-- [Gossip protocol](premier/Uncategorized/gossip-protocol.md) - in progress
+- [Gossip protocol](premier/Uncategorized/gossip-protocol.md)
 
 # Technologies
 

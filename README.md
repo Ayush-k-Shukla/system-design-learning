@@ -68,6 +68,7 @@ Notes for System Design Learning (In Progress)
 - [Serverless Architecture](premier/Uncategorized/serverless-arch.md)
 - [Cache Control in HTTP](premier/Uncategorized/browser-cache-control.md)
 - [Gossip protocol](premier/Uncategorized/gossip-protocol.md)
+- [Consensus in Distributed System](premier/Uncategorized/consensus-in-ds.md)
 
 # Technologies
 

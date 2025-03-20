@@ -112,6 +112,23 @@ If we follow 80:20 rule for caching
 
 ## DB Design
 
+### Content metadata (Not clear still)
+
+Stores metadata about CDN-stored content.
+
+```
+CREATE TABLE content_metadata (
+    id SERIAL PRIMARY KEY,
+    url TEXT UNIQUE NOT NULL,  -- CDN URL for the content
+    origin_url TEXT NOT NULL,  -- Original source URL
+    ttl INT DEFAULT 3600,  -- Time-to-live in seconds
+    size BIGINT,  -- Size of content in bytes
+    version INT DEFAULT 1,  -- Versioning for updates
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+```
+
 ## API Design
 
 ### Get data from cdn

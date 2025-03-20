@@ -92,14 +92,12 @@ Notes for System Design Learning (In Progress)
 
 Theory
 
-1. Consensus in DS
-2. Distributed Locking
-3. Normal locking
-4. Idempotency and How can be handled
-5. How do DB index work (e.g. Ds used and implemented like B+...)
-6. Web app firewall
-7. Sse and comp with ws and implementation (support over http1 and http2)
-8. little in details of http1 vs 2 vs 3
+1. Distributed Locking
+2. Normal locking
+3. How do DB index work (e.g. Ds used and implemented like B+...)
+4. Web app firewall
+5. Sse and comp with ws and implementation (support over http1 and http2)
+6. little in details of http1 vs 2 vs 3
 
 Questions
 

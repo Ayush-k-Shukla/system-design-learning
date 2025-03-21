@@ -161,15 +161,58 @@
    <img src="images/polling.jpg">
 </p>
 
-## WebSocket vs. Long Polling vs. Polling
+## Server Sent Events (SSE)
 
-| Feature                 | WebSocket                                   | Long Polling                            | Polling                        |
-| ----------------------- | ------------------------------------------- | --------------------------------------- | ------------------------------ |
-| **Communication Type**  | Full-duplex (bidirectional)                 | Half-duplex (client-initiated)          | Half-duplex (client-initiated) |
-| **Latency**             | Very low                                    | Medium                                  | High                           |
-| **Efficiency**          | High (persistent connection)                | Medium (delayed responses)              | Low (frequent requests)        |
-| **Connection Overhead** | Single handshake, then persistent           | New request for each update             | New request for each update    |
-| **Server Load**         | Low                                         | Higher than WebSockets                  | Very high                      |
-| **Client Requests**     | Only one per session                        | Multiple but less frequent              | Frequent requests              |
-| **Best Use Cases**      | Real-time apps (chats, games, live updates) | Notifications, moderate real-time needs | Basic periodic updates         |
-| **Scalability**         | High                                        | Moderate                                | Low                            |
+1. It allows server to send un-directional messages/events to client over HTTP.
+2. SSE is a technology that provides asynchronous communication with event stream from server to the client over HTTP for web applications. The server can send un-directional messages/events to the client and can update the client asynchronously. Almost every browser is supporting the SSE except Internet Explorer.
+
+### Working
+
+<p align="center">
+   <img src="images/sse.webp">
+</p>
+
+1. The server-sent events streaming can be started by the client’s GET request to Server.
+   ```
+   GET /api/v1/live-scores
+   Accept: text/event-stream
+   Cache-Control: no-cache
+   Connection: keep-alive
+   ```
+2. `Accept: text/event-stream` indicates the client waiting for event stream from the server, `Cache-Control: no-cache` indicates that disabling the caching and `Connection: keep-alive` indicates the persistent connection. This request will give us an open connection which we are going to use to fetch updates. After the connection, the server can send messages when the events are ready to send by the server. The important thing is that events are text messages in `UTF-8` encoding.
+3. List of pre-defined SSE field names include:
+   1. **event:** the event type defined by application
+   2. **data:** the data field for the event or message.
+   3. **retry:** The browser attempts to reconnect to the resource after a defined time when the connection is lost or closed.
+   4. **id:** id for each event/message
+
+### Usecase
+
+1. E-commerce Projects (notify whenever the user needs the information)
+2. Tracking system
+3. Alarm/Alert Projects
+4. IoT Projects (Alarm, notify, events, rules, actions)
+5. Stock Markets (Bitcoin etc.)
+6. Breaking news, Sports Score Updates
+7. Delivery projects
+8. In-app notifications
+
+### Challenges and Considerations
+
+1. One potential downside of using Server-Sent Events is the limitations in data format. Since SSE is restricted to transporting UTF-8 messages, binary data is not supported.
+2. When not used over HTTP/2, another limitation is the restricted number of concurrent connections per browser. With only six concurrent open SSE connections allowed at any given time, opening multiple tabs with SSE connections can become a bottleneck.
+   1. In HTTP/1.1, each SSE connection requires a separate TCP connection because there is no built-in multiplexing. However, HTTP/2 solves this by allowing multiple independent streams over a single TCP connection.
+
+## WebSocket vs. SSE vs. Long Polling vs. Polling
+
+| Feature                   | WebSocket                                   | SSE (Server-Sent Events)            | Long Polling                            | Polling                        |
+| ------------------------- | ------------------------------------------- | ----------------------------------- | --------------------------------------- | ------------------------------ |
+| **Communication Type**    | Full-duplex (bidirectional)                 | Unidirectional (server to client)   | Half-duplex (client-initiated)          | Half-duplex (client-initiated) |
+| **Latency**               | Very low                                    | Low                                 | Medium                                  | High                           |
+| **Efficiency**            | High (single persistent connection)         | High (single persistent connection) | Medium (delayed responses)              | Low (frequent requests)        |
+| **Connection Overhead**   | Single handshake, then persistent           | Single HTTP connection (kept open)  | New request for each update             | New request for each update    |
+| **Server Load**           | Low                                         | Low (compared to polling)           | Higher than SSE/WebSockets              | Very high                      |
+| **Client Requests**       | One per session                             | One per session                     | Multiple but less frequent              | Frequent requests              |
+| **Multiplexing (HTTP/2)** | Yes                                         | Yes (multiple streams possible)     | No                                      | No                             |
+| **Best Use Cases**        | Real-time apps (chats, games, live updates) | Notifications, live data feeds      | Notifications, moderate real-time needs | Basic periodic updates         |
+| **Scalability**           | High                                        | High                                | Moderate                                | Low                            |

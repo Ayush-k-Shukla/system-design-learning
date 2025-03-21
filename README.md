@@ -48,7 +48,8 @@ Notes for System Design Learning (In Progress)
 - [gRPC](premier/Communication.md#google-remote-procedure-callgrpc)
 - [GraphQL](premier/Communication.md#graphql)
 - [Websockets](premier/Communication.md#websockets)
-- [Websockets vs Long polling vs Polling](premier/Communication.md#websocket-vs-long-polling-vs-polling)
+- [Server sent Events (SSE)](premier/Communication.md#server-sent-events-sse)
+- [Websockets vs SSE vs Long polling vs Polling](premier/Communication.md#websocket-vs-sse-vs-long-polling-vs-polling)
 
 ### [High level Tradeoffs](premier/High-level-tradeoffs.md)
 
@@ -69,6 +70,7 @@ Notes for System Design Learning (In Progress)
 - [Cache Control in HTTP](premier/Uncategorized/browser-cache-control.md)
 - [Gossip protocol](premier/Uncategorized/gossip-protocol.md)
 - [Consensus in Distributed System](premier/Uncategorized/consensus-in-ds.md)
+- [Idempotency in Distributed System](premier/Uncategorized/Idempotency.md)
 
 # Technologies
 
@@ -96,8 +98,7 @@ Theory
 2. Normal locking
 3. How do DB index work (e.g. Ds used and implemented like B+...)
 4. Web app firewall
-5. Sse and comp with ws and implementation (support over http1 and http2)
-6. little in details of http1 vs 2 vs 3
+5. little in details of http1 vs 2 vs 3
 
 Questions
 

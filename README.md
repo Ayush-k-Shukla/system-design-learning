@@ -41,6 +41,7 @@ Notes for System Design Learning (In Progress)
 ### [Communication](premier/Communication.md)
 
 - [HTTP](premier/Communication.md#http)
+- [HTTP1.1 vs HTTP2 vs HTTP3](premier/Communication.md#http11-vs-http2-vs-http3)
 - [Transmission Control Protocol (TCP)](premier/Communication.md#transmission-control-protocol-tcp)
 - [User Datagram Protocol (UDP)](premier/Communication.md#user-datagram-protocol-udp)
 - [Remote Procedure Call](premier/Communication.md#remote-procedure-call-rpc)
@@ -71,6 +72,9 @@ Notes for System Design Learning (In Progress)
 - [Gossip protocol](premier/Uncategorized/gossip-protocol.md)
 - [Consensus in Distributed System](premier/Uncategorized/consensus-in-ds.md)
 - [Idempotency in Distributed System](premier/Uncategorized/Idempotency.md)
+- [Normal and Distributed Locks](premier/Uncategorized/distributed-locks.md)
+  - [Normal locks](premier/Uncategorized/distributed-locks.md#normal-locking-single-node-locking)
+  - [Distributed locks](premier/Uncategorized/distributed-locks.md#distributed-locking-multi-node-locking)
 
 # Technologies
 
@@ -89,6 +93,7 @@ Notes for System Design Learning (In Progress)
 
 - [Learderboard in Redis](https://github.com/Ayush-k-Shukla/leaderboard-redis)
 - [Id Generation using Snowflake](https://github.com/Ayush-k-Shukla/small-dev-projects/tree/main/3.%20snowflake-id)
+- [Server Sent Events](https://github.com/Ayush-k-Shukla/small-dev-projects/tree/main/5.%20server-sent-events)
 
 # Pending
 
@@ -98,7 +103,7 @@ Theory
 2. Normal locking
 3. How do DB index work (e.g. Ds used and implemented like B+...)
 4. Web app firewall
-5. little in details of http1 vs 2 vs 3
+5. Learn more about OSI model and what work in which layer
 
 Questions
 

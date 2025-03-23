@@ -17,6 +17,18 @@
 
 \*Can be called many times without different outcomes.
 
+# HTTP/1.1 vs HTTP/2 vs HTTP/3
+
+| Feature              | HTTP/1.1                           | HTTP/2                                       | HTTP/3 (QUIC)                              |
+| -------------------- | ---------------------------------- | -------------------------------------------- | ------------------------------------------ |
+| **Transport**        | TCP                                | TCP                                          | **QUIC (UDP)**                             |
+| **Multiplexing**     | ❌ No (One request per connection) | ✅ Yes (Multiple requests in one connection) | ✅ Yes (No TCP limitations)                |
+| **HOL Blocking**     | ❌ Yes (Request-level)             | ❌ Yes (TCP-level)                           | ✅ No (QUIC eliminates it)                 |
+| **Connection Setup** | Slow (Multiple round trips)        | Faster                                       | **Fastest (0-RTT)**                        |
+| **TLS**              | Optional                           | Optional                                     | **Mandatory (TLS 1.3)**                    |
+| **Ideal for**        | Legacy systems, basic websites     | Modern web apps & APIs                       | Low-latency apps (Streaming, Gaming, VoIP) |
+| **Adoption**         | Still supported, but outdated      | Standard for web apps                        | Growing (Google, Cloudflare, Facebook)     |
+
 ## Transmission control protocol (TCP)
 
 1. It is a connection oriented protocol. Connection is established and terminated using a handshake.

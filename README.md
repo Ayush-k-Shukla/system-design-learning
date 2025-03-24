@@ -99,11 +99,9 @@ Notes for System Design Learning (In Progress)
 
 Theory
 
-1. Distributed Locking
-2. Normal locking
-3. How do DB index work (e.g. Ds used and implemented like B+...)
-4. Web app firewall
-5. Learn more about OSI model and what work in which layer
+1. How do DB index work (e.g. Ds used and implemented like B+...)
+2. Web app firewall
+3. Learn more about OSI model and what work in which layer
 
 Questions
 

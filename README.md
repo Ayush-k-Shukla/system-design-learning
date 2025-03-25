@@ -75,6 +75,13 @@ Notes for System Design Learning (In Progress)
 - [Normal and Distributed Locks](premier/Uncategorized/distributed-locks.md)
   - [Normal locks](premier/Uncategorized/distributed-locks.md#normal-locking-single-node-locking)
   - [Distributed locks](premier/Uncategorized/distributed-locks.md#distributed-locking-multi-node-locking)
+- [Attacks](premier/Uncategorized/attacks.md)
+  - [Denial of Service (DoS)](premier/Uncategorized/attacks.md#denial-of-a-service-dos)
+  - [Distributed Denial of Service (DoS)](premier/Uncategorized/attacks.md#distributed-denial-of-a-service-ddos)
+  - [Man In Middle](premier/Uncategorized/attacks.md#main-in-the-middle-mitm)
+  - [Dns Spoofing](premier/Uncategorized/attacks.md#dns-spoofing)
+  - [Sql Injection](premier/Uncategorized/attacks.md#sql-injection)
+  - [Cross Site Scripting(XSS)](premier/Uncategorized/attacks.md#cross-site-scripting-xss)
 
 # Technologies
 

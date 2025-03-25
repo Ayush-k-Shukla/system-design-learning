@@ -75,13 +75,21 @@ Notes for System Design Learning (In Progress)
 - [Normal and Distributed Locks](premier/Uncategorized/distributed-locks.md)
   - [Normal locks](premier/Uncategorized/distributed-locks.md#normal-locking-single-node-locking)
   - [Distributed locks](premier/Uncategorized/distributed-locks.md#distributed-locking-multi-node-locking)
-- [Attacks](premier/Uncategorized/attacks.md)
-  - [Denial of Service (DoS)](premier/Uncategorized/attacks.md#denial-of-a-service-dos)
-  - [Distributed Denial of Service (DoS)](premier/Uncategorized/attacks.md#distributed-denial-of-a-service-ddos)
-  - [Man In Middle](premier/Uncategorized/attacks.md#main-in-the-middle-mitm)
-  - [Dns Spoofing](premier/Uncategorized/attacks.md#dns-spoofing)
-  - [Sql Injection](premier/Uncategorized/attacks.md#sql-injection)
-  - [Cross Site Scripting(XSS)](premier/Uncategorized/attacks.md#cross-site-scripting-xss)
+
+### [Types of Attacks](premier/attacks.md)
+
+- [Denial of Service (DoS)](premier/attacks.md#denial-of-a-service-dos)
+- [Distributed Denial of Service (DoS)](premier/attacks.md#distributed-denial-of-a-service-ddos)
+- [Man In Middle](premier/attacks.md#main-in-the-middle-mitm)
+- [Dns Spoofing](premier/attacks.md#dns-spoofing)
+- [Sql Injection](premier/attacks.md#sql-injection)
+- [Cross Site Scripting(XSS)](premier/attacks.md#cross-site-scripting-xss)
+- [Cross Site Request Forgery(CSRF)](premier/attacks.md#cross-site-request-forgery-csrf)
+- [Remote Code Execution(RCE)](premier/attacks.md#remote-code-execution)
+- [Path Traversal Attacks](premier/attacks.md#path-traversal-attack)
+- [Brute force attacks](premier/attacks.md#brute-force-attack)
+- [Session Hijacking](premier/attacks.md#session-hijacking)
+- [OAuth and JWT Attacks](premier/attacks.md#oauth-and-jwt-attacks)
 
 # Technologies
 

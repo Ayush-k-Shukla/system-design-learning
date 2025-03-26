@@ -117,6 +117,8 @@ Theory
 1. How do DB index work (e.g. Ds used and implemented like B+...)
 2. Web app firewall
 3. Learn more about OSI model and what work in which layer
+4. Back of envelope estimation in sd
+5. What happens when we type in url browser
 
 Questions
 

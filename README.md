@@ -1,6 +1,6 @@
 Notes for System Design Learning (In Progress)
 
-# Premier
+# HLD
 
 ### [Scalability](premier/Scalability.md)
 
@@ -91,11 +91,21 @@ Notes for System Design Learning (In Progress)
 - [Session Hijacking](premier/attacks.md#session-hijacking)
 - [OAuth and JWT Attacks](premier/attacks.md#oauth-and-jwt-attacks)
 
+# LLD
+
+Pending
+
+- OOps
+- SOLID
+- DRY
+- KISS
+- YAGNI
+
 # Technologies
 
 - [Redis sorted set](Technologies/redis-sorted-set.md)
 
-# Questions
+# Questions (HLD)
 
 - [How to answer](Questions/steps-to-answer-sd.md)
 - [TinyUrl](Questions/TinyUrl.md)

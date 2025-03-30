@@ -2,7 +2,19 @@
 
 ### Domain Name System
 
+1. It maps a domain name to IP address.
+
 ![image.png](./images/image.png)
+![image.png](./images/how-does-dns-resolution-work.webp)
+
+2. **Steps**
+   1. The browser (client) checks if the hostname to IP address mapping exists in the local cache of the client.
+   2. If the last step failed, the client checks the Operating System (OS) local cache by executing a system call (syscall).
+   3. If the last step failed, the client makes a DNS request to the Gateway/Router and checks the local cache of the Router.
+   4. If the last step failed, the router forwards the request to Internet Service Provider (ISP) and checks the DNS cache of the ISP.
+   5. If the last step fails, the DNS resolver queries the root servers (there are 13 root servers with replicas worldwide).
+   6. DNS resolver queries Top Level Domain (TLD) servers such as .com, or .org. DNS resolver queries Authoritative name servers such as google.com.
+   7. Optionally, the DNS resolver queries Authoritative subdomain servers such as maps.google.com depending on your query.
 
 ### CDN
 

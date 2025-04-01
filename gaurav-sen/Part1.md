@@ -1,11 +1,12 @@
 # Part 1
 
-**Horizontal vs Vertical scaling**
-buying more machine vs buy big machine
-![image.png](images/image.png)
+## Horizontal vs Vertical scaling
+
+1. buying more machine vs buy big machine
+   ![image.png](images/image.png)
 
 1. HLD (how our services going to communicate), LLD(How we are going to design classes)
-2. How to get started with a distributed system
+1. How to get started with a distributed system
 
    1. vertical scaling: optimise precision and increase throughput with the same resources
    2. preprossing (e.g cron job) : prepare before hand during non pick hours
@@ -18,37 +19,38 @@ buying more machine vs buy big machine
    9. Logging
    10. extensible
 
-3. Consistent Hashing [LINK](https://www.geeksforgeeks.org/consistent-hashing/)
+## Consistent Hashing [LINK](https://www.geeksforgeeks.org/consistent-hashing/)
 
-   1. Here the node(servers) and users(request) are put on the same ring, and whenever a request comes we traverse clockwise which ever server is found first that will serve the request.
+1. Here the node(servers) and users(request) are put on the same ring, and whenever a request comes we traverse clockwise which ever server is found first that will serve the request.
 
-      1. The server nodes can be placed at random locations on this ring which can be done using hashing.
-         ![image.png](images/image3.png)
+   1. The server nodes can be placed at random locations on this ring which can be done using hashing.
+      ![image.png](images/image3.png)
 
-      2. But suppose if node 2 fails then all the load of node 2 will be transefered to node 5 that will be an issue. so to solve this problem what we did we make the virtual servers
-         1. like the servers are placed on the ring by using one hash function but what if we use multiple (let say k) hash function and we can place same server at k different places. this will solve above problem.
-         2. the best solution is not to use K hash functions, but to generate K replica ids for each server id. Designing K hash functions while maintaining random uniformity and consistency is hard. Generating K replica ids is easy: xxx gives K replicas xxx + '1', xxx + '2', ..., xxx + 'K'. Then you take these replicas and generate K points on the ring with the same hash function
+   2. But suppose if node 2 fails then all the load of node 2 will be transefered to node 5 that will be an issue. so to solve this problem what we did we make the virtual servers
+      1. like the servers are placed on the ring by using one hash function but what if we use multiple (let say k) hash function and we can place same server at k different places. this will solve above problem.
+      2. the best solution is not to use K hash functions, but to generate K replica ids for each server id. Designing K hash functions while maintaining random uniformity and consistency is hard. Generating K replica ids is easy: xxx gives K replicas xxx + '1', xxx + '2', ..., xxx + 'K'. Then you take these replicas and generate K points on the ring with the same hash function
 
-4. Message/Task Queue [LINK](https://www.geeksforgeeks.org/message-queues-system-design/)
+## Message/Task Queue [LINK](https://www.geeksforgeeks.org/message-queues-system-design/)
 
-   1. A message queues is a form of service-to-service communication that facilitates asynchronous communication. It asynchronously receives messages from producers and sends them to consumers.
-   2. Messaging Queues provide useful features such as persistence, routing, and task management.
-   3. Servers are processing jobs in parallel. A server can crash. The jobs running on the crashed server still needs to get processed.
-   4. A notifier constantly polls the status of each server and if a server crashes it takes ALL unfinished jobs (listed in some database) and distributes it to the rest of the servers. Because distribution uses a load balancer (with consistent hashing) duplicate processing will not occur as job_1 which might be processing on server_3 (alive) will land again on server_3, and so on.
-   5. This "notifier with load balancing" is a "Message Queue".
-   6. Message queue vs PUB sub [LINK2](https://medium.com/@osama94/pub-sub-system-vs-queues-9a5fd872f474), [LINK](https://systemdesignschool.io/blog/message-queue-vs-pub-sub),
+1. A message queues is a form of service-to-service communication that facilitates asynchronous communication. It asynchronously receives messages from producers and sends them to consumers.
+2. Messaging Queues provide useful features such as persistence, routing, and task management.
+3. Servers are processing jobs in parallel. A server can crash. The jobs running on the crashed server still needs to get processed.
+4. A notifier constantly polls the status of each server and if a server crashes it takes ALL unfinished jobs (listed in some database) and distributes it to the rest of the servers. Because distribution uses a load balancer (with consistent hashing) duplicate processing will not occur as job_1 which might be processing on server_3 (alive) will land again on server_3, and so on.
+5. This "notifier with load balancing" is a "Message Queue".
 
-5. Micro services vs Monolith [LINK](https://www.geeksforgeeks.org/monolithic-vs-microservices-architecture/#what-is-a-monolithic-architecture)
+## Message queue vs PUB sub [LINK2](https://medium.com/@osama94/pub-sub-system-vs-queues-9a5fd872f474), [LINK](https://systemdesignschool.io/blog/message-queue-vs-pub-sub),
 
-   1. Monolith doesn’t mean that service will run only on one machine, it can run on multiple
+## Micro services vs Monolith [LINK](https://www.geeksforgeeks.org/monolithic-vs-microservices-architecture/#what-is-a-monolithic-architecture)
 
-      ![image.png](images/image%201.png)
+1.  Monolith doesn’t mean that service will run only on one machine, it can run on multiple
 
-      points for when to choose which
+    ![image.png](images/image%201.png)
 
-      ![image.png](images/image%202.png)
+    points for when to choose which
 
-## 6. DB Sharding [WORKING](https://medium.com/@jeeyoungk/how-sharding-works-b4dec46b3f6)
+    ![image.png](images/image%202.png)
+
+## DB Sharding [WORKING](https://medium.com/@jeeyoungk/how-sharding-works-b4dec46b3f6)
 
 1.  There are two type of partioning in DB Vertical AND Horizontal. [LINK](https://stackoverflow.com/questions/18302773/what-are-horizontal-and-vertical-partitions-in-database-and-what-is-the-differen)
     1.  **Horizontal partitioning** involves putting different rows into different tables. Perhaps customers with ZIP codes less than 50000 are stored in CustomersEast, while customers with ZIP codes greater than or equal to 50000 are stored in CustomersWest. The two partition tables are then CustomersEast and CustomersWest, while a view with a union might be created over both of them to provide a complete view of all customers.

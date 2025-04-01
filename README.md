@@ -91,6 +91,10 @@ Notes for System Design Learning (In Progress)
 - [Session Hijacking](premier/attacks.md#session-hijacking)
 - [OAuth and JWT Attacks](premier/attacks.md#oauth-and-jwt-attacks)
 
+# Some Other
+
+- [Consistent Hashing](gaurav-sen/Part1.md#consistent-hashing-link)
+
 # LLD
 
 Pending

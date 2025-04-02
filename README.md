@@ -75,6 +75,7 @@ Notes for System Design Learning (In Progress)
 - [Normal and Distributed Locks](premier/Uncategorized/distributed-locks.md)
   - [Normal locks](premier/Uncategorized/distributed-locks.md#normal-locking-single-node-locking)
   - [Distributed locks](premier/Uncategorized/distributed-locks.md#distributed-locking-multi-node-locking)
+- [Consistent Hashing](premier/Uncategorized/consistent-hashing.md)
 
 ### [Types of Attacks](premier/attacks.md)
 

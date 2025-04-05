@@ -99,6 +99,10 @@ Notes for System Design Learning (In Progress)
 # LLD
 
 - [OOPS](lld/oop.md)
+- [SOLID](lld/solid.md)
+- [DRY](lld/solid.md#dry-dont-repeat-yourself)
+- [KISS](lld/solid.md#kiss-keep-it-simple-stupid)
+- [YAGNI](lld/solid.md#yagni-you-arent-gonna-need-it)
 
 Pending
 

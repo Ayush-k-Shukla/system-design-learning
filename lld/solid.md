@@ -194,3 +194,37 @@ class App {
 - `App` directly depends on the concrete class `MySQLDatabase`.
 - You **cannot switch** to another database without modifying the `App` class.
 - This violates the **Dependency Inversion Principle** because there's no abstraction in between.
+
+---
+
+# DRY (Don't repeat Yourself)
+
+1. In other words, the DRY principle encourages developers to write modular, reusable code and avoid duplicating the same functionality in multiple places.
+2. It encourages us to minimize redundancy and write code that does one thing well, making our lives (and the lives of those who maintain our code) much easier.
+
+## When not use
+
+1. Early in development when requirements may change
+2. if used only once
+3. Legacy code or technical debt
+4. Sacrificing Readability
+
+# YAGNI (You Aren't Gonna Need It)
+
+1. Always implement things when you actually need them, never when you just foresee that you might need them.
+2. Avoid over-engineering and focus strictly on present requirements.
+3. The rational behind YAGNI is: every line of code comes with a cost(test, maintain, development, developer understood).
+
+## When not use
+
+1. Well known requirements (if high certainty that feature will come in future)
+2. Performance-Critical Areas: Sometimes, a less-than-optimal but more general solution is necessary initially to ensure performance targets are met.
+
+# KISS (Keep it Simple, Stupid)
+
+1. It suggests that software should be designed to be easy to understand, modify, and extend, rather than complex and convoluted.
+
+## Importance
+
+1. Improved Readability
+2. Faster Development

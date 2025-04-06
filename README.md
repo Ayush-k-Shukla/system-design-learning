@@ -104,13 +104,6 @@ Notes for System Design Learning (In Progress)
 - [KISS](lld/solid.md#kiss-keep-it-simple-stupid)
 - [YAGNI](lld/solid.md#yagni-you-arent-gonna-need-it)
 
-Pending
-
-- SOLID
-- DRY
-- KISS
-- YAGNI
-
 # Technologies
 
 - [Redis sorted set](Technologies/redis-sorted-set.md)
@@ -149,3 +142,11 @@ Questions
 Impl
 
 1. something related to mq
+
+LLD
+
+1. Design patterns
+   1. Singleton
+   2. FActory
+   3. Abs Factory
+   4. Builder prototype

@@ -103,6 +103,7 @@ Notes for System Design Learning (In Progress)
 - [DRY](lld/solid.md#dry-dont-repeat-yourself)
 - [KISS](lld/solid.md#kiss-keep-it-simple-stupid)
 - [YAGNI](lld/solid.md#yagni-you-arent-gonna-need-it)
+- [Singleton](lld/singleton.md)
 
 # Technologies
 

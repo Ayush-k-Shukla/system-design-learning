@@ -105,6 +105,7 @@ Notes for System Design Learning (In Progress)
 - [YAGNI](lld/solid.md#yagni-you-arent-gonna-need-it)
 - [Singleton](lld/singleton.md)
 - [Factory](lld/factory.md)
+- [Abstract Factory](lld/abs-factory.md)
 
 # Technologies
 
@@ -148,5 +149,4 @@ Impl
 LLD
 
 1. Design patterns
-   1. Abs Factory
-   2. Builder prototype
+   1. Builder prototype

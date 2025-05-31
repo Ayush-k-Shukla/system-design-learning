@@ -40,9 +40,9 @@ It is a creational design pattern that provides an interface for creating object
    2. Testing becomes hard
    3. violates key principle, especially Open/Closed Principle (as our class is not closed for modification)
 
-## What is Factor Method
+## What is Factory Method
 
-1.  It takes the idea of object creation and hands it off to subclasses. Instead of one central factory deciding what to create, you delegate the responsibility to specialized classes that know exactly what they need to produce.
+- It takes the idea of object creation and hands it off to subclasses. Instead of one central factory deciding what to create, you delegate the responsibility to specialized classes that know exactly what they need to produce.
 
 ### Class Diagram
 
@@ -52,7 +52,7 @@ It is a creational design pattern that provides an interface for creating object
 
 1. **Product (e.g., Notification):** An interface or abstract class for the objects the factory method creates.
 
-2. **ConcreteProduct (e.g., EmailNotification, SMSNotification):** Concrete classes that implement the Product interface.
+2. **Concrete Product (e.g., EmailNotification, SMSNotification):** Concrete classes that implement the Product interface.
 
 3. **Creator (e.g., NotificationCreator):** An abstract class (or an interface) that declares the factory method, which returns an object of type Product. It might also define a default implementation of the factory method. The Creator can also have other methods that use the product created by the factory method.
 
@@ -62,15 +62,15 @@ It is a creational design pattern that provides an interface for creating object
 
 #### Define Product interface
 
-    ```
+```
     public interface Notification {
         public void send(String message);
     }
-    ```
+```
 
 #### Define concrete Products
 
-    ```
+```
     public class EmailNotification implements Notification {
         @Override
         public void send(String message){
@@ -92,13 +92,13 @@ It is a creational design pattern that provides an interface for creating object
         }
     }
 
-    ```
+```
 
 #### Define Abstract Creator
 
 1. This only defines the flow not the details
 
-   ```
+```
    public abstract class NotitficationCreator {
        // Factory method
        public abstract Notification createNotification();
@@ -109,11 +109,11 @@ It is a creational design pattern that provides an interface for creating object
        }
    }
 
-   ```
+```
 
 #### Define Concrete Creator
 
-    ```
+```
     public class EmailNotificationCreator implements NotitficationCreator {
         @Override
         public Notification createNotification(){
@@ -123,7 +123,7 @@ It is a creational design pattern that provides an interface for creating object
 
     ... similarily goes for sms and slack
 
-    ```
+```
 
 #### Use in app
 

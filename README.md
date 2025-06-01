@@ -1,6 +1,32 @@
 Notes for System Design Learning (In Progress)
 
-# HLD
+---
+
+## Table of Contents
+
+- [HLD (High Level Design)](#hld-high-level-design)
+  - [Scalability](#scalability)
+  - [Availability and Consistency](#availability-and-consistency)
+  - [DNS, CDN, Load balancer, Proxies](#dns-cdn-load-balancer-proxies)
+  - [Databases](#databases)
+  - [Asynchronism](#asynchronism)
+  - [Things to Know when building Microservice](#things-to-know-when-building-microservice)
+  - [Communication](#communication)
+  - [High level Tradeoffs](#high-level-tradeoffs)
+  - [Uncategorized](#uncategorized)
+  - [Types of Attacks](#types-of-attacks)
+- [LLD (Low Level Design)](#lld-low-level-design)
+- [Technologies](#technologies)
+- [Questions (HLD)](#questions-hld)
+- [Implementations](#implementations)
+- [Pending](#pending)
+- [Other References](#other-references)
+
+---
+
+# HLD (High Level Design)
+
+> Concepts and patterns for designing scalable, reliable, and maintainable systems.
 
 ### [Scalability](premier/Scalability.md)
 
@@ -92,11 +118,11 @@ Notes for System Design Learning (In Progress)
 - [Session Hijacking](premier/attacks.md#session-hijacking)
 - [OAuth and JWT Attacks](premier/attacks.md#oauth-and-jwt-attacks)
 
-# Some Other
+---
 
-- [Consistent Hashing](gaurav-sen/Part1.md#consistent-hashing-link)
+# LLD (Low Level Design)
 
-# LLD
+> Object-oriented and design pattern concepts for building robust software components.
 
 - [OOPS](lld/oop.md)
 - [SOLID](lld/solid.md)
@@ -107,11 +133,19 @@ Notes for System Design Learning (In Progress)
 - [Factory](lld/factory.md)
 - [Abstract Factory](lld/abs-factory.md)
 
+---
+
 # Technologies
+
+> Key technologies and data structures used in system design.
 
 - [Redis sorted set](Technologies/redis-sorted-set.md)
 
+---
+
 # Questions (HLD)
+
+> Common system design questions and their solutions.
 
 - [How to answer](Questions/steps-to-answer-sd.md)
 - [TinyUrl](Questions/TinyUrl.md)
@@ -120,33 +154,48 @@ Notes for System Design Learning (In Progress)
 - [Distributed Unique Id generator based on snowflake](Questions/snowflake.md)
 - [CDN](Questions/cdn.md) - In progress
 
+---
+
 # Implementations
 
-- [Learderboard in Redis](https://github.com/Ayush-k-Shukla/leaderboard-redis)
+> Reference implementations and code repositories.
+
+- [Leaderboard in Redis](https://github.com/Ayush-k-Shukla/leaderboard-redis)
 - [Id Generation using Snowflake](https://github.com/Ayush-k-Shukla/small-dev-projects/tree/main/3.%20snowflake-id)
 - [Server Sent Events](https://github.com/Ayush-k-Shukla/small-dev-projects/tree/main/5.%20server-sent-events)
 - [Consistent Hashing](https://github.com/Ayush-k-Shukla/small-dev-projects/tree/main/6.%20consistent-hashing)
 
+---
+
 # Pending
 
-Theory
+> 🚧 Topics and implementations to be covered or improved.
 
-1. How do DB index work (e.g. Ds used and implemented like B+...)
+**Theory**
+
+1. How do DB indexes work (e.g. DS used and implemented like B+...)
 2. Web app firewall
-3. Learn more about OSI model and what work in which layer
-4. Back of envelope estimation in sd
-5. What happens when we type in url browser
+3. Learn more about OSI model and what works in which layer
+4. Back of envelope estimation in SD
+5. What happens when we type in URL browser
 
-Questions
+**Questions**
 
 1. CDN design
 2. UPI
 
-Impl
+**Impl**
 
-1. something related to mq
+1. Something related to MQ
 
-LLD
+**LLD**
 
 1. Design patterns
-   1. Builder prototype
+   1. Builder
+   2. Prototype
+
+---
+
+# Other References
+
+- [Consistent Hashing (Gaurav Sen)](gaurav-sen/Part1.md#consistent-hashing-link)

@@ -1,4 +1,4 @@
-package vehicletype;
+package parkinglot.vehicletype;
 
 public class Bike extends Vehicle {
     Bike(String numberPlate) {

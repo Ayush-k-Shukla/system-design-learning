@@ -1,6 +1,8 @@
+package parkinglot;
 
-import vehicletype.Vehicle;
-import vehicletype.VehicleType;
+
+import parkinglot.vehicletype.Vehicle;
+import parkinglot.vehicletype.VehicleType;
 
 public class ParkingSpot {
     private final int spotNumber;
@@ -14,4 +16,34 @@ public class ParkingSpot {
         this.isFilled = false;
     }
 
+    public boolean isAvailable() {
+        return !isFilled;
+    }
+
+    public boolean park(Vehicle vehicle) {
+        if (isFilled || vehicle.getVehicleType() != vehicleType) {
+            return false;
+        }
+
+        this.vehicle = vehicle;
+        this.isFilled = true;
+        return true;
+    }
+
+    public void unpark() {
+        vehicle = null;
+        isFilled = false;
+    }
+
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public int getSpotNumber() {
+        return spotNumber;
+    }
 }

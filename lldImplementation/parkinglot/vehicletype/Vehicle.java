@@ -1,4 +1,4 @@
-package vehicletype;
+package parkinglot.vehicletype;
 
 public abstract class Vehicle {
 

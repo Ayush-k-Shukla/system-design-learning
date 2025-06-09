@@ -16,15 +16,17 @@ public class ParkingFloor {
         this.parkingSpots = parkingSpots;
     }
 
-    public Optional<ParkingSpot> getSingleAvailableSpot(VehicleType type) {
+    // thread safe
+    public synchronized Optional<ParkingSpot> getSingleAvailableSpot(VehicleType type) {
         return parkingSpots.stream()
                 .filter(spot -> spot.isAvailable() && spot.getVehicleType() == type)
                 .findFirst();
     }
 
-    public List<ParkingSpot> getAllAvailableSpots(VehicleType type) {
+    public List<Integer> getAllAvailableSpots(VehicleType type) {
         return parkingSpots.stream()
                 .filter(spot -> spot.isAvailable() && spot.getVehicleType() == type)
+                .map(ParkingSpot::getSpotNumber)
                 .toList();
     }
 

@@ -1,18 +1,15 @@
 package parkinglot.fee;
 
+import java.util.Map;
 
 import parkinglot.Ticket;
 import parkinglot.vehicletype.VehicleType;
 
-import java.util.Map;
-
-
 public class CustomisedRateFeeStrategy implements FeeStrategy {
 
-    private static final Map<VehicleType,Double> hourlyRates = new Map.of(
-            VehicleType.CAR,20.0,
-            VehicleType.BIKE,10.0
-    );
+    private static final Map<VehicleType, Double> hourlyRates = Map.of(
+            VehicleType.CAR, 20.0,
+            VehicleType.BIKE, 10.0);
 
     @Override
     public double calculateFee(Ticket ticket) {

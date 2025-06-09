@@ -16,11 +16,11 @@ public class ParkingSpot {
         this.isFilled = false;
     }
 
-    public boolean isAvailable() {
+    public synchronized boolean isAvailable() {
         return !isFilled;
     }
 
-    public boolean park(Vehicle vehicle) {
+    public synchronized boolean park(Vehicle vehicle) {
         if (isFilled || vehicle.getVehicleType() != vehicleType) {
             return false;
         }
@@ -30,7 +30,7 @@ public class ParkingSpot {
         return true;
     }
 
-    public void unpark() {
+    public synchronized void unpark() {
         vehicle = null;
         isFilled = false;
     }

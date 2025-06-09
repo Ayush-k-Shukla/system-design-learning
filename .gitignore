@@ -1,0 +1,19 @@
+# IntelliJ IDEA
+*.iml
+**/*.iml
+.idea/
+**/.idea/
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+
+# Compiled output
+out/
+
+# Java build
+*.class
+
+# XML config
+*.xml

@@ -3,8 +3,8 @@ package logger;
 import logger.logappender.LogAppender;
 
 public class LoggerConfig {
-    private LogLevel logLevel;
-    private LogAppender logAppender;
+    private final LogLevel logLevel;
+    private final LogAppender logAppender;
 
     public LoggerConfig(LogLevel logLevel, LogAppender logAppender) {
         this.logLevel = logLevel;
@@ -15,15 +15,7 @@ public class LoggerConfig {
         return logLevel;
     }
 
-    public void setLogLevel(LogLevel logLevel) {
-        this.logLevel = logLevel;
-    }
-
     public LogAppender getLogAppender() {
         return logAppender;
-    }
-
-    public void setLogAppender(LogAppender logAppender) {
-        this.logAppender = logAppender;
     }
 }

@@ -4,28 +4,26 @@ import logger.logappender.ConsoleAppender;
 import logger.logformatter.DefaultFormatter;
 
 public class Logger {
-    // Eager initialization Singleton
-    private static final Logger instance = new Logger();
-    private LoggerConfig config;
+    private volatile LoggerConfig config;
 
-    // Private Constructor for singleton
-    private Logger(){
-        config = new LoggerConfig(LogLevel.INFO,new ConsoleAppender(new DefaultFormatter()));
+    public Logger() {
+        config = new LoggerConfig(LogLevel.INFO, new ConsoleAppender(new DefaultFormatter()));
     }
 
-    public static Logger getInstance(){
-        return instance;
-    }
-
-    public void setConfig(LoggerConfig config){
+    public Logger(LoggerConfig config) {
         this.config = config;
     }
 
-    public void log(LogLevel level,String message){
+    public void setConfig(LoggerConfig config) {
+        this.config = config;
+    }
+
+    public void log(LogLevel level, String message) {
+        LoggerConfig currentConfig = this.config;
         // if current log level has higher order then only log
-        if(level.ordinal() >= config.getLogLevel().ordinal()){
-            LogMessage msg = new LogMessage(level,message);
-            config.getLogAppender().append(msg);
+        if (level.ordinal() >= currentConfig.getLogLevel().ordinal()) {
+            LogMessage msg = new LogMessage(level, message);
+            currentConfig.getLogAppender().append(msg);
         }
     }
 

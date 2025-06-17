@@ -1,7 +1,10 @@
+import logger.Logger;
+import logger.LoggerDemo;
 import parkinglot.ParkingLotDemo;
 
 public class Runner {
     public static void main(String[] args) {
-        ParkingLotDemo.run();
+//        ParkingLotDemo.run();
+        LoggerDemo.run();
     }
 }

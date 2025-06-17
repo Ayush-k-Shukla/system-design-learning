@@ -19,6 +19,7 @@ Notes for System Design Learning (In Progress)
 - [Technologies](#technologies)
 - [Questions (HLD)](#questions-hld)
 - [Implementations](#implementations)
+- [LLD Implementations](#lld-implementations)
 - [Pending](#pending)
 - [Other References](#other-references)
 
@@ -164,6 +165,15 @@ Notes for System Design Learning (In Progress)
 - [Id Generation using Snowflake](https://github.com/Ayush-k-Shukla/small-dev-projects/tree/main/3.%20snowflake-id)
 - [Server Sent Events](https://github.com/Ayush-k-Shukla/small-dev-projects/tree/main/5.%20server-sent-events)
 - [Consistent Hashing](https://github.com/Ayush-k-Shukla/small-dev-projects/tree/main/6.%20consistent-hashing)
+
+---
+
+# LLD Implementations
+
+> Basic implementations of some LLD questions.
+
+- [Logger](/lldImplementation/logger/readme.md)
+- [Parking lot](/lldImplementation/parkinglot/readme.md)
 
 ---
 

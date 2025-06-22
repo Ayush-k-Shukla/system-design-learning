@@ -188,6 +188,7 @@
 
 - [Logger](/lldImplementation/logger/readme.md)
 - [Parking lot](/lldImplementation/parkinglot/readme.md)
+- [Task Manager](/lldImplementation/TaskManager/README.md)
 
 ---
 

@@ -144,11 +144,11 @@
 
 ### Design Patterns
 
-- [Singleton](lld/singleton.md)
-- [Factory](lld/factory.md)
-- [Abstract Factory](lld/abs-factory.md)
-- [Builder](lld/builder.md)
-- [Prototype](lld/prototype.md)
+- [Singleton](lld/creational/singleton.md)
+- [Factory](lld/creational/factory.md)
+- [Abstract Factory](lld/creational/abs-factory.md)
+- [Builder](lld/creational/builder.md)
+- [Prototype](lld/creational/prototype.md)
 
 ---
 

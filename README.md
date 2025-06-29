@@ -8,7 +8,7 @@
   - [Table of Contents](#table-of-contents)
   - [HLD (High Level Design)](#hld-high-level-design)
     - [Scalability](#scalability)
-    - [Availability \& Consistency](#availability--consistency)
+    - [Availability and Consistency](#availability-and-consistency)
     - [DNS, CDN, Load Balancer, Proxies](#dns-cdn-load-balancer-proxies)
     - [Databases](#databases)
     - [Asynchronism](#asynchronism)
@@ -18,7 +18,7 @@
     - [Uncategorized](#uncategorized)
     - [Attacks](#attacks)
   - [LLD (Low Level Design)](#lld-low-level-design)
-    - [Core OOP \& Principles](#core-oop--principles)
+    - [Core OOP and Principles](#core-oop-and-principles)
     - [Design Patterns](#design-patterns)
   - [Technologies](#technologies)
   - [Questions (HLD)](#questions-hld)
@@ -40,7 +40,7 @@
   - [Clone](premier/Scalability-files/Clone.md)
   - [Database Scaling](premier/Scalability-files/Database-Scaling.md)
 
-### Availability & Consistency
+### Availability and Consistency
 
 - [Concepts](premier/Availability-Consistency.md)
   - [Availability](premier/Availability-Consistency.md#availability)
@@ -110,7 +110,7 @@
 - [Gossip Protocol](premier/Uncategorized/gossip-protocol.md)
 - [Consensus in Distributed System](premier/Uncategorized/consensus-in-ds.md)
 - [Idempotency](premier/Uncategorized/Idempotency.md)
-- [Locks: Normal & Distributed](premier/Uncategorized/distributed-locks.md)
+- [Locks: Normal and Distributed](premier/Uncategorized/distributed-locks.md)
 - [Consistent Hashing](premier/Uncategorized/consistent-hashing.md)
 
 ### Attacks
@@ -134,7 +134,7 @@
 
 > Object-oriented concepts and design patterns for robust software components.
 
-### Core OOP & Principles
+### Core OOP and Principles
 
 - [OOPS](lld/oop.md)
 - [SOLID](lld/solid.md)
@@ -147,6 +147,8 @@
 - [Singleton](lld/singleton.md)
 - [Factory](lld/factory.md)
 - [Abstract Factory](lld/abs-factory.md)
+- [Builder](lld/builder.md)
+- [Prototype](lld/prototype.md)
 
 ---
 

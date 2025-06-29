@@ -1,4 +1,4 @@
-# Builder Pattern
+# Prototype Pattern
 
 - It is a **Creational design pattern** that lets you create new objects by cloning existing ones, instead of instantiating them from scratch.
 

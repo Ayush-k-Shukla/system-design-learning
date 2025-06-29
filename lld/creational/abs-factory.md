@@ -55,7 +55,7 @@ public class App {
 ### Class Diagram
 
 <p align="center">
-    <img src="./images/abstract-factory.png"/>
+    <img src="../images/abstract-factory.png"/>
 </p>
 
 1. **Abstract Products:** declare interfaces for a set of distinct but related products which make up a product family.
@@ -65,7 +65,7 @@ public class App {
 5. Although concrete factories instantiate concrete products, signatures of their creation methods must return corresponding abstract products. This way the client code that uses a factory doesn’t get coupled to the specific variant of the product it gets from a factory. The Client can work with any concrete factory/product variant, as long as it communicates with their objects via abstract interfaces.
 
 <p align="center">
-    <img src="./images/abstract-factory-v2.png"/>
+    <img src="../images/abstract-factory-v2.png"/>
 </p>
 
 ### Implementation

@@ -47,7 +47,7 @@ It is a creational design pattern that provides an interface for creating object
 ### Class Diagram
 
 <p align="center">
-    <img src="./images/factory.png"/>
+    <img src="../images/factory.png"/>
 </p>
 
 1. **Product (e.g., Notification):** An interface or abstract class for the objects the factory method creates.

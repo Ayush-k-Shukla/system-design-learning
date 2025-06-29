@@ -39,7 +39,7 @@ Enemy flying2 = new Enemy("Flying", 100, 10.5, false, "Laser");
 ### Class Diagram
 
 <p align="center">
-    <img src="./images/prototype.png"/>
+    <img src="../images/prototype.png"/>
 </p>
 
 - Defines the **Prototype Interface** declares a `clone` method which concrete class should implement.
@@ -49,7 +49,7 @@ Enemy flying2 = new Enemy("Flying", 100, 10.5, false, "Laser");
 #### Optional : with registry
 
 <p align="center">
-    <img src="./images/prototype-with-registry.png"/>
+    <img src="../images/prototype-with-registry.png"/>
 </p>
 
 - As our system grows with more enemy types or components, we can introduce a Prototype Registry:

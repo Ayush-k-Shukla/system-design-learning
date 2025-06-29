@@ -110,7 +110,7 @@ class HttpRequest {
 ### Class diagram
 
 <p align="center">
-    <img src="./images/builder.png"/>
+    <img src="../images/builder.png"/>
 </p>
 
 - **Builder (e.g., HttpRequestBuilder)**

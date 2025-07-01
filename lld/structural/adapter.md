@@ -55,3 +55,73 @@ public interface LegacyProcessor {
 <p align="center">
     <img src="../images/adapter.png"/>
 </p>
+
+- **Target Interface (PaymentProcessor)** - The interface that client excpects and use.
+- **Adapter** - The class that implements the target interface and uses adaptee internally. it convert calls to target interface to call to adaptee interface.
+- **Adaptee (LegacyProcessor)** - the existing class with an incompatible interface that needs adapting.
+- **Client (CheckoutService)** - part of systme that uses the target interface.
+
+### Implementation
+
+- Below is adapter implementation which implement PaymentProcessor (Target Interface) so that it use functions of LegacyProcessor(Adaptee).
+
+```java
+public class LegacyProcessorAdapter implements PaymentProcessor {
+    private final LegacyProcessor legacyProcessor;
+    private long ref;
+
+    public LegacyProcessorAdapter(LegacyProcessor legacyp){
+        this.legacyProcessor = legacyp;
+    }
+
+    @Override
+    void processPayment(double amount,String currency){
+        legacyProcessor.executePayment(amount,curreny); // fn of diff interface
+        ref = legacyProcessor.getPaymentRefrence();
+    }
+
+    @Override
+    bool isPaymentSuccess(){
+        return legacyProcessor.getStatus(re) == "SUCCESS";
+    }
+
+    @Override
+    String getTransactionId(){
+        return "LEGACY_" + ref;
+    }
+}
+```
+
+- By this way our client code will be unchanged.
+
+```java
+public class MainApp {
+    psvm(String[] args){
+
+        // With Existing processor
+        PaymentProcessor processor = new PaymentProcessor();
+        CheckoutService checkout = new CheckoutService(processor);
+
+        // With new legacy processor
+        LegacyProcessor processor = new LegacyProcessor();
+        processor = new LegacyProcessorAdapter(processor);
+        CheckoutService legacyCheckout = new CheckoutService(processor);
+
+    }
+}
+
+```
+
+### What it actually does?
+
+#### Composition
+
+- the adapter wraps the legacy code instead of subclassing it. which benefit in
+  - loose coupling
+  - Flexible to change
+
+#### Method Transalation
+
+- Each method of PaymentProcessor is trnaslated into the equivalents call to the legacy API. this includes
+  - renaming or remaping method name and return types
+  - reorg parameters

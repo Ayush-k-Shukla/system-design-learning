@@ -144,11 +144,15 @@
 
 ### Design Patterns
 
-- [Singleton](lld/creational/singleton.md)
-- [Factory](lld/creational/factory.md)
-- [Abstract Factory](lld/creational/abs-factory.md)
-- [Builder](lld/creational/builder.md)
-- [Prototype](lld/creational/prototype.md)
+| Creational                                        | Structural                           | Behavioral                        |
+| ------------------------------------------------- | ------------------------------------ | --------------------------------- |
+| [Singleton](lld/creational/singleton.md)          | [Adapter](lld/structural/adapter.md) | Observer (Pending)                |
+| [Factory](lld/creational/factory.md)              | Bridge (Pending)                     | Strategy (Pending)                |
+| [Abstract Factory](lld/creational/abs-factory.md) | Composite (Pending)                  | Command (Pending)                 |
+| [Builder](lld/creational/builder.md)              | Decorator (Pending)                  | State (Pending)                   |
+| [Prototype](lld/creational/prototype.md)          | Facade (Pending)                     | Chain of Responsibility (Pending) |
+|                                                   | Flyweight (Pending)                  | Template Method (Pending)         |
+|                                                   | Proxy (Pending)                      | Mediator (Pending)                |
 
 ---
 

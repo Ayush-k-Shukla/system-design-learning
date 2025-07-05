@@ -53,7 +53,7 @@ public interface LegacyProcessor {
 ### Class Diagram
 
 <p align="center">
-    <img src="../images/adapter.png"/>
+    <img src="/img/lld/adapter.png"/>
 </p>
 
 - **Target Interface (PaymentProcessor)** - The interface that client excpects and use.

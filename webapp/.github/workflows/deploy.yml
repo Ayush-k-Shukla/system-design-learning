@@ -3,7 +3,7 @@ name: Deploy Docusaurus to GitHub Pages
 on:
   push:
     branches:
-      - feature/web-app # Set this to your default branch if different
+      - feat/web-app # Set this to your default branch if different
 
 jobs:
   deploy:

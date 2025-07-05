@@ -23,3 +23,5 @@ node_modules
 # Generated files
 .docusaurus
 .cache-loader
+
+build

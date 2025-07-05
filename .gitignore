@@ -17,3 +17,9 @@ out/
 
 # XML config
 *.xml
+node_modules
+
+
+# Generated files
+.docusaurus
+.cache-loader

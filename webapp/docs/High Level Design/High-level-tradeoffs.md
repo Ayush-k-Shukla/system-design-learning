@@ -1,21 +1,31 @@
-# High level Tadeoffs
+# ⚖️ High-Level Tradeoffs
 
-## **Performance vs Scalability**
+---
 
-1. If you will have performance issue your system will be slow for a single user
-2. if you will have scalability issue your system will be fast for a user but will be slow under heavy load
-3. **Performance** refers to how efficiently a system executes tasks under a specific workload. It focuses on response time, throughput and resource usage
-4. **Scalability** refers ability of a system to not degrade the performance under increased workload or growing user.
+## 🚀 Performance vs. Scalability
 
-## **Latency vs Throughput**
+1. If you have a performance issue, your system will be slow for a single user.
+2. If you have a scalability issue, your system will be fast for a single user but will be slow under heavy load.
+3. **Performance** refers to how efficiently a system executes tasks under a specific workload. It focuses on response time, throughput, and resource usage.
+4. **Scalability** refers to the ability of a system to maintain performance as workload or user count increases.
 
-1. **Latency** is the time it takes a single request to be processed or a task to be completed. typically measured in milliseconds or seconds.
-2. **Throughput** refers to the rate at which a system process requests or tasks. typically measured in operations per second (ops), transactions per second.
-3. **Generally we thrive for maximal throughput with acceptable latency**
+---
 
-## **Availability vs consistency - see in page [Availability and Consistency](Availability-Consistency.md)**
+## ⏱️ Latency vs. Throughput
 
-## **Batch vs Stream Processing**
+1. **Latency** is the time it takes for a single request to be processed or a task to be completed. Typically measured in milliseconds or seconds.
+2. **Throughput** refers to the rate at which a system processes requests or tasks. Typically measured in operations per second (ops) or transactions per second (TPS).
+3. Generally, we strive for maximal throughput with acceptable latency.
+
+---
+
+## 🟢 Availability vs. Consistency
+
+See: [Availability and Consistency](Availability-Consistency.md)
+
+---
+
+## 📦 Batch vs. Stream Processing
 
 | Feature             | Batch Processing                                                                 | Stream Processing                                                                       |
 | ------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
@@ -30,33 +40,35 @@
 | **Cost**            | Cost-effective for large volumes of data.                                        | More expensive due to continuous processing.                                            |
 | **Tools**           | Apache Hadoop, Apache Spark (Batch Mode), AWS Glue, Google Dataflow (Batch Mode) | Apache Kafka, Apache Flink, Apache Storm, AWS Kinesis, Google Dataflow (Streaming Mode) |
 
-## Stateful vs Stateless Design
+---
+
+## 🗃️ Stateful vs. Stateless Design
 
 <p align="center">
-   <img src="/img/hld/stateless-vs-full.png" />
+   <img src="/img/hld/stateless-vs-full.png" alt="Stateless vs Stateful" />
 </p>
 
 ### Stateless
 
-1. Each request is treated as an independent operation
-2. Server doesn't store any information about the client's state between requests.
-3. **Advantages**
-   1. Scalability - can add multiple server, noneed to maintain session
-   2. Simplicity
-   3. Resilience - failure on one server won't disrupt user session.
-4. **Disadv**
-   1. Less context to server about client so personalization is not possible
-   2. Every request need some extra data to carry, leading to larger payloads
-5. **Examples**
+1. Each request is treated as an independent operation.
+2. The server doesn't store any information about the client's state between requests.
+3. **Advantages:**
+   1. Scalability – can add multiple servers, no need to maintain session.
+   2. Simplicity.
+   3. Resilience – failure on one server won't disrupt user sessions.
+4. **Disadvantages:**
+   1. Less context for the server about the client, so personalization is not possible.
+   2. Every request needs to carry extra data, leading to larger payloads.
+5. **Examples:**
    1. REST APIs
-   2. Miscroservices
+   2. Microservices
    3. CDNs
 
 ### Stateful
 
-1. System remembers client data from one request to next.
+1. The system remembers client data from one request to the next.
 2. It maintains a record of the client's state, which can include session information, transaction details, or any other data relevant to the ongoing interaction.
-3. **Advantages**
+3. **Advantages:**
 
    1. Personalized experience
    2. Contextual continuity

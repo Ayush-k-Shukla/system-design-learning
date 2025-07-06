@@ -1,33 +1,33 @@
-# Locking (Normal and Distributed)
+# 🔒 Locking (Normal and Distributed)
 
 ## Normal Locking (Single Node Locking)
 
-In a single node system locking is used when multiple thread tried to access the critical system at a same time.
+In a single node system, locking is used when multiple threads try to access the critical system at the same time.
 
 ### Types
 
 1. **Optimistic**
-   1. Assumption is made conflicts are rare and proceeds without locking.
-   2. Before commiting changes, it checks whether another process has modified the resouce.
-   3. It is a strategy where you read a record, take note of a version number and check that the version hasn’t changed before you write the record back.
+   1. The assumption is made that conflicts are rare and proceeds without locking.
+   2. Before committing changes, it checks whether another process has modified the resource.
+   3. It is a strategy where you read a record, take note of a version number, and check that the version hasn't changed before you write the record back.
    4. **Implementation:** Uses versioning to validate
-   5. **Usecase**
-      1. PostgreSQL uses Multi version concureency control (MVCC)
+   5. **Use case**
+      1. PostgreSQL uses Multi-Version Concurrency Control (MVCC)
 2. **Pessimistic**
-   1. Assumes that if something can go wrong means it will go wrong so lock the resource before performing any operation.
-   2. **Implementation:** use DB row level locks or thread sync primitives(`mutex`,`semaphore`).
-   3. **Usecase**
+   1. Assumes that if something can go wrong, it will, so lock the resource before performing any operation.
+   2. **Implementation:** Use DB row-level locks or thread sync primitives (`mutex`, `semaphore`).
+   3. **Use case**
       1. Banking system
 
 ## Distributed Locking (Multi Node Locking)
 
-Distributed locking is a mechanism used to coordinate access to shared resources in a distributed system where multiple nodes (services, processes, or servers) might try to modify the same data concurrently.
+Distributed locking is a mechanism used to coordinate access to shared resources in a distributed system, where multiple nodes (services, processes, or servers) might try to modify the same data concurrently.
 
 ### Types
 
 1. **Optimistic**
 
-   1. Assumption is made conflicts are rare and allows multiple nodes to proceed with an operation without explicit locking.
+   1. The assumption is made that conflicts are rare and allows multiple nodes to proceed with an operation without explicit locking.
    2. **Implementation:**
 
       ```
@@ -40,7 +40,7 @@ Distributed locking is a mechanism used to coordinate access to shared resources
           WHERE id = 1 AND version = 3; -- Only updates if version is still 3
       ```
 
-   3. **Usecase**
+   3. **Use case**
 
       1. NoSQL databases (Cassandra, DynamoDB, etc.) use versioning for concurrent updates.
       2. E-commerce applications where multiple users try to purchase limited stock.
@@ -49,7 +49,7 @@ Distributed locking is a mechanism used to coordinate access to shared resources
    4. **Advantages**
 
       1. No need for explicit locks
-      2. Scales well in DS
+      2. Scales well in distributed systems
 
    5. **Disadvantages**
 

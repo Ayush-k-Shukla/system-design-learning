@@ -1,63 +1,63 @@
-# Gossip protocol
+# 🗣️ Gossip Protocol
 
-1. Some problem that we face in a DS are
-   1. maintaining the system state(liveness of nodes)
+1. Some problems that we face in a distributed system are:
+   1. Maintaining the system state (liveness of nodes)
    2. Communication between nodes
-2. Potential solution to these problems
+2. Potential solutions to these problems:
    1. Centralized state management service
-   2. p2p state management service
+   2. Peer-to-peer (p2p) state management service
 
-## Centralized State management service
+## Centralized State Management Service
 
-1. We can use something like Apache Zookeeper as a [service discovery](../Things-to-Know-when-building-Microservice.md#service-discovery) to keep track of state of every node in the system.
-2. It is good for CP in CAP thorem but it introduces SPOF and had scalability issue.
+1. We can use something like Apache Zookeeper as a [service discovery](../Things-to-Know-when-building-Microservice.md#service-discovery) to keep track of the state of every node in the system.
+2. It is good for CP in the CAP theorem but it introduces a single point of failure (SPOF) and has scalability issues.
 
-## Peer to Peer State management service
+## Peer-to-Peer State Management Service
 
-1. It is inclined toward AP in CAP thorem and gives eventual consistency.
-2. The gossip protocol algos can be used to implement p2p state management service with high scalability and improved resilience.
-3. The **gossip protocol** is also known as the **epidemic protocol** because the tranmission of message is similar to the way how epidemics spread.
+1. It is inclined toward AP in the CAP theorem and gives eventual consistency.
+2. The gossip protocol algorithms can be used to implement p2p state management service with high scalability and improved resilience.
+3. The **gossip protocol** is also known as the **epidemic protocol** because the transmission of messages is similar to the way epidemics spread.
 
 ## Broadcast Protocols
 
-### Point-to-Point broadcast
+### Point-to-Point Broadcast
 
-Producer consumer model
+Producer-consumer model
 
-### Eager reliable broadcast
+### Eager Reliable Broadcast
 
 Every node re-broadcasts the messages to every other node via reliable network links. This approach provides improved fault tolerance because messages are not lost when both the producer and the consumer fail simultaneously. The message will be re-broadcast by the remaining nodes. The caveats of eager reliable broadcast are the following:
 
-1. significant network bandwidth usage due to O(n²) messages being broadcast for n number of nodes
-2. sending node can become a bottleneck due to O(n) linear broadcast
-3. every node stores the list of all the nodes in the system causing increased storage costs
+1. Significant network bandwidth usage due to O(n²) messages being broadcast for n nodes
+2. The sending node can become a bottleneck due to O(n) linear broadcast
+3. Every node stores the list of all the nodes in the system, causing increased storage costs
 
-### Gossip protocol
+### Gossip Protocol
 
 <p align="center">
     <img src="/img/hld/gossip.gif" />
 </p>
 
-1. The gossip protocol is a decentralized peer-to-peer communication technique to transmit messages in an enormous distributed system.
-2. The key concept of gossip protocol is that every node periodically sends out a message to a subset of other random nodes. The entire system will receive the particular message eventually with a high probability.
+1. The gossip protocol is a decentralized peer-to-peer communication technique to transmit messages in a large distributed system.
+2. The key concept of the gossip protocol is that every node periodically sends out a message to a subset of other random nodes. The entire system will receive the particular message eventually with a high probability.
 3. The gossip protocol is a technique for nodes to build a global map through limited local interactions.
-4. The gossip protocol built on a robust, scalable and eventual consistent algorithm. It is reliable as if one node fail the message will be delivered by another node.
-5. Why gossip is a optimal choice in large distributed system
-   1. limits the number of messages tranmitted by each node
-   2. tolerate network and node failures
+4. The gossip protocol is built on a robust, scalable, and eventually consistent algorithm. It is reliable because if one node fails, the message will be delivered by another node.
+5. Why gossip is an optimal choice in large distributed systems:
+   1. Limits the number of messages transmitted by each node
+   2. Tolerates network and node failures
 
 ## Working of Gossip Protocols
 
-1. **Node Selection**: Each node periodically selects a few random nodes from the network.
+1. **Node Selection:** Each node periodically selects a few random nodes from the network.
 2. **Information Exchange:** The selected nodes share updates or data (e.g., membership lists, system status, or events).
 3. **Propagation:** The receiving nodes then relay the received information to another set of random nodes in subsequent rounds.
 4. **Convergence:** After several rounds, all nodes in the network will have received the update, ensuring eventual consistency.
 
 ## Types of Gossip Protocols
 
-### Anti entropy (full sync)
+### Anti-entropy (Full Sync)
 
-Nodes randomly select peers to exchange thie entire datasets, correcting any discrepancies. It takes extra bandwidth as whole dataset is sent.
+Nodes randomly select peers to exchange their entire datasets, correcting any discrepancies. It takes extra bandwidth as the whole dataset is sent.
 
 ### Rumor Mongering (probablistic propagation)
 

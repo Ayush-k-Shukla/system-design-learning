@@ -1,94 +1,116 @@
-# Consensus in Distributed Syetem
+# 🤝 Consensus in Distributed Systems
 
-1. In a DS multiple nodes are mutually connected and collaborate with each other through message passing. Now during some computation they need to agree upon a common value to co-ordinate among multiple process. This phenomenon is called **Distributed Consensus**.
-2. In a DS it may happen multiple nodes are processing a large computation where they need to know the result of each other to keep them updated about the whole system.
+Consensus in distributed systems is the process by which multiple nodes, connected and collaborating via message passing, agree on a common value to coordinate computations. This is known as **Distributed Consensus**.
 
-## Why needed with example
+In distributed systems, nodes may need to process large computations and must stay updated about each other's results to maintain system-wide consistency.
 
-1. Suppose we have a banking system and we processed like transfer amount `x` from accountA to accountB. The system must ensure all servers agree on value `x`.
-2. **Problems we can have without consensus**
-   1. server1 updated accountA to `-x` but crashed before updating accountB to `+x`
-   2. server2 sees an inconsistent state.
-   3. if nodes not agree on a single correct state, incorrect baance might occur.
-3. **How Consensu solve this**
-   1. All nodes first agree on a single order of transaction
-   2. Even if some node fail the majorty can still ensure correctness
-   3. No transaction lost and all nodes eventually reach same state
-4. It is also used for Distributed DBs to ensure ACID properties
+---
 
-## How to achieve Consensus in DS
+## 🧐 Why Is Consensus Needed? (With Example)
 
-```
-* Nonfaulty node means, nodes which is not crashed or attacked or malfunctioning.
-```
+1. **Example:**
 
-1. All nonfaulty nodes should agree on a same value `v` if one of them not agree then consensus can not be achieved
-2. The value `v` should be proposed by a non-faulty node
+   - Suppose we have a banking system and process a transfer of amount `x` from `accountA` to `accountB`. The system must ensure all servers agree on the value of `x`.
 
-## Challenges
+2. **Problems Without Consensus:**
 
-Most common
+   - Server 1 updates `accountA` to `-x` but crashes before updating `accountB` to `+x`.
+   - Server 2 sees an inconsistent state.
+   - If nodes do not agree on a single correct state, incorrect balances may occur.
 
-1. **Crash**
-   1. It occurs when a node is not responding to other nodes of the system due to some Hardware or Software ot Network fault.
-   2. It can be handles easily by ignoring node's existance.
-2. **Byzantine failure**
-   1. A situation where one or more node is not crashed but behaves abnormally and forward a different message to different peers, due to an internal or external attack on that node. Handling this kind of situation is complicated in the distributed system.
-   2. A node may act maliciously, sending false information to other nodes (e.g., hacking attempts in blockchain).
-   3. A consensus algorithm, if it can handle Byzantine failure can handle any type of consensus problem in a distributed system.
+3. **How Consensus Solves This:**
 
-## Consensus Algorithms
+   - All nodes first agree on a single order of transactions.
+   - Even if some nodes fail, the majority can still ensure correctness.
+   - No transaction is lost, and all nodes eventually reach the same state.
 
-### Voting based
+4. Consensus is also used in distributed databases to ensure ACID properties.
 
-1. **Practical Byzantine Fault Tolerance**
-   1. It handles Byzantine failure
-   2. It works on principle **If more than two-thirds of all nodes in a system are honest then consensus can be reached.**
-   3. **Working**
-      1. The client sends a request to the primary node.
-      2. The primary nodes broadcast the request to all secondary nodes.
-      3. All the nodes perform the service that is requested and send it to the client as a reply.
-      4. The request is served successfully when the client received a similar message from at least two-thirds of the total nodes.
-   4. **Pros**
-      1. Can tolerate up to 1/3 of nodes being faulty.
-   5. **Cons**
-      1. Communication overhead
-2. **Paxos**
-   1. Paxos is one of the most widely used consensus algorithms. It is a fault-tolerant, majority-based consensus protocol.
-   2. Used in Google Spanner
-   3. **Working**
-      1. Proposer proposes a value.
-      2. Acceptors (Majority of nodes) vote on the proposal.
-      3. If a majority of acceptors agree, the value is committed and learned by all nodes.
-   4. **Pros**
-      1. Fault tolerant
-   5. **Cons**
-      1. Involves multiple message exchanges
-3. **Raft**
-   1. It uses leader election
-   2. Used in Cockrock DB
-   3. **Working**
-      1. A leader is elected among nodes.
-      2. The leader receives updates and replicates them to followers.
-      3. Once a majority of nodes confirm, the update is applied.
-   4. **Pros**
-      1. Simpler than Paxos
-   5. **Cons**
-      1. If leader fails a new election must happen
+---
 
-### Proof based
+## 🏗️ How to Achieve Consensus in Distributed Systems
 
-1. **Proof of Work**
-   1. Used in bitcoin and blockchain.
-   2. **Working**
-      1. A node (miner) solves a complex mathematical puzzle
-      2. The solution (proof) is verified by other nodes.
-      3. If valid, the block is added to the blockchain.
-   3. **Pros**
-      1. Highly secure
-   4. **Cons**
-      1. Slow
-      2. Consume huge energy
-2. **Proof of Stake**
-   1. Used in Etherium 2.0
-   2. PoS is an alternative to PoW where validators stake coins instead of solving puzzles.
+> _A non-faulty node is one that is not crashed, attacked, or malfunctioning._
+
+1. All non-faulty nodes should agree on the same value `v`. If even one does not agree, consensus cannot be achieved.
+2. The value `v` should be proposed by a non-faulty node.
+
+---
+
+## ⚠️ Challenges
+
+**Most common challenges:**
+
+1. **Crash:**
+
+   - Occurs when a node does not respond to other nodes due to hardware, software, or network faults.
+   - Can often be handled by ignoring the node's existence.
+
+2. **Byzantine Failure:**
+   - Occurs when one or more nodes behave abnormally (not crashed), forwarding different messages to different peers due to internal or external attacks.
+   - A node may act maliciously, sending false information to other nodes (e.g., hacking attempts in blockchain).
+   - A consensus algorithm that can handle Byzantine failures can address any type of consensus problem in distributed systems.
+
+---
+
+## 🗳️ Consensus Algorithms
+
+### Voting-Based Algorithms
+
+1. **Practical Byzantine Fault Tolerance (PBFT):**
+
+   - Handles Byzantine failures.
+   - Principle: **If more than two-thirds of all nodes are honest, consensus can be reached.**
+   - **How it works:**
+     1. The client sends a request to the primary node.
+     2. The primary node broadcasts the request to all secondary nodes.
+     3. All nodes perform the requested service and reply to the client.
+     4. The request is considered successful when the client receives similar responses from at least two-thirds of the nodes.
+   - **Pros:**
+     - Can tolerate up to 1/3 of nodes being faulty.
+   - **Cons:**
+     - Communication overhead.
+
+2. **Paxos:**
+
+   - One of the most widely used consensus algorithms; a fault-tolerant, majority-based protocol.
+   - Used in Google Spanner.
+   - **How it works:**
+     1. A proposer proposes a value.
+     2. Acceptors (majority of nodes) vote on the proposal.
+     3. If a majority agree, the value is committed and learned by all nodes.
+   - **Pros:**
+     - Fault tolerant.
+   - **Cons:**
+     - Involves multiple message exchanges.
+
+3. **Raft:**
+   - Uses leader election.
+   - Used in CockroachDB.
+   - **How it works:**
+     1. A leader is elected among nodes.
+     2. The leader receives updates and replicates them to followers.
+     3. Once a majority confirm, the update is applied.
+   - **Pros:**
+     - Simpler than Paxos.
+   - **Cons:**
+     - If the leader fails, a new election must occur.
+
+### Proof-Based Algorithms
+
+1. **Proof of Work (PoW):**
+
+   - Used in Bitcoin and other blockchains.
+   - **How it works:**
+     1. A node (miner) solves a complex mathematical puzzle.
+     2. The solution (proof) is verified by other nodes.
+     3. If valid, the block is added to the blockchain.
+   - **Pros:**
+     - Highly secure.
+   - **Cons:**
+     - Slow.
+     - Consumes huge amounts of energy.
+
+2. **Proof of Stake (PoS):**
+   - Used in Ethereum 2.0.
+   - PoS is an alternative to PoW, where validators stake coins instead of solving puzzles.

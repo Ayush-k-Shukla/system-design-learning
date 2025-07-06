@@ -1,34 +1,40 @@
-# Client Server Architecture
+# 🖥️ Client-Server Architecture
 
-1. In this multiple clients (users or devices) interact with a centralized server to access data, resource, or services.
+1. In this model, multiple clients (users or devices) interact with a centralized server to access data, resources, or services.
+
+---
 
 ## Types
 
 ### Two-Tier
 
-1. Here client directly interact with server.
+1. Here, the client directly interacts with the server.
 2. The server typically handles both application logic and data management.
-3. Simple but ineffecient as number of client increases
-4. e.g. a desktop app that directly connects to DB server to retrieve and show data.(MongoDB compass)
+3. Simple but inefficient as the number of clients increases.
+4. Example: A desktop app that directly connects to a DB server to retrieve and show data (e.g., MongoDB Compass).
 
 ### Three-Tier
 
-1. Here Database are handleded on differe server
-2. client -> App Logic server -> DB server
-3. e.g. a web app which follow it.
+1. Here, databases are handled on a different server.
+2. Client → App Logic Server → DB Server
+3. Example: A web app which follows this model.
 
 ### N-Tier
 
-1. extension of 3 tier model, where additional layer can be caching, load balancing, security.
+1. Extension of the 3-tier model, where additional layers can be caching, load balancing, security, etc.
+
+---
 
 ## Advantages
 
-1. Centralized Management
+1. Centralized management
 2. Scalability
 3. Resource sharing
 4. Security
 
+---
+
 ## Challenges and Considerations
 
-1. SPOF - if server down all client will be affected
+1. SPOF (Single Point of Failure) – If the server is down, all clients will be affected.
 2. Complex to manage

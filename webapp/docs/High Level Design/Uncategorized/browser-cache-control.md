@@ -1,7 +1,7 @@
-# HTTP Cache Control
+# 🗂️ HTTP Cache Control
 
-1. The http `cache-control` header contains some directives in both request and response that control [caching](../Scalability-files/Caches.md) in browser and shared caches(CDN, proxies).
-2. We can only modify `CORS-safelisted response header` with cache-control directives as `Forbidden-request header` can not be updated programatically (user agent update this).
+1. The HTTP `cache-control` header contains some directives in both requests and responses that control [caching](../Scalability-files/Caches.md) in browsers and shared caches (CDNs, proxies).
+2. We can only modify `CORS-safelisted response header` with cache-control directives, as `Forbidden-request header` cannot be updated programmatically (the user agent updates this).
 
 ## Cache-Control Directives in Requests vs. Responses
 
@@ -13,7 +13,7 @@
 | **`s-maxage=<seconds>`**               | ❌ No               | ✅ Yes               | Similar to `max-age`, but applies to shared caches (CDNs, proxies).                           |
 | **`public`**                           | ❌ No               | ✅ Yes               | Allows caching by any cache (browser, proxies, CDNs). Used for static assets.                 |
 | **`private`**                          | ❌ No               | ✅ Yes               | Restricts caching to the end-user’s browser only. Used for user-specific data.                |
-| **`must-revalidate`**                  | ❌ No               | ✅ Yes               | Forces caches to revalidate content before serving stale responses. used along with `max-age` |
+| **`must-revalidate`**                  | ❌ No               | ✅ Yes               | Forces caches to revalidate content before serving stale responses. Used along with `max-age` |
 | **`proxy-revalidate`**                 | ❌ No               | ✅ Yes               | Forces shared caches (CDNs, proxies) to revalidate stale content.                             |
 | **`no-transform`**                     | ❌ No               | ✅ Yes               | Prevents caches from modifying content (e.g., image compression by proxies).                  |
 | **`stale-while-revalidate=<seconds>`** | ❌ No               | ✅ Yes               | Allows serving stale content while revalidating in the background.                            |
@@ -22,48 +22,48 @@
 
 ### Note
 
-`immutable` and `stale-while-revalidate` are not have all browser support.
+`immutable` and `stale-while-revalidate` do not have full browser support.
 
-## Common used patterns
+## Commonly Used Patterns
 
-### Cache Static assests
+### Cache Static Assets
 
 ```sh
 Cache-Control: public, immutable, max-age=432432434
 ```
 
-1. used for versioned assets.(e.g. logo-v1.png,app-v2.js)
-2. public: Allows caching for all (CDN, browser, proxies)
-3. immutable: Did this so no need to revalidate by browser
+1. Used for versioned assets (e.g., logo-v1.png, app-v2.js)
+2. `public`: Allows caching for all (CDN, browser, proxies)
+3. `immutable`: No need to revalidate by browser
 
-### Prevent Caching entirely
+### Prevent Caching Entirely
 
 ```sh
 Cache-Control: no-store
 ```
 
-**Usecase:** Login pages, Transaction pages
+**Use case:** Login pages, transaction pages
 
-### Ensure fresh data always
+### Ensure Fresh Data Always
 
 ```sh
 Cache-Control: no-cache, must-revalidate
 ```
 
-**Usecase:** Dashboard analytics
+**Use case:** Dashboard analytics
 
-### Serve cached content if server failure
+### Serve Cached Content if Server Failure
 
 ```sh
 Cache-Control: public, max-age=600, stale-if-error=3600
 ```
 
-**Usecase:** For good user experience
+**Use case:** For good user experience
 
-### Optimise content delivery on cdn
+### Optimize Content Delivery on CDN
 
 ```sh
 Cache-Control: public, max-age=600, s-maxage=86400
 ```
 
-CDN caches content for 1 day and browser for 10 mins.
+CDN caches content for 1 day and browser for 10 minutes.

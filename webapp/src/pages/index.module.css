@@ -1,4 +1,17 @@
-/**
+/* Add style for notes/tutorial button */
+.notesButton {
+  background: linear-gradient(90deg, #ffb347 0%, #ffcc80 100%);
+  color: #333 !important;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255, 179, 71, 0.15);
+  margin-right: 1em;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.notesButton:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 16px rgba(255, 179, 71, 0.25);
+} /**
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
  */
@@ -20,4 +33,62 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.socialLinks {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 2em;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.socialLinksAligned {
+  justify-content: center;
+}
+/* Improved button styles for dark/light mode and larger coverage */
+.socialButton {
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(78, 84, 200, 0.1);
+  background: var(--ifm-background-surface);
+  color: var(--ifm-font-color-base);
+  border: 2px solid var(--ifm-color-primary);
+  transition: background 0.2s, color 0.2s, box-shadow 0.15s, transform 0.15s;
+}
+.socialButton:hover {
+  background: var(--ifm-color-primary);
+  color: var(--ifm-color-white);
+  box-shadow: 0 4px 16px rgba(78, 84, 200, 0.18);
+  transform: translateY(-2px) scale(1.03);
+}
+.notesButton {
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.18rem;
+  font-weight: 700;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(255, 179, 71, 0.1);
+  background: linear-gradient(90deg, #ffb347 0%, #ffcc80 100%);
+  color: #333 !important;
+  border: 2px solid #ffb347;
+  margin-right: 0;
+  transition: background 0.2s, color 0.2s, box-shadow 0.15s, transform 0.15s;
+}
+.notesButton:hover {
+  background: linear-gradient(90deg, #ffcc80 0%, #ffb347 100%);
+  color: #222 !important;
+  box-shadow: 0 4px 16px rgba(255, 179, 71, 0.18);
+  transform: translateY(-2px) scale(1.03);
 }

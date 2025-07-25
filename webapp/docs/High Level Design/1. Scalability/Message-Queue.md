@@ -8,11 +8,11 @@
 
 ![Image](/img/hld/message-queue-components.jpg)
 
-1. **Publisher** – Entity that sends messages to the queue.
-2. **Subscriber** – Entity that reads messages from the queue.
-3. **Queue** – Data structure that stores messages until they are consumed.
-4. **Broker** – (Optional) Software that manages the message queues and ensures messages are routed correctly between consumers and producers.
-5. **Message** – A unit of data sent, generally containing some payload and metadata (headers, timestamps, priority).
+- **Publisher** – Entity that sends messages to the queue.
+- **Subscriber** – Entity that reads messages from the queue.
+- **Queue** – Data structure that stores messages until they are consumed.
+- **Broker** – (Optional) Software that manages the message queues and ensures messages are routed correctly between consumers and producers.
+- **Message** – A unit of data sent, generally containing some payload and metadata (headers, timestamps, priority).
 
 ---
 
@@ -20,107 +20,109 @@
 
 ![Image](/img/hld/message-queue-working.jpg)
 
-1. **Sending Message**
-2. **Queueing Message**
-3. The queue stores the message temporarily, making it available for one or more consumers.
-4. **Consuming Message**
-5. Message consumers retrieve messages from the queue when they are ready to process them. They can do this at their own pace, which enables asynchronous communication.
-6. **Acknowledgment (Optional)**
-7. In some message queue systems, consumers can send acknowledgments back to the queue, indicating that they have successfully processed a message. This is essential for ensuring message delivery and preventing message loss.
+- **Sending Message**
+- **Queueing Message**
+- The queue stores the message temporarily, making it available for one or more consumers.
+- **Consuming Message**
+- Message consumers retrieve messages from the queue when they are ready to process them. They can do this at their own pace, which enables asynchronous communication.
+- **Acknowledgment (Optional)**
+- In some message queue systems, consumers can send acknowledgments back to the queue, indicating that they have successfully processed a message. This is essential for ensuring message delivery and preventing message loss.
 
 ---
 
 ### 📦 Types
 
-1. **Point-to-Point Queue**
+---
 
-   ![Image](/img/hld/p2p.jpg)
+**Point-to-Point Queue**
 
-   - The simplest type. When a producer sends a message, the message is stored in the queue until the consumer retrieves it.
-   - Once a message is retrieved, it is removed from the queue and cannot be processed by another consumer.
-   - **Used in:**
-     - Task processing systems
-     - Log processing systems
-     - Order processing systems
+![Image](/img/hld/p2p.jpg)
 
-2. **Publish/Subscribe (Pub/Sub) Queue**
+- The simplest type. When a producer sends a message, the message is stored in the queue until the consumer retrieves it.
+- Once a message is retrieved, it is removed from the queue and cannot be processed by another consumer.
+- **Used in:**
+  - Task processing systems
+  - Log processing systems
+  - Order processing systems
 
-   ![Image](/img/hld/pub-sub.jpg)
+**Publish/Subscribe (Pub/Sub) Queue**
 
-   - In this model, messages are published to a topic and multiple consumers can subscribe to that topic to receive messages.
-   - Messages are published to a topic instead of being sent directly to a queue.
-   - A Message Broker (Pub/Sub system) is a central system (e.g., Kafka, Google Pub/Sub, Redis) that distributes messages from publishers to all subscribed consumers.
-   - Subscribers receive messages: Any service subscribed to the topic will get the message.
-   - **Use cases:**
-     - Inventory Service → Updates stock
-     - Payment Service → Processes the payment
-     - Shipping Service → Starts delivery
-     - Notification Service → Sends email/SMS confirmation
+![Image](/img/hld/pub-sub.jpg)
 
-3. **Priority Queue**
+- In this model, messages are published to a topic and multiple consumers can subscribe to that topic to receive messages.
+- Messages are published to a topic instead of being sent directly to a queue.
+- A Message Broker (Pub/Sub system) is a central system (e.g., Kafka, Google Pub/Sub, Redis) that distributes messages from publishers to all subscribed consumers.
+- Subscribers receive messages: Any service subscribed to the topic will get the message.
+- **Use cases:**
+  - Inventory Service → Updates stock
+  - Payment Service → Processes the payment
+  - Shipping Service → Starts delivery
+  - Notification Service → Sends email/SMS confirmation
 
-   - Messages in the queue are assigned priorities, and higher-priority messages are processed before lower-priority ones.
-   - **Use case:**
-     1. emergency alerts system
-     2. Healthcare (critical patients alert)
-     3. Customer support system(e.g. premium customer get faster response)
+**Priority Queue**
 
-4. **Dead Letter Queue (DLQ)**
+- Messages in the queue are assigned priorities, and higher-priority messages are processed before lower-priority ones.
+- **Use case:**
+  - Emergency alerts system
+  - Healthcare (critical patient alerts)
+  - Customer support system (e.g., premium customers get faster response)
 
-   ![Image](/img/hld/dlq.jpg)
+**Dead Letter Queue (DLQ)**
 
-   1. Stores messages that could not be processed successfully after multiple retries.
-   2. **Usecase**
-      1. Handeling failed transaction in e-commerce
-      2. Useful for troubleshooting and handeling failed messages
+![Image](/img/hld/dlq.jpg)
+
+- Stores messages that could not be processed successfully after multiple retries.
+- **Use case:**
+  - Handling failed transactions in e-commerce
+  - Useful for troubleshooting and handling failed messages
 
 ### **Advantages**
 
-1. **Decopling**
-   1. producer and consumer are decoupled
-2. **Ashynchronous Processing**
-   1. producer can send message to queue and move on to other task. similarly consumer can consume message based on availability.
-3. **Fault tolerance**
-   1. Persistent queues ensure that messages not lost even if consumer fails. they also allow reties and error handling.
-4. **Scalability**
-   1. Can scale horizontally adding more consumers and producers
-5. **Throttling**
-   1. This can control rate of message processing, preventing consumer from being overloaded.
+- **Decoupling:**
+  - Producer and consumer are decoupled.
+- **Asynchronous Processing:**
+  - Producer can send messages to the queue and move on to other tasks. Similarly, the consumer can consume messages based on availability.
+- **Fault Tolerance:**
+  - Persistent queues ensure that messages are not lost even if the consumer fails. They also allow retries and error handling.
+- **Scalability:**
+  - Can scale horizontally by adding more consumers and producers.
+- **Throttling:**
+  - This can control the rate of message processing, preventing the consumer from being overloaded.
 
 ### **When to use**
 
-1. **Microservice architecture**
-   1. MS need to communicate to each other but direct calling can lead to tight coupling and cascading failure.
-2. **Task scheduling and Background processing**
-   1. Certain tasks, such as image processing or sending emails, are time-consuming and should not block the main application flow. Offload these tasks to a message queue and have background workers (consumers) process them asynchronously.
-3. **Event driven architecture**
-   1. Event needs to propagated to multiple services but direct communication can lead to tight coupling so we can use a Pub/Sub queue to broadcast event to all interested consumer services.
-4. **Reliable communication**
-   1. Using persistent and retry handeled queue can make reliable communication.
-5. **Load leveling**
-   1. Sudden spikes in requests can overwhelm a system, leading to degraded performance or failures. Queue incoming requests using a message queue and process them at a steady rate, ensuring that the system remains stable under load.
+- **Microservice architecture:**
+  - Microservices need to communicate with each other, but direct calling can lead to tight coupling and cascading failure.
+- **Task scheduling and background processing:**
+  - Certain tasks, such as image processing or sending emails, are time-consuming and should not block the main application flow. Offload these tasks to a message queue and have background workers (consumers) process them asynchronously.
+- **Event-driven architecture:**
+  - Events need to be propagated to multiple services, but direct communication can lead to tight coupling. Use a Pub/Sub queue to broadcast events to all interested consumer services.
+- **Reliable communication:**
+  - Using persistent and retry-handled queues can make communication reliable.
+- **Load leveling:**
+  - Sudden spikes in requests can overwhelm a system, leading to degraded performance or failures. Queue incoming requests using a message queue and process them at a steady rate, ensuring that the system remains stable under load.
 
-### **Best practices for implementing**
+### **Best Practices for Implementing**
 
-1. **Idempotency**
-   1. Ensure that duplicate messages are handled correctly.
-2. **Message Durability**
-   1. Based on usecase implement persistent or transient messages. as persistent comes with some tradeoff.
-3. **Error Handeling**
-   1. Implement robust error handling by including retirs, DLQ, and alerting mechanism for failed message processing.
-4. **Security**
-   1. Implement security by encryption, authentication.
-5. **Monitoring**
-   1. Setup monitoring to check performance and health of the message queues, including throughput, queue length, and consumer lag.
-6. **Scalability**
+- **Idempotency:**
+  - Ensure that duplicate messages are handled correctly.
+- **Message Durability:**
+  - Based on use case, implement persistent or transient messages, as persistent comes with some trade-offs.
+- **Error Handling:**
+  - Implement robust error handling by including retries, DLQ, and alerting mechanisms for failed message processing.
+- **Security:**
+  - Implement security by encryption and authentication.
+- **Monitoring:**
+  - Set up monitoring to check performance and health of the message queues, including throughput, queue length, and consumer lag.
+- **Scalability:**
 
-### **Popular Message Queue**
+### **Popular Message Queues**
 
-1. **Apache Kafka**
-   1. It is distributed streaming platform that excels at handling large volumes of data. Most widely used for high throughput and event driven systems.
-2. **RabbitMQ**
-   1. widely used open source message broker that supports multiple messaging protocols, including AMQP. Supports P2P, Pub/Sub, Priority.
-3. **Google Cloud Pub/Sub**
-   1. A fully managed message queue service offered by Google Cloud, designed for real-time analytics and event-driven applications.
-4. **Amazon SQS**
-   1. A fully managed message queue service provided by AWS. SQS is highly scalable and integrates well with other AWS services.
+- **Apache Kafka:**
+  - A distributed streaming platform that excels at handling large volumes of data. Most widely used for high throughput and event-driven systems.
+- **RabbitMQ:**
+  - A widely used open-source message broker that supports multiple messaging protocols, including AMQP. Supports P2P, Pub/Sub, and Priority.
+- **Google Cloud Pub/Sub:**
+  - A fully managed message queue service offered by Google Cloud, designed for real-time analytics and event-driven applications.
+- **Amazon SQS:**
+  - A fully managed message queue service provided by AWS. SQS is highly scalable and integrates well with other AWS services.

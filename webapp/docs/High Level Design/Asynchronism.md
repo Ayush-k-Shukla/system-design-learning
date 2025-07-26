@@ -1,12 +1,4 @@
-# Asynchronism
-
-This means handling and processing task independently of the main workflow, allowing systems to be more scalable, responsive and efficient.
-
-[Message Queues](Scalability-files/Message-Queue.md)
-
-[Task Queues](Scalability-files/Task-Queue.md)
-
-## **Back Pressure**
+## Back Pressure
 
 1. **Back pressure** is a mechanism used in **message queues, task queues, and network systems** to prevent **overloading** a system when it cannot process incoming requests fast enough. It helps maintain system stability by slowing down producers or rejecting new tasks when consumers (workers) are overwhelmed.
 

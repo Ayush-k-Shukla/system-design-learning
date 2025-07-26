@@ -10,6 +10,29 @@
 
 ---
 
+## Virtual Nodes and Replicas (from Gaurav Sen)
+
+To avoid uneven distribution and overload when a node fails, use virtual nodes:
+
+- Instead of assigning a single position to each node, each node gets multiple positions (virtual nodes) in the ring.
+- The best solution is not to use K hash functions, but to generate K replica ids for each server id. Designing K hash functions while maintaining random uniformity and consistency is hard. Generating K replica ids is easy: for server xxx, create xxx+1, xxx+2, ..., xxx+K, then hash these to get K points on the ring.
+
+This ensures that data is evenly spread across nodes, preventing hotspots and overloads.
+
+---
+
+# 🔄 Consistent Hashing
+
+<p align="center">
+ <img src="/img/hld/image3.png" />
+</p>
+
+1. In a normal (modulo) system, if we try to scale down or up, we need to update the system space again, which requires a lot of time and resources.
+
+2. Here, the nodes (servers) and users (requests) are put on the same ring, and whenever a request comes, we traverse clockwise. Whichever server is found first will serve the request.
+
+---
+
 ## ➕ Adding a New Node
 
 1. When scaling up and adding a node to the system, we do these steps:
@@ -29,12 +52,6 @@
    2. Populate the node to the right with data that was associated with the node to be removed.
    3. Remove the node from the hash space.
 2. When a node is removed from the system, it only affects the files associated with the node itself. All other files and associations remain unaffected, thus minimizing the amount of data to be migrated and mapping required to be changed.
-
----
-
-## 🔗 Associating an Item to a Node
-
-...existing code...
 
 ---
 

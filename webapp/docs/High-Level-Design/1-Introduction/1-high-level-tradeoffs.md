@@ -2,6 +2,27 @@
 
 ---
 
+## Horizontal vs Vertical Scaling
+
+<img src="/img/gs/hor-vert.png" />
+
+- Horizontal scaling: buying more machines
+- Vertical scaling: buying a bigger machine
+
+## HLD vs LLD
+
+- HLD (High Level Design): How our services are going to communicate
+- LLD (Low Level Design): How we are going to design classes
+
+---
+
+## Micro services vs Monolith [LINK](https://www.geeksforgeeks.org/monolithic-vs-microservices-architecture/#what-is-a-monolithic-architecture)
+
+<img src="/img/gs/mono-vs-micro.png" />
+<img src="/img/gs/mono-vs2.png" />
+
+---
+
 ## 🚀 Performance vs. Scalability
 
 1. If you have a performance issue, your system will be slow for a single user.

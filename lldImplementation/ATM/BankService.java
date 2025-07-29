@@ -13,6 +13,9 @@ public class BankService {
         accounts = new ConcurrentHashMap<>();
         cardToAccountMapping = new ConcurrentHashMap<>();
         cards = new ConcurrentHashMap<>();
+
+        createAccount("123", 1234);
+        createCard("abc123","123", "123");
     }
 
     public boolean createAccount(String accountNumber, double balance){

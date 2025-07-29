@@ -13,6 +13,7 @@ public class IdleATMState implements ATMState {
               return;
           }
           atmService.setCurrentCard(card);
+          atmService.setCurrentState(new CardInsertedATMState());
     }
 
     @Override

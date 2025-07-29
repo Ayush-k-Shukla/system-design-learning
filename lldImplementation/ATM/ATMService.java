@@ -4,6 +4,7 @@ import ATM.Types.TransactionType;
 import ATM.state.ATMState;
 import ATM.state.IdleATMState;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ATMService {
@@ -21,9 +22,10 @@ public class ATMService {
         availableAmount = 1000;
         currentCard = null;
         currentState = new IdleATMState();
+        transactions = new ArrayList<>();
     }
 
-    public ATMService getInstance(){
+    public static ATMService getInstance(){
         if(instance==null){
             instance = new ATMService();
         }
@@ -52,7 +54,9 @@ public class ATMService {
 
     public double checkBalance(){
         pushTransactionLog(TransactionType.INQUIRY);
-        return bankService.getBalance(currentCard);
+        double res = bankService.getBalance(currentCard);
+        System.out.println("Balance "+res);
+        return res;
     }
 
     public void deposit(double amount){
@@ -76,11 +80,19 @@ public class ATMService {
         return bankService.validateCard(currentCard, pin);
     }
 
+    public List<Transaction> getTransactions(){
+        return transactions;
+    }
+
     private synchronized boolean canDispense(double amount){
         return availableAmount > amount;
     }
 
-    private void pushTransactionLog(TransactionType type, double ...args){
-        transactions.add(new Transaction(type, args[0]));
+    private void pushTransactionLog(TransactionType type){
+        transactions.add(new Transaction(type,0));
+    }
+
+    private void pushTransactionLog(TransactionType type, double args){
+        transactions.add(new Transaction(type, args));
     }
 }

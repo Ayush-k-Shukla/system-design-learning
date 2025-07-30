@@ -1,4 +1,4 @@
-# Object Oriented Programming Concept
+# OOP
 
 ## Encapsulation
 

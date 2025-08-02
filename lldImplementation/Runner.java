@@ -1,6 +1,7 @@
 import ATM.ATMService;
 import ATM.ATMServiceDemo;
 import TaskManager.TaskManagementSystemDemo;
+import linkedin.LinkedinServiceDemo;
 import logger.Logger;
 import logger.LoggerDemo;
 import parkinglot.ParkingLotDemo;
@@ -10,6 +11,7 @@ public class Runner {
 //        ParkingLotDemo.run();
 //        LoggerDemo.run();
 //        TaskManagementSystemDemo.run();
-        ATMServiceDemo.run();
+//        ATMServiceDemo.run();
+        LinkedinServiceDemo.run();
     }
 }

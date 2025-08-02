@@ -12,10 +12,12 @@ public class LinkedinService {
     private Map<String, User> users;
     private Set<String> pendingConnectionRequests;
 
+    private List<JobPost> jobPosts;
 
     private LinkedinService(){
         users = new HashMap<>();
         pendingConnectionRequests = new HashSet<>();
+        this.jobPosts = new ArrayList<>();
     }
 
     // Singleton
@@ -92,6 +94,26 @@ public class LinkedinService {
             }
         }
         return found;
+    }
+
+    public List<JobPost> searchJobs(String match){
+        List<JobPost> found = new ArrayList<>();
+        for(JobPost u: jobPosts){
+            if(u.getDescription().contains(match) || u.getRequirement().contains(match)){
+                found.add(u);
+            }
+        }
+        return found;
+    }
+
+    public void addJobPost(User user, JobPost post){
+        if(user.getType().equals(UserType.EMPLOYER)){
+            jobPosts.add(post);
+        }
+    }
+
+    public void applyJob(User user, JobPost post){
+        post.addApplicant(user);
     }
 
     private User getUserByEmailAndPassword(String email){

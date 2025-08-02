@@ -1,22 +1,22 @@
 package linkedin;
 
 import java.util.List;
-import java.util.UUID;
 
 public class UserProfile {
-    private String profileImage;
-    private String headline;
-    private String summary;
-    private List<Skill> skills;
-    private List<Education> educations;
-    private List<Experience> experiences;
+    private final String profileImage;
+    private final String headline;
+    private final String summary;
+    private final List<Skill> skills;
+    private final List<Education> educations;
+    private final List<Experience> experiences;
 
-    public UserProfile(String profileImage, String headline, String summary, List<Skill> skills, List<Education> educations, List<Experience> experiences){
-        this.headline = headline;
-        this.profileImage = profileImage;
-        this.skills = skills;
-        this.educations = educations;
-        this.experiences = experiences;
+    private UserProfile(Builder builder){
+        this.headline = builder.headline;
+        this.profileImage = builder.profileImage;
+        this.skills =  builder.skills!=null ? List.copyOf(builder.skills):List.of();
+        this.summary = builder.summary;
+        this.educations =  builder.educations!=null ? List.copyOf(builder.educations):List.of();
+        this.experiences =  builder.experiences!=null ? List.copyOf(builder.experiences):List.of();
     }
 
     public List<Education> getEducations() {
@@ -29,5 +29,48 @@ public class UserProfile {
 
     public List<Experience> getExperiences() {
         return experiences;
+    }
+
+    public static class Builder {
+        private String profileImage;
+        private String headline;
+        private String summary;
+        private List<Skill> skills;
+        private List<Education> educations;
+        private List<Experience> experiences;
+
+        public Builder profileImage(String profileImage){
+            this.profileImage = profileImage;
+            return this;
+        }
+
+        public Builder headline(String headline){
+            this.headline = headline;
+            return this;
+        }
+
+        public Builder summary(String summary){
+            this.summary = summary;
+            return this;
+        }
+
+        public Builder skills(List<Skill> skills){
+            this.skills = skills;
+            return this;
+        }
+
+        public Builder experiences(List<Experience> experiences){
+            this.experiences = experiences;
+            return this;
+        }
+
+        public Builder educations(List<Education> educations){
+            this.educations = educations;
+            return this;
+        }
+
+        public UserProfile build(){
+            return new UserProfile(this);
+        }
     }
 }

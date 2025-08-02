@@ -9,15 +9,24 @@ public class LinkedinServiceDemo {
     public static void run() {
         LinkedinService service = LinkedinService.getInstance();
 
-        // Create UserProfiles
-        UserProfile profile1 = new UserProfile("img1.png", "Engineer", "Experienced Java Developer",
-                Arrays.asList(new Skill("Java"), new Skill("System Design")),
-                Arrays.asList(new Education("Delhi", "IIT", "2010", "2014")),
-                Arrays.asList(new Experience("Bangalore", "SDE", "2014", "2018", "Worked on backend")));
-        UserProfile profile2 = new UserProfile("img2.png", "Manager", "Project Manager",
-                Arrays.asList(new Skill("Management")),
-                Arrays.asList(new Education("Mumbai", "IIM", "2012", "2014")),
-                Arrays.asList(new Experience("Mumbai", "Manager", "2014", "2020", "Managed projects")));
+
+        UserProfile profile1 =  new UserProfile.Builder()
+                .profileImage("img1.png")
+                .summary("Experienced Java Developer")
+                .headline("Engineer")
+                .educations( Arrays.asList(new Education("Delhi", "IIT", "2010", "2014")))
+                .experiences(Arrays.asList(new Experience("Bangalore", "SDE", "2014", "2018", "Worked on backend")))
+                .skills(Arrays.asList(new Skill("Java"), new Skill("System Design")))
+                .build();
+
+        UserProfile profile2 =  new UserProfile.Builder()
+                .profileImage("img1.png")
+                .summary("Experienced Java Developer")
+                .headline("Engineer2")
+                .educations( Arrays.asList(new Education("Delhi", "IIT", "2010", "2014")))
+                .experiences(Arrays.asList(new Experience("Bangalore", "SDE", "2014", "2018", "Worked on backend")))
+                .skills(Arrays.asList(new Skill("Java"), new Skill("System Design")))
+                .build();
 
         // Create Users
         service.createUser("Ayush", "ayush@email.com", "pass123", UserType.USER, profile1);

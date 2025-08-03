@@ -1,94 +1,120 @@
 # DNS, CDN, Load balancer, Proxies
 
-### Domain Name System
+## Domain Name System
 
-1. It maps a domain name to IP address.
+- It maps a domain name to IP address.
 
 ![image.png](/img/hld/image.png)
 ![image.png](/img/hld/how-does-dns-resolution-work.webp)
 
-2. **Steps**
-   1. The browser (client) checks if the hostname to IP address mapping exists in the local cache of the client.
-   2. If the last step failed, the client checks the Operating System (OS) local cache by executing a system call (syscall).
-   3. If the last step failed, the client makes a DNS request to the Gateway/Router and checks the local cache of the Router.
-   4. If the last step failed, the router forwards the request to Internet Service Provider (ISP) and checks the DNS cache of the ISP.
-   5. If the last step fails, the DNS resolver queries the root servers (there are 13 root servers with replicas worldwide).
-   6. DNS resolver queries Top Level Domain (TLD) servers such as .com, or .org. DNS resolver queries Authoritative name servers such as google.com.
-   7. Optionally, the DNS resolver queries Authoritative subdomain servers such as maps.google.com depending on your query.
+### Steps to Check
 
-### CDN
+- The browser (client) checks if the hostname to IP address mapping exists in the local cache of the client.
+- If the last step failed, the client checks the Operating System (OS) local cache by executing a system call (syscall).
+- If the last step failed, the client makes a DNS request to the Gateway/Router and checks the local cache of the Router.
+- If the last step failed, the router forwards the request to Internet Service Provider (ISP) and checks the DNS cache of the ISP.
+- If the last step fails, the DNS resolver queries the root servers (there are 13 root servers with replicas worldwide).
+- DNS resolver queries Top Level Domain (TLD) servers such as .com, or .org. DNS resolver queries Authoritative name servers such as google.com.
+- Optionally, the DNS resolver queries Authoritative subdomain servers such as maps.google.com depending on your query.
 
-1. It is a globally distributed network of connected servers , serving data from location near to user.
-2. Generally it is used for serving static data like images, html, css, js but some CDN’s also support dynamic content.
-3. **Types**
-   1. **Pull**
-      1. It like you added a new post with static data to your app, and some different location person tries to access in that case first time the cdn will take time to load the data as it is not present there. so means when user access a data which is not on cdn it takes a pull and store it nearby.
-   2. **Push**
-      1. instead of waiting around for the CDN to pull the content when it’s needed, you simply upload the entire content of your travel blog to the CDN beforehand. That way your pictures, theme files, videos, and the rest are always on the CDN servers around the world.
-   3. Generally setting up a pull CDN is easy. Once it is initially configured a pull CDN seamlessly stores and updates content on it’s server as requested. The data generally stays there for 24 hours if not modified .
-      1. However, what makes a pull CDN easy to use can also be a drawback. When making changes to a blog, you typically don't have control over how long the pull CDN cache lasts. If you update an image, it might take up to 24 hours to reflect the changes, unless you shut off the CDN or clear its cache.
-   4. The decision on which CDN type to go with revolves in large part around traffic and downloads. Travel blogs that are hosting videos and podcasts (aka. large downloads) will find a push CDN cheaper and more efficient in the long run since the CDN won’t re-download content until you actively push it to the CDN. A pull CDN can help high-traffic-small-download sites by keeping the most popular content on CDN servers. Subsequent updates (or “pulls”) for content aren’t frequent enough to drive up costs past that of a push CDN.
-4. **Benefits**
-   1. The request fulfilled by your CDN will not go to server
-   2. less distance travelled means faster response time
-5. **Disadvantages**
-   1. Content might be stale if it is updated before the TTL expires it.
-   2. CDN costs could be significant depending on traffic, although this should be weighed with additional costs you would incur not using a CDN.
+## Content Delivery Network (CDN)
 
-### Load Balancer
+- It is a globally distributed network of connected servers , serving data from location near to user.
+- Generally it is used for serving static data like images, html, css, js but some CDN’s also support dynamic content.
 
-1. It distributes incoming client requests to computing resources such as application servers and databases.
-2. These are effective at
-   1. Preventing overloading resources
-   2. Preventing requests from going to unhealthy servers
-   3. Helping eliminate single point of failure
-3. **Types**
-   1. **Hardware Load balancer**
-      1. Physical devices designed for high-speed traffic distribution.
-      2. Expensive and used in enterprise setup
-      3. e.g. Citrix ADC
-   2. **Software Load Balancers**
-      1. Applications or services that run on standard servers
-      2. Cost effective and flexible
-      3. e.g. HAProxy, Nginx
-   3. **Cloud Load Balancers**
-      1. Managed service provided by cloud providers
-      2. Scalable and easy to integrate
-      3. e.g. Google Cloud LB, Amazon Elastic LB
-4. **Types based on functionalities**
-   1. **Layer 4 (Transport layer) LB**
-      1. Operates at the TCP/UDP layer.
-      2. Routes traffic based on IP addresses and ports.
-      3. Example: AWS Network Load Balancer (NLB).
-   2. **Layer 7 (Application layer) LB**
-      1. Operates at the HTTP/HTTPS layer.
-      2. Makes routing decisions based on URL, headers, cookies, etc.
-      3. Example: AWS Application Load Balancer (ALB).
-5. **Types of Load Balancing Algorithms**
-   1. **Round Robin**
-      1. A request is sent to the first server in the list.
-      2. The next request is sent to the second server, and so on.
-      3. After the last server in the list, the algorithm loops back to the first server.
-      4. Preferred only when all servers have same processing capabilities, will cause issue if some servers has diff processing capabilities.
-   2. **weighted round robin**
-      1. Each server is assigned a weight based on their processing power or available resources.
-      2. Servers with higher weights receive a proportionally larger share of incoming requests.
-      3. More complex to implement and does not consider server current load or response time.
-   3. **IP hashing**
-      1. Calculates a hash value from the client’s IP address and uses it to determine the server to route the request.
-      2. Used when we need session persistence, as request from same client are always directed to same server
-      3. Can lead to uneven load distribution if certain IP addresses generate more traffic than others.
-      4. Lacks flexibility if a server goes down, as the hash mapping may need to be reconfigured.
-   4. **Least connections**
-      1. Monitor the number of active connections on each server.
-      2. Assigns incoming requests to the server with the least number of active connections.
-   5. **Least response time**
-      1. Monitors the response time of each server
-      2. Assigns incoming requests to the server with the fastest response time
-      3. May not consider other factors such as server load or connection count.
-6. **Disadvantage**
-   1. A single load balancer is a single point of failure, configuring multiple load balancers further increases complexity.
-   2. The load balancer can become a performance bottleneck if it does not have enough resources or if it is not configured properly.
+### Types
+
+#### Pull
+
+- It like you added a new post with static data to your app, and some different location person tries to access in that case first time the cdn will take time to load the data as it is not present there. so means when user access a data which is not on cdn it takes a pull and store it nearby.
+
+#### Push
+
+- instead of waiting around for the CDN to pull the content when it’s needed, you simply upload the entire content of your travel blog to the CDN beforehand. That way your pictures, theme files, videos, and the rest are always on the CDN servers around the world.
+
+- Generally setting up a **pull CDN** is easy. Once it is initially configured a pull CDN seamlessly stores and updates content on it’s server as requested. The data generally stays there for 24 hours if not modified .
+
+  - However, what makes a pull CDN easy to use can also be a drawback. When making changes to a blog, you typically don't have control over how long the pull CDN cache lasts. If you update an image, it might take up to 24 hours to reflect the changes, unless you shut off the CDN or clear its cache.
+
+- The decision on which CDN type to go with revolves in large part around traffic and downloads. Travel blogs that are hosting videos and podcasts (aka. large downloads) will find a push CDN cheaper and more efficient in the long run since the CDN won’t re-download content until you actively push it to the CDN. A pull CDN can help high-traffic-small-download sites by keeping the most popular content on CDN servers. Subsequent updates (or “pulls”) for content aren’t frequent enough to drive up costs past that of a push CDN.
+
+### Benefits
+
+- The request fulfilled by your CDN will not go to server
+- less distance travelled means faster response time
+
+### Disadvantages
+
+- Content might be stale if it is updated before the TTL expires it.
+- CDN costs could be significant depending on traffic, although this should be weighed with additional costs you would incur not using a CDN.
+
+## Load Balancer
+
+- It distributes incoming client requests to computing resources such as application servers and databases.
+- These are effective at
+  - Preventing overloading resources
+  - Preventing requests from going to unhealthy servers
+  - Helping eliminate single point of failure
+
+### Types
+
+#### Hardware Load balancer
+
+- Physical devices designed for high-speed traffic distribution.
+- Expensive and used in enterprise setup
+- e.g. Citrix ADC
+
+#### Software Load Balancers
+
+- Applications or services that run on standard servers
+- Cost effective and flexible
+- e.g. HAProxy, Nginx
+
+#### Cloud Load Balancers
+
+- Managed service provided by cloud providers
+- Scalable and easy to integrate
+- e.g. Google Cloud LB, Amazon Elastic LB
+
+### Types based on functionalities
+
+1.  **Layer 4 (Transport layer) LB**
+    1. Operates at the TCP/UDP layer.
+    2. Routes traffic based on IP addresses and ports.
+    3. Example: AWS Network Load Balancer (NLB).
+2.  **Layer 7 (Application layer) LB**
+    1. Operates at the HTTP/HTTPS layer.
+    2. Makes routing decisions based on URL, headers, cookies, etc.
+    3. Example: AWS Application Load Balancer (ALB).
+
+### **Types of Load Balancing Algorithms**
+
+1.  **Round Robin**
+    1. A request is sent to the first server in the list.
+    2. The next request is sent to the second server, and so on.
+    3. After the last server in the list, the algorithm loops back to the first server.
+    4. Preferred only when all servers have same processing capabilities, will cause issue if some servers has diff processing capabilities.
+2.  **weighted round robin**
+    1. Each server is assigned a weight based on their processing power or available resources.
+    2. Servers with higher weights receive a proportionally larger share of incoming requests.
+    3. More complex to implement and does not consider server current load or response time.
+3.  **IP hashing**
+    1. Calculates a hash value from the client’s IP address and uses it to determine the server to route the request.
+    2. Used when we need session persistence, as request from same client are always directed to same server
+    3. Can lead to uneven load distribution if certain IP addresses generate more traffic than others.
+    4. Lacks flexibility if a server goes down, as the hash mapping may need to be reconfigured.
+4.  **Least connections**
+    1. Monitor the number of active connections on each server.
+    2. Assigns incoming requests to the server with the least number of active connections.
+5.  **Least response time**
+    1. Monitors the response time of each server
+    2. Assigns incoming requests to the server with the fastest response time
+    3. May not consider other factors such as server load or connection count.
+
+### **Disadvantage**
+
+1.  A single load balancer is a single point of failure, configuring multiple load balancers further increases complexity.
+2.  The load balancer can become a performance bottleneck if it does not have enough resources or if it is not configured properly.
 
 ## Proxy Servers
 

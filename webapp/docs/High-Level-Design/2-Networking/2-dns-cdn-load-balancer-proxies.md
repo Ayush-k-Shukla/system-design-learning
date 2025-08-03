@@ -1,178 +1,232 @@
-# DNS, CDN, Load balancer, Proxies
+# DNS, CDN, Load Balancer, Proxies
 
 ## Domain Name System
 
-- It maps a domain name to IP address.
+- Maps a domain name to an IP address.
 
 ![image.png](/img/hld/image.png)
 ![image.png](/img/hld/how-does-dns-resolution-work.webp)
 
-### Steps to Check
+### DNS Resolution Steps
 
-- The browser (client) checks if the hostname to IP address mapping exists in the local cache of the client.
-- If the last step failed, the client checks the Operating System (OS) local cache by executing a system call (syscall).
-- If the last step failed, the client makes a DNS request to the Gateway/Router and checks the local cache of the Router.
-- If the last step failed, the router forwards the request to Internet Service Provider (ISP) and checks the DNS cache of the ISP.
-- If the last step fails, the DNS resolver queries the root servers (there are 13 root servers with replicas worldwide).
-- DNS resolver queries Top Level Domain (TLD) servers such as .com, or .org. DNS resolver queries Authoritative name servers such as google.com.
-- Optionally, the DNS resolver queries Authoritative subdomain servers such as maps.google.com depending on your query.
+- The browser (client) checks if the hostname to IP address mapping exists in its local cache.
+- If not found, the client checks the Operating System (OS) local cache via a system call.
+- If still not found, the client makes a DNS request to the Gateway/Router and checks the router's local cache.
+- If unsuccessful, the router forwards the request to the Internet Service Provider (ISP) and checks the ISP's DNS cache.
+- If the mapping is still not found, the DNS resolver queries the root servers (13 root servers with replicas worldwide).
+- The DNS resolver then queries Top Level Domain (TLD) servers (e.g., .com, .org) and Authoritative name servers (e.g., google.com).
+- Optionally, the DNS resolver may query Authoritative subdomain servers (e.g., maps.google.com) depending on the query.
 
 ## Content Delivery Network (CDN)
 
-- It is a globally distributed network of connected servers , serving data from location near to user.
-- Generally it is used for serving static data like images, html, css, js but some CDN’s also support dynamic content.
+- A globally distributed network of connected servers, serving data from a location near the user.
+- Generally used for serving static data like images, HTML, CSS, JS, but some CDNs also support dynamic content.
 
-### Types
+### Types of CDN
 
-#### Pull
+#### Pull CDN
 
-- It like you added a new post with static data to your app, and some different location person tries to access in that case first time the cdn will take time to load the data as it is not present there. so means when user access a data which is not on cdn it takes a pull and store it nearby.
+- When you add new static data to your app, and a user from a different location tries to access it, the CDN will take time to load the data the first time as it is not present there. When a user accesses data not on the CDN, it pulls and stores it nearby.
 
-#### Push
+#### Push CDN
 
-- instead of waiting around for the CDN to pull the content when it’s needed, you simply upload the entire content of your travel blog to the CDN beforehand. That way your pictures, theme files, videos, and the rest are always on the CDN servers around the world.
+- Instead of waiting for the CDN to pull content when needed, you upload the entire content to the CDN beforehand. Your pictures, theme files, videos, and other assets are always on CDN servers around the world.
 
-- Generally setting up a **pull CDN** is easy. Once it is initially configured a pull CDN seamlessly stores and updates content on it’s server as requested. The data generally stays there for 24 hours if not modified .
+- Setting up a **pull CDN** is generally easy. Once configured, a pull CDN seamlessly stores and updates content on its servers as requested. The data typically stays there for 24 hours if not modified.
 
-  - However, what makes a pull CDN easy to use can also be a drawback. When making changes to a blog, you typically don't have control over how long the pull CDN cache lasts. If you update an image, it might take up to 24 hours to reflect the changes, unless you shut off the CDN or clear its cache.
+  - However, the ease of use can be a drawback. When making changes, you typically don't control how long the pull CDN cache lasts. If you update an image, it might take up to 24 hours to reflect changes, unless you clear the CDN cache.
 
-- The decision on which CDN type to go with revolves in large part around traffic and downloads. Travel blogs that are hosting videos and podcasts (aka. large downloads) will find a push CDN cheaper and more efficient in the long run since the CDN won’t re-download content until you actively push it to the CDN. A pull CDN can help high-traffic-small-download sites by keeping the most popular content on CDN servers. Subsequent updates (or “pulls”) for content aren’t frequent enough to drive up costs past that of a push CDN.
+- The decision on which CDN type to use depends on traffic and downloads. Blogs hosting large downloads (videos, podcasts) may find push CDNs cheaper and more efficient, as content is only updated when pushed. Pull CDNs help high-traffic, small-download sites by keeping popular content on CDN servers. Updates for content are infrequent enough to keep costs lower than push CDNs.
 
-### Benefits
+### Benefits of CDN
 
-- The request fulfilled by your CDN will not go to server
-- less distance travelled means faster response time
+- Requests fulfilled by your CDN do not go to the origin server.
+- Less distance traveled means faster response time.
 
-### Disadvantages
+### Disadvantages of CDN
 
-- Content might be stale if it is updated before the TTL expires it.
-- CDN costs could be significant depending on traffic, although this should be weighed with additional costs you would incur not using a CDN.
+- Content might be stale if updated before the TTL expires.
+- CDN costs could be significant depending on traffic, but should be weighed against costs incurred without a CDN.
 
 ## Load Balancer
 
-- It distributes incoming client requests to computing resources such as application servers and databases.
-- These are effective at
-  - Preventing overloading resources
+- Distributes incoming client requests to computing resources such as application servers and databases.
+- Effective for:
+  - Preventing resource overload
   - Preventing requests from going to unhealthy servers
-  - Helping eliminate single point of failure
+  - Eliminating single points of failure
 
-### Types
+### Types of Load Balancers
 
-#### Hardware Load balancer
+#### Hardware Load Balancer
 
 - Physical devices designed for high-speed traffic distribution.
-- Expensive and used in enterprise setup
-- e.g. Citrix ADC
+- Expensive and used in enterprise setups.
+- Example: Citrix ADC
 
-#### Software Load Balancers
+#### Software Load Balancer
 
-- Applications or services that run on standard servers
-- Cost effective and flexible
-- e.g. HAProxy, Nginx
+- Applications or services that run on standard servers.
+- Cost-effective and flexible.
+- Example: HAProxy, Nginx
 
-#### Cloud Load Balancers
+#### Cloud Load Balancer
 
-- Managed service provided by cloud providers
-- Scalable and easy to integrate
-- e.g. Google Cloud LB, Amazon Elastic LB
+- Managed service provided by cloud providers.
+- Scalable and easy to integrate.
+- Example: Google Cloud LB, Amazon Elastic LB
 
-### Types based on functionalities
+### Types Based on Functionalities
 
-1.  **Layer 4 (Transport layer) LB**
-    1. Operates at the TCP/UDP layer.
-    2. Routes traffic based on IP addresses and ports.
-    3. Example: AWS Network Load Balancer (NLB).
-2.  **Layer 7 (Application layer) LB**
-    1. Operates at the HTTP/HTTPS layer.
-    2. Makes routing decisions based on URL, headers, cookies, etc.
-    3. Example: AWS Application Load Balancer (ALB).
+**Layer 4 (Transport Layer) LB**
 
-### **Types of Load Balancing Algorithms**
+- Operates at the TCP/UDP layer.
+- Routes traffic based on IP addresses and ports.
+- Example: AWS Network Load Balancer (NLB).
 
-1.  **Round Robin**
-    1. A request is sent to the first server in the list.
-    2. The next request is sent to the second server, and so on.
-    3. After the last server in the list, the algorithm loops back to the first server.
-    4. Preferred only when all servers have same processing capabilities, will cause issue if some servers has diff processing capabilities.
-2.  **weighted round robin**
-    1. Each server is assigned a weight based on their processing power or available resources.
-    2. Servers with higher weights receive a proportionally larger share of incoming requests.
-    3. More complex to implement and does not consider server current load or response time.
-3.  **IP hashing**
-    1. Calculates a hash value from the client’s IP address and uses it to determine the server to route the request.
-    2. Used when we need session persistence, as request from same client are always directed to same server
-    3. Can lead to uneven load distribution if certain IP addresses generate more traffic than others.
-    4. Lacks flexibility if a server goes down, as the hash mapping may need to be reconfigured.
-4.  **Least connections**
-    1. Monitor the number of active connections on each server.
-    2. Assigns incoming requests to the server with the least number of active connections.
-5.  **Least response time**
-    1. Monitors the response time of each server
-    2. Assigns incoming requests to the server with the fastest response time
-    3. May not consider other factors such as server load or connection count.
+**Layer 7 (Application Layer) LB**
 
-### **Disadvantage**
+- Operates at the HTTP/HTTPS layer.
+- Makes routing decisions based on URL, headers, cookies, etc.
+- Example: AWS Application Load Balancer (ALB).
 
-1.  A single load balancer is a single point of failure, configuring multiple load balancers further increases complexity.
-2.  The load balancer can become a performance bottleneck if it does not have enough resources or if it is not configured properly.
+### Types of Load Balancing Algorithms
+
+**Round Robin**
+
+- A request is sent to the first server in the list.
+- The next request is sent to the second server, and so on.
+- After the last server in the list, the algorithm loops back to the first server.
+- Preferred only when all servers have the same processing capabilities; can cause issues if servers have different capabilities.
+
+**Weighted Round Robin**
+
+- Each server is assigned a weight based on processing power or available resources.
+- Servers with higher weights receive a proportionally larger share of incoming requests.
+- More complex to implement and does not consider current server load or response time.
+
+**IP Hashing**
+
+- Calculates a hash value from the client’s IP address to determine which server to route the request to.
+- Used for session persistence, as requests from the same client are always directed to the same server.
+- Can lead to uneven load distribution if certain IP addresses generate more traffic than others.
+- Lacks flexibility if a server goes down, as the hash mapping may need to be reconfigured.
+
+**Least Connections**
+
+- Monitors the number of active connections on each server.
+- Assigns incoming requests to the server with the least number of active connections.
+
+**Least Response Time**
+
+- Monitors the response time of each server.
+- Assigns incoming requests to the server with the fastest response time.
+- May not consider other factors such as server load or connection count.
+
+### Disadvantages of Load Balancers
+
+- A single load balancer is a single point of failure; configuring multiple load balancers increases complexity.
+- The load balancer can become a performance bottleneck if it lacks resources or is not configured properly.
 
 ## Proxy Servers
 
 ![https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F87424c89-0ba3-4580-89bb-ccd5870dff69_945x419.png](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F87424c89-0ba3-4580-89bb-ccd5870dff69_945x419.png)
 
-1. **Proxy (forward proxy) Server**
-   1. In computer terms, a proxy (or a forward proxy) is a server that acts on behalf of clients on a network.
-   2. When you send a request, like opening a webpage, the proxy intercepts it, forwards it to the target server, and then relays the server’s response back to you.
-   3. **How a proxy server handles a request**
-      1. The user types a website URL into their browser. The request is intercepted by the proxy server instead of going directly to the website.
-      2. The proxy server examines the request to decide if it should forward it, deny it, or serve a cached copy.
-      3. If the proxy decides to forward the request, it contacts the target website. The website sees only the proxy server’s IP, not the user’s.
-      4. When the target website responds, the proxy receives the response and relays it to the user.
-   4. **Benefits**
-      1. Privacy and Anonymity
-         1. proxy server hide our IP address so the destination server don’t our real location
-      2. Access Control
-      3. Security
-         1. proxies can filter out malicious content and block suspicious sites
-      4. Improved Performance
-         1. It also caches frequently accessed content
-   5. **Real world applications**
-      1. Bypassing Geographic Restrictions
-         1. Like there is a server in US which give data specific to user in US but you also want same data from india, in that case you will call proxy server setup in US and it will call main server, which will give desired response.
-      2. Speed and Performance Optimization (Caching)
-         1. with use of caching for most accessed data. it also uses TTL to deal with stale data
-2. **Reverse Proxy**
-   1. A reverse proxy is a web server that centralizes internal services and provides unified interfaces to the public. Requests from clients are forwarded to a server that can fulfill it before the reverse proxy returns the server's response to the client.
-   2. Think of a reverse proxy as a **gatekeeper**. Instead of hiding clients from the server, it hides servers from clients.
-   3. Allowing direct access to servers can pose security risk like DDoS attack.
-   4. **How handles request**
-      1. Client make request to reverse poxy server and this reverse proxy server then route it to appropriate backend server based on load balancing and availability
-      2. BE server process the request and sends the request back to reverse proxy
-      3. reverse proxy relays the response to client
-   5. **Benefits**
-      1. Enhanced security - reduce risk of attacks on BE servers as not exposed
-      2. Load Balancing
-      3. Caching static content
-      4. **SSL termination**
-         1. Decrypt incoming requests and encrypt server responses so backend servers do not have to perform these potentially expensive operations
-         2. Removes the need to install [X.509 certificates](https://en.wikipedia.org/wiki/X.509) on each server
-      5. **Web application Firewall (WAF)**
-         1. it can inspect incoming requests, acting as a firewall to detect and block malicious traffic
-   6. **Real world application**
-      1. **Cloudflare’s** reverse proxy is widely used by global websites and applications to boost speed, security, and reliability.
-      2. It’s **Web Application Firewall (WAF)** and **DDoS protection** blocks malicious traffic before it reaches the site’s servers, safeguarding against attacks and improving uptime.
-   7. **Disadvantage**
-      1. complexities
-      2. A single reverse proxy can introduce single point of failure
-3. **Some clarification**
-   1. VPN and proxy are not same as VPN encrypts all out internet traffic, and proxy only forwards specific request
+### Proxy (Forward Proxy) Server
 
-### Load Balancer vs Reverse Proxy
+- A proxy (or forward proxy) is a server that acts on behalf of clients on a network.
+- When you send a request (e.g., opening a webpage), the proxy intercepts it, forwards it to the target server, and relays the server’s response back to you.
 
-1. Deploying a load balancer is useful when you have multiple servers. Often, load balancers route traffic to a set of servers serving the same function.
-2. Reverse proxies can be useful even with just one web server or application server, opening up the benefits described in the previous section.
+#### How a Proxy Server Handles a Request
 
-Pending things
+- The user types a website URL into their browser. The request is intercepted by the proxy server instead of going directly to the website.
+- The proxy server examines the request to decide if it should forward, deny, or serve a cached copy.
+- If the proxy forwards the request, it contacts the target website. The website sees only the proxy server’s IP, not the user’s.
+- When the target website responds, the proxy receives the response and relays it to the user.
 
-1. Nginx architecture
-2. HAProxy architecture
+#### Benefits
+
+- Privacy and Anonymity: Proxy servers hide your IP address so the destination server does not know your real location.
+- Access Control
+- Security: Proxies can filter out malicious content and block suspicious sites.
+- Improved Performance: Caches frequently accessed content.
+
+#### Real World Applications
+
+- Bypassing Geographic Restrictions: For example, a server in the US gives data specific to US users, but you want the same data from India. You call a proxy server set up in the US, which calls the main server and returns the desired response.
+- Speed and Performance Optimization (Caching): Uses caching for frequently accessed data and TTL to deal with stale data.
+
+### Reverse Proxy
+
+- A reverse proxy is a web server that centralizes internal services and provides unified interfaces to the public. Requests from clients are forwarded to a server that can fulfill them before the reverse proxy returns the server's response to the client.
+- Think of a reverse proxy as a **gatekeeper**. Instead of hiding clients from the server, it hides servers from clients.
+- Allowing direct access to servers can pose security risks like DDoS attacks.
+
+#### How a Reverse Proxy Handles a Request
+
+- The client makes a request to the reverse proxy server, which routes it to the appropriate backend server based on load balancing and availability.
+- The backend server processes the request and sends the response back to the reverse proxy.
+- The reverse proxy relays the response to the client.
+
+#### Benefits
+
+- Enhanced security: Reduces risk of attacks on backend servers as they are not exposed.
+- Load Balancing
+- Caching static content
+- SSL Termination: Decrypts incoming requests and encrypts server responses so backend servers do not have to perform these expensive operations. Removes the need to install [X.509 certificates](https://en.wikipedia.org/wiki/X.509) on each server.
+- Web Application Firewall (WAF): Can inspect incoming requests, acting as a firewall to detect and block malicious traffic.
+
+#### Real World Applications
+
+- **Cloudflare’s** reverse proxy is widely used by global websites and applications to boost speed, security, and reliability.
+- Its **Web Application Firewall (WAF)** and **DDoS protection** block malicious traffic before it reaches the site’s servers, safeguarding against attacks and improving uptime.
+
+#### Disadvantages
+
+- Complexities
+- A single reverse proxy can introduce a single point of failure.
+
+### API Gateway
+
+- An API Gateway is a specialized reverse proxy that acts as a single entry point into a system of microservices.
+- It's not just a traffic router, it enforces security, policies, and orchestration logic.
+
+#### Features
+
+- Routing (based on paths, headers, etc.)
+- Authentication & Authorization (JWT, OAuth2)
+- Rate limiting & throttling
+- Request/response transformation
+- Logging, monitoring, tracing
+- API versioning and quota management
+
+### Clarification
+
+- VPN and proxy are not the same. VPN encrypts all internet traffic, while a proxy only forwards specific requests.
+
+## Load Balancer vs Reverse Proxy
+
+- Deploying a load balancer is useful when you have multiple servers. Load balancers route traffic to a set of servers serving the same function.
+- Reverse proxies can be useful even with just one web server or application server, providing the benefits described above.
+
+## Key Differences
+
+| Feature                             | Load Balancer      | Reverse Proxy     | API Gateway                |
+| ----------------------------------- | ------------------ | ----------------- | -------------------------- |
+| Purpose                             | Distribute traffic | Forward requests  | Manage and route API calls |
+| OSI Layer                           | Layer 4 or 7       | Layer 7           | Layer 7                    |
+| Authentication/AuthZ                | ❌ No              | ⚠️ Maybe          | ✅ Yes                     |
+| Rate Limiting                       | ❌ No              | ⚠️ Maybe          | ✅ Yes                     |
+| Request Transformation              | ❌ No              | ⚠️ Limited        | ✅ Yes                     |
+| SSL Termination                     | ✅ Yes             | ✅ Yes            | ✅ Yes                     |
+| Awareness of Microservices internal | ❌ No              | ❌ No             | ✅ Yes                     |
+| Use Case                            | Scalability        | Security, routing | Microservice orchestration |
+
+## Where sits in real world
+
+[![](https://mermaid.ink/img/pako:eNp9klFv2jAQx7-K5ScmpSixA6TRVInEaJrUamhsL0v24MY3iEZs5DhtM8R3n7Fh0EzCT_nd3f9_54v3uFICcIrXmu826BsrJbKn7Z59IN_WIA1a1QJ85njmxfcW9Cn308dBilIOxAuxBvTIe9AXbVY8Ki5QxrdcVqBvqD9xA6-8HxrkxXz5-Zy8IX-qK63smC91Be3QhEX-CiufRx-f9QN6rc0GfYUX0C2gpVZvZ3unIMUXLS6So-J_AbpW0GLJ-8at75bmxh0YN3w4-iIqRm52ln246rYgxcgPOIjTYnQe45K5ajZHd3cPKPOQOcg95A5Y9I7IO6KeWORwcSplxOOpllGPFAe4Ad3wWtgHtz8mS2w20ECJU_spuP5d4lIebB3vjFr1ssKp0R0EWKtuvcHpL75tLXU7Yf8_q7ldU_MvCqI2Sj_59-yedYB3XP5QqjnbrPWx98nSLgF0rjppcBqRxBXjdI_fLNJwTEiYTMgknsZJREmAe5zOZuNwmtjaiFA6IzE9BPiPsw_HFqfRJLyfhfEkuU_iw1-k7Py7?type=png)](https://mermaid.live/edit#pako:eNp9klFv2jAQx7-K5ScmpSixA6TRVInEaJrUamhsL0v24MY3iEZs5DhtM8R3n7Fh0EzCT_nd3f9_54v3uFICcIrXmu826BsrJbKn7Z59IN_WIA1a1QJ85njmxfcW9Cn308dBilIOxAuxBvTIe9AXbVY8Ki5QxrdcVqBvqD9xA6-8HxrkxXz5-Zy8IX-qK63smC91Be3QhEX-CiufRx-f9QN6rc0GfYUX0C2gpVZvZ3unIMUXLS6So-J_AbpW0GLJ-8at75bmxh0YN3w4-iIqRm52ln246rYgxcgPOIjTYnQe45K5ajZHd3cPKPOQOcg95A5Y9I7IO6KeWORwcSplxOOpllGPFAe4Ad3wWtgHtz8mS2w20ECJU_spuP5d4lIebB3vjFr1ssKp0R0EWKtuvcHpL75tLXU7Yf8_q7ldU_MvCqI2Sj_59-yedYB3XP5QqjnbrPWx98nSLgF0rjppcBqRxBXjdI_fLNJwTEiYTMgknsZJREmAe5zOZuNwmtjaiFA6IzE9BPiPsw_HFqfRJLyfhfEkuU_iw1-k7Py7)
+
+## Pending Topics
+
+- Nginx architecture
+- HAProxy architecture

@@ -1,6 +1,4 @@
-- LB vs API gateway
-- LB algos all
-- session vs token based auth
+- LB, Rate limiting algos all
 
 - How do DB indexes work (e.g. DS used and implemented like B+...)
 - Web app firewall

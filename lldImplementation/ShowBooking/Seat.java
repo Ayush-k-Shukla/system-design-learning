@@ -31,4 +31,8 @@ public class Seat {
     public int getRow() {
         return row;
     }
+
+    public synchronized void setStatus(SeatStatus status) {
+        this.status = status;
+    }
 }

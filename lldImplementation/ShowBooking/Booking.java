@@ -28,6 +28,18 @@ public class Booking {
         return seats;
     }
 
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
     public double getAmount() {
         return amount;
     }

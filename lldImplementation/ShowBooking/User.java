@@ -1,13 +1,13 @@
 package ShowBooking;
 
-import linkedin.Types.UserType;
+import ShowBooking.Types.UserType;
 
 public class User {
     private final String name;
     private final String email;
     private final UserType type;
 
-    public User(String name, String email, UserType type){
+    public User(String name, String email, UserType type) {
         this.name = name;
         this.email = email;
         this.type = type;

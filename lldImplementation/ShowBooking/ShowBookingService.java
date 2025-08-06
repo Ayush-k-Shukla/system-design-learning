@@ -1,14 +1,14 @@
 package ShowBooking;
 
-import ShowBooking.Types.BookingStatus;
-import ShowBooking.Types.PaymentStatus;
-import ShowBooking.Types.SeatStatus;
-import ShowBooking.util.PriceUtility;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import ShowBooking.Types.BookingStatus;
+import ShowBooking.Types.PaymentStatus;
+import ShowBooking.Types.SeatStatus;
+import ShowBooking.Types.UserType;
 
 public class ShowBookingService {
     private static ShowBookingService instance;
@@ -17,79 +17,77 @@ public class ShowBookingService {
     private List<Theatre> theatres;
     private List<Movie> movies;
     private List<Booking> bookings;
+    private PriceStrategy priceStrategy;
 
-
-    private ShowBookingService(){
+    private ShowBookingService() {
         allShows = new HashMap<>();
         theatres = new ArrayList<>();
         movies = new ArrayList<>();
         bookings = new ArrayList<>();
+        priceStrategy = new DefaultPriceStrategy();
     }
 
     public static ShowBookingService getInstance() {
-        if(instance==null){
+        if (instance == null) {
             instance = new ShowBookingService();
         }
         return instance;
     }
 
-    public List<Show> getAllShows(){
+    public List<Show> getAllShows() {
         return allShows.values().stream().toList();
     }
 
-    public List<Seat> getSeats(String showid){
+    public List<Seat> getSeats(String showid) {
         Show current = allShows.get(showid);
         return current.getSeats();
     }
 
-    public List<Show> getShowsByMovieName(String name){
+    public List<Show> getShowsByMovieName(String name) {
         List<Show> shows = new ArrayList<>();
         allShows.values().forEach(show -> {
-            if(show.getMovie().getName().contains(name)){
+            if (show.getMovie().getName().contains(name)) {
                 shows.add(show);
             }
         });
-
         return shows;
     }
 
-    public synchronized Booking bookShow(Show show, List<Seat> seats, User user){
-        if(!areSeatsAvailable(seats)){
+    public synchronized Booking bookShow(Show show, List<Seat> seats, User user) {
+        if (!areSeatsAvailable(seats)) {
             throw new IllegalStateException("One or more seats are already booked.");
         }
-        double price = PriceUtility.getPrice(show, seats);
-        Payment payment = new Payment(show, PaymentStatus.PENDING, price);
-        Booking booking = new Booking(show, payment, seats, price, user, BookingStatus.PENDING);
+        double price = priceStrategy.calculatePrice(show, seats);
+        Payment payment = BookingFactory.createPayment(show, PaymentStatus.PENDING, price);
+        Booking booking = BookingFactory.createBooking(show, payment, seats, price, user, BookingStatus.PENDING);
         bookings.add(booking);
-        for(Seat seat: seats){
+        for (Seat seat : seats) {
             seat.setStatus(SeatStatus.FILLED);
         }
         return booking;
     }
 
-    public synchronized void makePayment(Booking booking){
+    public synchronized void makePayment(Booking booking) {
         Payment payment = booking.getPayment();
         payment.setStatus(PaymentStatus.SUCCESS);
         booking.setPayment(payment);
         booking.setStatus(BookingStatus.BOOKED);
     }
 
-    public synchronized void declinePayment(Booking booking){
+    public synchronized void declinePayment(Booking booking) {
         Payment payment = booking.getPayment();
         payment.setStatus(PaymentStatus.FAILURE);
         booking.setPayment(payment);
-        List<Seat> seats =  booking.getSeats();
-
-        for(Seat seat: seats){
+        List<Seat> seats = booking.getSeats();
+        for (Seat seat : seats) {
             seat.setStatus(SeatStatus.EMPTY);
         }
         booking.setStatus(BookingStatus.CANCELLED);
     }
 
-    public synchronized void cancelBooking(Booking booking){
-        List<Seat> seats =  booking.getSeats();
-
-        for(Seat seat: seats){
+    public synchronized void cancelBooking(Booking booking) {
+        List<Seat> seats = booking.getSeats();
+        for (Seat seat : seats) {
             seat.setStatus(SeatStatus.EMPTY);
         }
         booking.setStatus(BookingStatus.CANCELLED);
@@ -97,6 +95,43 @@ public class ShowBookingService {
 
     public List<Booking> getBookingsOfUser(User user) {
         return bookings.stream().filter(booking -> booking.getUser().equals(user)).toList();
+    }
+
+    // Admin methods
+
+    public void addMovie(Movie movie, User user) {
+        if(!isAdmin(user)){
+            throw new Error("Only Admin are allowed for this operation");
+        }
+        movies.add(movie);
+    }
+
+    public void addTheatre(Theatre theatre, User user) {
+        if(!isAdmin(user)){
+            throw new Error("Only Admin are allowed for this operation");
+        }
+        theatres.add(theatre);
+        for (Show show : theatre.getShows()) {
+            addShow(show, user);
+        }
+    }
+
+    public void addShow(Show show, User user) {
+        if(!isAdmin(user)){
+            throw new Error("Only Admin are allowed for this operation");
+        }
+        allShows.put(show.getId(), show);
+    }
+
+    public void setPriceStrategy(PriceStrategy strategy, User user) {
+        if(!isAdmin(user)){
+            throw new Error("Only Admin are allowed for this operation");
+        }
+        this.priceStrategy = strategy;
+    }
+
+    private boolean isAdmin(User user){
+        return user.getType().equals(UserType.ADMIN);
     }
 
     private boolean areSeatsAvailable(List<Seat> seats) {
@@ -107,5 +142,4 @@ public class ShowBookingService {
         }
         return true;
     }
-
 }

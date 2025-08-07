@@ -2,6 +2,7 @@ import ATM.ATMService;
 import ATM.ATMServiceDemo;
 import ShowBooking.ShowBookingDemo;
 import TaskManager.TaskManagementSystemDemo;
+import TicTacToe.TicTacToeGameDemo;
 import linkedin.LinkedinServiceDemo;
 import logger.Logger;
 import logger.LoggerDemo;
@@ -14,6 +15,7 @@ public class Runner {
 //        TaskManagementSystemDemo.run();
 //        ATMServiceDemo.run();
 //        LinkedinServiceDemo.run();
-        ShowBookingDemo.run();
+//        ShowBookingDemo.run();
+        TicTacToeGameDemo.run();
     }
 }

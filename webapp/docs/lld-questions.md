@@ -9,4 +9,4 @@
 - [Task Manager](https://github.com/Ayush-k-Shukla/system-design-learning/blob/main/lldImplementation/TaskManager/README.md)
 - [ATM](https://github.com/Ayush-k-Shukla/system-design-learning/blob/main/lldImplementation/ATM/readme.md)
 - [Linkedin](https://github.com/Ayush-k-Shukla/system-design-learning/blob/main/lldImplementation/linkedin/readme.md)
-- [Show Booking](https://github.com/Ayush-k-Shukla/system-design-learning/blob/main/lldImplementation/showbooking/readme.md)
+- [Show Booking](https://github.com/Ayush-k-Shukla/system-design-learning/blob/main/lldImplementation/ShowBooking/readme.md)

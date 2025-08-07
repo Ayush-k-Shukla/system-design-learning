@@ -9,7 +9,7 @@ public class ColumnWinningStrategy implements WinningStrategy {
         for (int i = 0; i < board.getSize(); i++) {
             boolean allMatch = true;
             for (int j = 0; j < board.getSize(); j++) {
-                if (board.getCell(j, i) != lastMove) {
+                if (!board.getCell(j, i).getValue().equals(lastMove.getValue())) {
                     allMatch = false;
                     break;
                 }

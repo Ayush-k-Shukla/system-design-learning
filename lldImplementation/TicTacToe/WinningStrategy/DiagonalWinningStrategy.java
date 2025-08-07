@@ -8,7 +8,7 @@ public class DiagonalWinningStrategy implements WinningStrategy {
     public boolean checkWin(Board board, Symbol lastMove){
         boolean mainDiagonalMatch = true;
         for (int i = 0; i < board.getSize(); i++) {
-            if (board.getCell(i, i) != lastMove) {
+            if (!board.getCell(i, i).getValue().equals(lastMove.getValue())) {
                 mainDiagonalMatch = false;
                 break;
             }
@@ -17,7 +17,8 @@ public class DiagonalWinningStrategy implements WinningStrategy {
 
         boolean antiDiagonalMatch = true;
         for (int i = 0; i < board.getSize(); i++) {
-            if (board.getCell(i, board.getSize() - 1 - i) != lastMove) {
+
+            if (!board.getCell(i, board.getSize() - 1 - i).getValue().equals(lastMove.getValue())) {
                 antiDiagonalMatch = false;
                 break;
             }

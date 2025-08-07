@@ -10,3 +10,4 @@
 - [ATM](https://github.com/Ayush-k-Shukla/system-design-learning/blob/main/lldImplementation/ATM/readme.md)
 - [Linkedin](https://github.com/Ayush-k-Shukla/system-design-learning/blob/main/lldImplementation/linkedin/readme.md)
 - [Show Booking](https://github.com/Ayush-k-Shukla/system-design-learning/blob/main/lldImplementation/ShowBooking/readme.md)
+- [Tic Tac Toe](https://github.com/Ayush-k-Shukla/system-design-learning/blob/main/lldImplementation/TicTacToe/readme.md)

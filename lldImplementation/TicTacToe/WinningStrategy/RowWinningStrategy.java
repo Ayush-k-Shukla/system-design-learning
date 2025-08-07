@@ -9,7 +9,7 @@ public class RowWinningStrategy implements WinningStrategy {
         for (int i = 0; i < board.getSize(); i++) {
             boolean allMatch = true;
             for (int j = 0; j < board.getSize(); j++) {
-                if (board.getCell(i, j) != lastMove) {
+                if (!board.getCell(i, j).getValue().equals(lastMove.getValue())) {
                     allMatch = false;
                     break;
                 }

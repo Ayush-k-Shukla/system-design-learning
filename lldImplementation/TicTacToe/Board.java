@@ -42,7 +42,7 @@ public class Board {
             for(Symbol ele : li){
                 System.out.print(ele.getValue() + " ");
             }
-            System.out.println("\n");
+            System.out.println();
         }
     }
 

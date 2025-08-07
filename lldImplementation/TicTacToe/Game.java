@@ -39,7 +39,10 @@ public class Game {
 
         boolean isWin = false;
         for(WinningStrategy strategy : strategies){
-            isWin = strategy.checkWin(board, activePlayer.getSymbol());
+            if (strategy.checkWin(board, activePlayer.getSymbol())) {
+                isWin = true;
+                break;
+            }
         }
 
         if(isWin){

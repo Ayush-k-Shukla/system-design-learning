@@ -6,13 +6,13 @@ import java.util.Map;
 public class Broker {
     private Map<String, Topic> topicMap;
 
-    public Broker(String name){
+    public Broker(){
         this.topicMap = new HashMap<>();
     }
 
     public void createTopic(String name){
         Topic topic = new Topic(name);
-        if(!topicMap.containsKey(topic)){
+        if(!topicMap.containsKey(name)){
             topicMap.put(name, topic);
         }
     }

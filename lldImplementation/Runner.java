@@ -1,5 +1,6 @@
 import ATM.ATMService;
 import ATM.ATMServiceDemo;
+import PubSub.PubSubDemo;
 import ShowBooking.ShowBookingDemo;
 import TaskManager.TaskManagementSystemDemo;
 import TicTacToe.TicTacToeGameDemo;
@@ -16,6 +17,7 @@ public class Runner {
 //        ATMServiceDemo.run();
 //        LinkedinServiceDemo.run();
 //        ShowBookingDemo.run();
-        TicTacToeGameDemo.run();
+//        TicTacToeGameDemo.run();
+        PubSubDemo.run();
     }
 }

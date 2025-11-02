@@ -36,6 +36,8 @@ With an index → Tree or hash lookup (O(log n) or O(1))
 - **Tech:** Balanced tree, keys in internal nodes, data in leaf nodes.
 - **Used by:** MySQL, Postgres (default).
 
+![alt text](images/b-tree.png)
+
 ---
 
 ### 2. Hash Index
@@ -44,7 +46,7 @@ With an index → Tree or hash lookup (O(log n) or O(1))
 - **Tech:** Hash table mapping key → row pointer.
 - **Limitation:** Not suitable for range queries.
 
----
+![alt text](images/hash.png)
 
 ### 3. Bitmap Index
 
@@ -60,6 +62,8 @@ With an index → Tree or hash lookup (O(log n) or O(1))
 - **Tech:** Maps terms → list of document IDs containing them.
 - **Used by:** Elasticsearch, Solr.
 
+![alt text](images/inverted.png)
+
 ---
 
 ### 5. Geospatial Index
@@ -71,7 +75,7 @@ With an index → Tree or hash lookup (O(log n) or O(1))
   - Quad Tree
   - R Tree
 
----
+![alt text](images/geo-hash.png)
 
 ### 6. GiST / GIN / SP-GiST (PostgreSQL)
 

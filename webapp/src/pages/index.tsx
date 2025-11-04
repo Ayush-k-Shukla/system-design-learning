@@ -31,7 +31,7 @@ function HomepageHeader() {
               'button button--primary button--lg',
               styles.notesButton
             )}
-            to='/docs/A%20intro'
+            to='/docs/A-intro'
           >
             <span role='img' aria-label='Notes' style={{ marginRight: '8px' }}>
               📚

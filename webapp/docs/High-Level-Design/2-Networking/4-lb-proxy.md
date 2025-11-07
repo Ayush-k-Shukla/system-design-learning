@@ -1,52 +1,4 @@
-# DNS, CDN, Load Balancer, Proxies
-
-## Domain Name System
-
-- Maps a domain name to an IP address.
-
-![image.png](/img/hld/image.png)
-![image.png](/img/hld/how-does-dns-resolution-work.webp)
-
-### DNS Resolution Steps
-
-- The browser (client) checks if the hostname to IP address mapping exists in its local cache.
-- If not found, the client checks the Operating System (OS) local cache via a system call.
-- If still not found, the client makes a DNS request to the Gateway/Router and checks the router's local cache.
-- If unsuccessful, the router forwards the request to the Internet Service Provider (ISP) and checks the ISP's DNS cache.
-- If the mapping is still not found, the DNS resolver queries the root servers (13 root servers with replicas worldwide).
-- The DNS resolver then queries Top Level Domain (TLD) servers (e.g., .com, .org) and Authoritative name servers (e.g., google.com).
-- Optionally, the DNS resolver may query Authoritative subdomain servers (e.g., maps.google.com) depending on the query.
-
-## Content Delivery Network (CDN)
-
-- A globally distributed network of connected servers, serving data from a location near the user.
-- Generally used for serving static data like images, HTML, CSS, JS, but some CDNs also support dynamic content.
-
-### Types of CDN
-
-#### Pull CDN
-
-- When you add new static data to your app, and a user from a different location tries to access it, the CDN will take time to load the data the first time as it is not present there. When a user accesses data not on the CDN, it pulls and stores it nearby.
-
-#### Push CDN
-
-- Instead of waiting for the CDN to pull content when needed, you upload the entire content to the CDN beforehand. Your pictures, theme files, videos, and other assets are always on CDN servers around the world.
-
-- Setting up a **pull CDN** is generally easy. Once configured, a pull CDN seamlessly stores and updates content on its servers as requested. The data typically stays there for 24 hours if not modified.
-
-  - However, the ease of use can be a drawback. When making changes, you typically don't control how long the pull CDN cache lasts. If you update an image, it might take up to 24 hours to reflect changes, unless you clear the CDN cache.
-
-- The decision on which CDN type to use depends on traffic and downloads. Blogs hosting large downloads (videos, podcasts) may find push CDNs cheaper and more efficient, as content is only updated when pushed. Pull CDNs help high-traffic, small-download sites by keeping popular content on CDN servers. Updates for content are infrequent enough to keep costs lower than push CDNs.
-
-### Benefits of CDN
-
-- Requests fulfilled by your CDN do not go to the origin server.
-- Less distance traveled means faster response time.
-
-### Disadvantages of CDN
-
-- Content might be stale if updated before the TTL expires.
-- CDN costs could be significant depending on traffic, but should be weighed against costs incurred without a CDN.
+# Load Balancer and Proxies
 
 ## Load Balancer
 
@@ -225,8 +177,3 @@
 ## Where sits in real world
 
 [![](https://mermaid.ink/img/pako:eNp9klFv2jAQx7-K5ScmpSixA6TRVInEaJrUamhsL0v24MY3iEZs5DhtM8R3n7Fh0EzCT_nd3f9_54v3uFICcIrXmu826BsrJbKn7Z59IN_WIA1a1QJ85njmxfcW9Cn308dBilIOxAuxBvTIe9AXbVY8Ki5QxrdcVqBvqD9xA6-8HxrkxXz5-Zy8IX-qK63smC91Be3QhEX-CiufRx-f9QN6rc0GfYUX0C2gpVZvZ3unIMUXLS6So-J_AbpW0GLJ-8at75bmxh0YN3w4-iIqRm52ln246rYgxcgPOIjTYnQe45K5ajZHd3cPKPOQOcg95A5Y9I7IO6KeWORwcSplxOOpllGPFAe4Ad3wWtgHtz8mS2w20ECJU_spuP5d4lIebB3vjFr1ssKp0R0EWKtuvcHpL75tLXU7Yf8_q7ldU_MvCqI2Sj_59-yedYB3XP5QqjnbrPWx98nSLgF0rjppcBqRxBXjdI_fLNJwTEiYTMgknsZJREmAe5zOZuNwmtjaiFA6IzE9BPiPsw_HFqfRJLyfhfEkuU_iw1-k7Py7?type=png)](https://mermaid.live/edit#pako:eNp9klFv2jAQx7-K5ScmpSixA6TRVInEaJrUamhsL0v24MY3iEZs5DhtM8R3n7Fh0EzCT_nd3f9_54v3uFICcIrXmu826BsrJbKn7Z59IN_WIA1a1QJ85njmxfcW9Cn308dBilIOxAuxBvTIe9AXbVY8Ki5QxrdcVqBvqD9xA6-8HxrkxXz5-Zy8IX-qK63smC91Be3QhEX-CiufRx-f9QN6rc0GfYUX0C2gpVZvZ3unIMUXLS6So-J_AbpW0GLJ-8at75bmxh0YN3w4-iIqRm52ln246rYgxcgPOIjTYnQe45K5ajZHd3cPKPOQOcg95A5Y9I7IO6KeWORwcSplxOOpllGPFAe4Ad3wWtgHtz8mS2w20ECJU_spuP5d4lIebB3vjFr1ssKp0R0EWKtuvcHpL75tLXU7Yf8_q7ldU_MvCqI2Sj_59-yedYB3XP5QqjnbrPWx98nSLgF0rjppcBqRxBXjdI_fLNJwTEiYTMgknsZJREmAe5zOZuNwmtjaiFA6IzE9BPiPsw_HFqfRJLyfhfEkuU_iw1-k7Py7)
-
-## Pending Topics
-
-- Nginx architecture
-- HAProxy architecture

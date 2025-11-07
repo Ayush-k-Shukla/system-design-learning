@@ -1,5 +1,7 @@
-- LB, Rate limiting algos all
+- Rate limiting algos all
 - Web app firewall
 - Learn more about OSI model and what works in which layer
 - Back of envelope estimation in SD
 - Kafka in more details in depth
+- Nginx architecture
+- HAProxy architecture

@@ -208,6 +208,15 @@ If a partition or broker fails → Kafka reassigns partitions dynamically.
 - Scale consumers by **adding more partitions**.
 - Avoid topics with too few partitions → limits parallelism.
 
+## Usecases
+
+- Real time data streaming
+- Microservice communication (Event driven)
+- Log Agreegator
+- Data integration / ETL (Extract->Tranform->Load) pipelines
+- Transactional messaging
+  - exactly one delivery of atomic writes for financial systems
+
 ## Mind Map
 
 ```

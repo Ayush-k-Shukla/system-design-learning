@@ -1,4 +1,4 @@
-# Steps to answer system design questions
+# How to Answer
 
 <p align="center">
     <img src="/img/hld-questions/steps.jpg"/>

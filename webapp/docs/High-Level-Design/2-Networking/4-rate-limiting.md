@@ -146,11 +146,13 @@ The best choice depends on your use case, scalability needs, and fairness requir
 
 | Algorithm                  | Accuracy       | Memory Usage | Allows Bursts | Smooth Traffic | Implementation Complexity | Best For                                 |
 | -------------------------- | -------------- | ------------ | ------------- | -------------- | ------------------------- | ---------------------------------------- |
-| **Fixed Window Counter**   | Low            | Very Low     | ❌ No         | ❌ No          | ✅ Very Simple            | Quick prototypes, low-traffic systems    |
+| **Fixed Window Counter**   | Low            | Very Low     | Yes           | ❌ No          | ✅ Very Simple            | Quick prototypes, low-traffic systems    |
 | **Sliding Window Log**     | ✅ High        | High         | ⚠️ Limited    | ✅ Yes         | ⚙️ Moderate               | Precise API rate limiting per user       |
 | **Sliding Window Counter** | ⚙️ Approximate | Low          | ⚠️ Slight     | ✅ Yes         | ⚙️ Moderate               | Smooth rate limiting for production APIs |
 | **Token Bucket**           | ✅ High        | Low          | ✅ Yes        | ⚠️ Partial     | ✅ Common                 | General-purpose API rate limiting        |
 | **Leaky Bucket**           | ✅ High        | Low          | ❌ No         | ✅ Perfect     | ⚙️ Moderate               | Network traffic shaping, message queues  |
+
+- Smooth Traffic means request are spread out evenly over time
 
 ## 🧩 Practical Considerations
 

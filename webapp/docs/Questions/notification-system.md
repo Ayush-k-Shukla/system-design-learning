@@ -98,10 +98,10 @@ POST /notify
 
 ## 📚 NFRs
 
-| Requirement  | Description                              |
-| ------------ | ---------------------------------------- |
-| Availability | High, since delay is tolerable           |
-| Latency      | <3 seconds for real-time delivery        |
-| Durability   | Guaranteed message persistence via Kafka |
-| Scalability  | Horizontally scalable consumers          |
-| Reliability  | Retry + DLQ + backup provider            |
+| Requirement  | Description                                |
+| ------------ | ------------------------------------------ |
+| Availability | High, since delay is tolerable             |
+| Latency      | less than 3 seconds for real-time delivery |
+| Durability   | Guaranteed message persistence via Kafka   |
+| Scalability  | Horizontally scalable consumers            |
+| Reliability  | Retry + DLQ + backup provider              |

@@ -8,6 +8,7 @@ import linkedin.LinkedinServiceDemo;
 import logger.Logger;
 import logger.LoggerDemo;
 import parkinglot.ParkingLotDemo;
+import BloomFilter.BloomFilterDemo;
 
 public class Runner {
     public static void main(String[] args) {
@@ -18,6 +19,7 @@ public class Runner {
 //        LinkedinServiceDemo.run();
 //        ShowBookingDemo.run();
 //        TicTacToeGameDemo.run();
-        CircuitBreakerDemo.run();
+//        CircuitBreakerDemo.run();
+          BloomFilterDemo.run();
     }
 }

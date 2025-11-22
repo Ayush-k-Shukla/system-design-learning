@@ -48,8 +48,6 @@
   - ![Image](https://i2.wp.com/cloudncode.files.wordpress.com/2016/07/api-gateway.png)
 - Some popular gateways are Apigee, Mashery, and Amazon API Gateway.
 
----
-
 ## 🔍 Service Discovery
 
 - In a scalable application, there can be dozens of services which scale up and down dynamically, thus we need a way to communicate with these.

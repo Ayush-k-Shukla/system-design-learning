@@ -1,13 +1,11 @@
-# DNS
-
-## Domain Name System
+# DNS (Domain Name System)
 
 - Maps a domain name to an IP address.
 
 ![image.png](/img/hld/image.png)
 ![image.png](/img/hld/how-does-dns-resolution-work.webp)
 
-### DNS Resolution Steps
+## DNS Resolution Steps
 
 - The browser (client) checks if the hostname to IP address mapping exists in its local cache.
 - If not found, the client checks the Operating System (OS) local cache via a system call.

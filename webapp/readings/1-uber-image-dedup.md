@@ -1,7 +1,9 @@
-# Uber Eats Image Deduping & Storage Recap
-
-[👉 Article Link](https://www.uber.com/en-IN/blog/deduping-and-storing-images-at-uber-eats/)
-
+---
+slug: 1-uber-image-dedup
+title: Uber Eats Image Deduping & Storage Recap
+authors: [ayush]
+date: 2025-11-30
+---
 ## Precontext: Content Addressable Caching
 
 - Content-addressable caching (or content-addressable storage + caching) is a technique where the content itself determines the key used to store and retrieve it.
@@ -67,3 +69,6 @@ we built a deduplication layer based on **image hashes**.
 - Use metadata maps for fast lookups.
 - Cache both successes and failures.
 - Use HTTP metadata to detect updates cheaply.
+
+
+[👉 Uber Article Link](https://www.uber.com/en-IN/blog/deduping-and-storing-images-at-uber-eats/)

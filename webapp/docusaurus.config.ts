@@ -26,6 +26,18 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        blog: {
+          path: 'readings',
+          routeBasePath: 'readings',
+          showReadingTime: true,
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -70,6 +82,7 @@ const config: Config = {
           position: 'left',
           label: 'Notes',
         },
+        {to: '/readings', label: 'Readings', position: 'left'},
         {
           href: 'https://github.com/Ayush-k-Shukla/system-design-learning',
           label: 'GitHub',

@@ -76,7 +76,7 @@
       1. Not effective if our schema requires huge functions or tables
       2. Need to update application logic to determine which database to read and write.
       3. Joining data from two database is complex.
-6. **Sharding** [ref1](../gaurav-sen/Part1.md#7-db-sharding-working) [ref2](./Scalability-files/Database-Scaling.md)
+6. [Sharding](./2-database-scaling.md#sharding)
 7. **SQL Tuning**
    1. SQL tuning is the process of optimizing SQL queries and the database schema to improve the performance of a system.
    2. Some common ways
@@ -91,7 +91,7 @@
 
 1. Here Data is denormalized, and joins are generally done in the application code.
 2. Most NoSql Databases lacks true ACID transactions and favours eventual consistency.
-3. For these BASE is used to describe properties in comparison to [CAP theorem](./Availability-Consistency.md#cap-theorem).
+3. For these BASE is used to describe properties in comparison to [CAP theorem](../3-Consistency-Availability/1-availability-consistency.md#️-cap-theorem).
    1. Basically available
    2. Soft state
    3. Eventual Consistency

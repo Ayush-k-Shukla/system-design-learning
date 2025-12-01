@@ -3,6 +3,7 @@ slug: performance-friendly-rendering
 title: Peformance Optimized large list renderings
 authors: [ayush]
 date: 2025-12-01
+tags: [Frontend]
 ---
 
 ## Problem

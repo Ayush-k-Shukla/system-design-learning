@@ -82,7 +82,7 @@ const config: Config = {
           position: 'left',
           label: 'Notes',
         },
-        {to: '/readings', label: 'Readings', position: 'left'},
+        { to: '/readings', label: 'Readings', position: 'left' },
         {
           href: 'https://github.com/Ayush-k-Shukla/system-design-learning',
           label: 'GitHub',

@@ -9,7 +9,7 @@
 
 ## Centralized State Management Service
 
-1. We can use something like Apache Zookeeper as a [service discovery](../Things-to-Know-when-building-Microservice.md#service-discovery) to keep track of the state of every node in the system.
+1. We can use something like Apache Zookeeper as a [service discovery](../1-Introduction/2-things-to-know-when-building-microservice.md#-service-discovery) to keep track of the state of every node in the system.
 2. It is good for CP in the CAP theorem but it introduces a single point of failure (SPOF) and has scalability issues.
 
 ## Peer-to-Peer State Management Service

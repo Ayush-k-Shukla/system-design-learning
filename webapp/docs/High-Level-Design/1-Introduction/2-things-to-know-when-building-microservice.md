@@ -75,7 +75,7 @@
   - Done by dev manually, not favored from a scalability point of view.
 - **Self Registration**
   - Whenever a service starts, it registers itself to the registry by sending an API call with all details (name, port, IP, etc.)
-  - To ensure the registry is up to date, the service sends a [heartbeat](Uncategorized/Heartbeat.md) signal periodically to let the registry know it is active and healthy.
+  - To ensure the registry is up to date, the service sends a [heartbeat](../8-Patterns/6-heartbeat.md) signal periodically to let the registry know it is active and healthy.
 - **Third Party Registration**
   - Another process handles service registration.
   - Follows the `sidecar` pattern.

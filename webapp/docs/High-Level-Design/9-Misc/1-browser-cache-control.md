@@ -1,6 +1,6 @@
 # 🗂️ HTTP Cache Control
 
-1. The HTTP `cache-control` header contains some directives in both requests and responses that control [caching](../Scalability-files/Caches.md) in browsers and shared caches (CDNs, proxies).
+1. The HTTP `cache-control` header contains some directives in both requests and responses that control [caching](../5-Scalability/1-caches.md) in browsers and shared caches (CDNs, proxies).
 2. We can only modify `CORS-safelisted response header` with cache-control directives, as `Forbidden-request header` cannot be updated programmatically (the user agent updates this).
 
 ## Cache-Control Directives in Requests vs. Responses

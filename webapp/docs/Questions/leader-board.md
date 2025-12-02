@@ -310,8 +310,8 @@ FOR MORE DESC visit : [Redis Sorted set](../Technologies/redis-sorted-set.md)
 #### How to send score notification update
 
 1. DB change can trigger (when score of a player is beaten by another) serverless function call to notify.
-2. We can also use the [Bloom filter](../premier/Uncategorized/Bloom-filters.md) to make sure user receives notifcation only once on rating change.
-3. we can use [Pub-sub](../premier/Scalability-files/Message-Queue.md#types) pattern for this.
+2. We can also use the [Bloom filter](../High-Level-Design/8-Patterns/1-bloom-filters.md) to make sure user receives notifcation only once on rating change.
+3. we can use Pub Sub pattern for this.
 
 PENDING
 

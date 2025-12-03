@@ -1,7 +1,7 @@
 # 🗂️ HTTP Cache Control
 
-1. The HTTP `cache-control` header contains some directives in both requests and responses that control [caching](../5-Scalability/1-caches.md) in browsers and shared caches (CDNs, proxies).
-2. We can only modify `CORS-safelisted response header` with cache-control directives, as `Forbidden-request header` cannot be updated programmatically (the user agent updates this).
+- The HTTP `cache-control` header contains some directives in both requests and responses that control [caching](../5-Scalability/1-caches.md) in browsers and shared caches (CDNs, proxies).
+- We can only modify `CORS-safelisted response header` with cache-control directives, as `Forbidden-request header` cannot be updated programmatically (the user agent updates this).
 
 ## Cache-Control Directives in Requests vs. Responses
 
@@ -32,9 +32,9 @@
 Cache-Control: public, immutable, max-age=432432434
 ```
 
-1. Used for versioned assets (e.g., logo-v1.png, app-v2.js)
-2. `public`: Allows caching for all (CDN, browser, proxies)
-3. `immutable`: No need to revalidate by browser
+- Used for versioned assets (e.g., logo-v1.png, app-v2.js)
+- `public`: Allows caching for all (CDN, browser, proxies)
+- `immutable`: No need to revalidate by browser
 
 ### Prevent Caching Entirely
 
@@ -50,7 +50,7 @@ Cache-Control: no-store
 Cache-Control: no-cache, must-revalidate
 ```
 
-**Use case:** Dashboard analytics
+- **Use case:** Dashboard analytics
 
 ### Serve Cached Content if Server Failure
 
@@ -58,7 +58,7 @@ Cache-Control: no-cache, must-revalidate
 Cache-Control: public, max-age=600, stale-if-error=3600
 ```
 
-**Use case:** For good user experience
+- **Use case:** For good user experience
 
 ### Optimize Content Delivery on CDN
 
@@ -66,4 +66,4 @@ Cache-Control: public, max-age=600, stale-if-error=3600
 Cache-Control: public, max-age=600, s-maxage=86400
 ```
 
-CDN caches content for 1 day and browser for 10 minutes.
+- CDN caches content for 1 day and browser for 10 minutes.

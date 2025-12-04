@@ -61,6 +61,7 @@
   - The client sends a request to the primary node.
   - The primary node broadcasts the request to all secondary nodes.
   - All nodes perform the requested service and reply to the client.
+    - reply to client instead of primary node bcs primary node can lie
   - The request is considered successful when the client receives similar responses from at least two-thirds of the nodes.
 - **Pros**
   - Can tolerate up to 1/3 of nodes being faulty.

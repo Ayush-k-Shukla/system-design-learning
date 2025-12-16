@@ -155,3 +155,5 @@ Kafka solves this with **partitioned topics**, enabling true horizontal scaling.
 
 - Apply **TLS**, authentication, and **vhosts** for security.
 - Avoid large payloads → store externally (e.g., S3) and send metadata.
+
+[A good image](https://media.licdn.com/dms/image/v2/D5610AQHcoSLz3ao_9g/image-shrink_1280/B56ZsJJvDBIsAg-/0/1765385113787?e=1765990800&v=beta&t=S4sAxOVdQu2OrrwAKAIP2bjlEknSOstRtqZq1o4Fssk)

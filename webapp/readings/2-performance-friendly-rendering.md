@@ -56,3 +56,5 @@ Minimize unnecessary DOM elements (e.g. avoid extra `<div>`s). A leaner render t
 - Balance between user experience (smooth scroll, fast load) and features (search, accessibility).
 
 [👉 Uber Article Link](https://www.uber.com/en-IN/blog/supercharge-the-way-you-render-large-lists-in-react)
+
+<!-- truncate -->

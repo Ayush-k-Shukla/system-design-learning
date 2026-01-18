@@ -73,3 +73,5 @@ we built a deduplication layer based on **image hashes**.
 - Use HTTP metadata to detect updates cheaply.
 
 [👉 Uber Article Link](https://www.uber.com/en-IN/blog/deduping-and-storing-images-at-uber-eats/)
+
+<!-- truncate -->

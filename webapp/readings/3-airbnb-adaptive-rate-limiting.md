@@ -138,3 +138,5 @@ This is called an **adaptive cost model**.
 - It is a resilience strategy where a system deliberately drops or rejects non-essential incoming requests or data during periods of high traffic or overload to protect core functionality, prevent crashes, and maintain low latency for critical operations, ensuring overall system stability and availability
 
 [👉 Airbnb Article Link](https://medium.com/airbnb-engineering/from-static-rate-limiting-to-adaptive-traffic-management-in-airbnbs-key-value-store-29362764e5c2)
+
+<!-- truncate -->

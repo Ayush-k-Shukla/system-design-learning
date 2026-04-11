@@ -2,3 +2,4 @@
 - Learn more about OSI model and what works in which layer
 - Back of envelope estimation in SD
 - CoDel Strategy in more detail
+- WAL

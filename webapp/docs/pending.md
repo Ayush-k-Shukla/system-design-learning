@@ -11,7 +11,6 @@ Intermediate:
 - Distributed locking and lease expiry
 - Quorum reads vs quorum writes
 - Fan-out on write vs fan-out on read
-- Out-of-order event processing
 - Dead letter queues and poison messages
 - Zero-downtime schema migration
 - Circuit breaker and cascading failure control

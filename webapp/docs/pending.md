@@ -9,7 +9,6 @@ Intermediate:
 - Distributed rate limiting
 - Leader election
 - Distributed locking and lease expiry
-- Quorum reads vs quorum writes
 - Dead letter queues and poison messages
 - Zero-downtime schema migration
 - Circuit breaker and cascading failure control

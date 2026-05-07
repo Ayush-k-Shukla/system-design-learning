@@ -1,17 +1,5 @@
 # NestJS Request Lifecycle: Complete Guide
 
-## Table of Contents
-
-1. [Overview](#overview)
-2. [The Complete Flow](#the-complete-flow)
-3. [Detailed Breakdown](#detailed-breakdown)
-4. [Execution Context](#execution-context)
-5. [Common Gotchas](#common-gotchas)
-6. [Practical Examples](#practical-examples)
-7. [Performance Considerations](#performance-considerations)
-
----
-
 ## Overview
 
 The NestJS request lifecycle is the journey a request takes from entry point to response. Understanding this flow is critical for debugging, optimization, and building robust applications.
@@ -397,3 +385,37 @@ export class UserController {
 **Gotcha:** Exception filters only run after an exception is thrown, and they are not a substitute for validation logic in pipes or permission logic in guards.
 
 ---
+
+## Execution Context
+
+The `ExecutionContext` gives you access to different protocol-specific contexts.
+
+```typescript
+import {
+  Injectable,
+  NestInterceptor,
+  ExecutionContext,
+  CallHandler,
+} from '@nestjs/common';
+
+@Injectable()
+export class ProtocolAwareInterceptor implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler) {
+    const type = context.getType(); // 'http', 'rpc', 'ws'
+
+    if (type === 'http') {
+      const request = context.switchToHttp().getRequest();
+      const response = context.switchToHttp().getResponse();
+      // HTTP-specific logic
+    } else if (type === 'rpc') {
+      const data = context.switchToRpc().getData();
+      // Microservice-specific logic
+    } else if (type === 'ws') {
+      const client = context.switchToWs().getClient();
+      // WebSocket-specific logic
+    }
+
+    return next.handle();
+  }
+}
+```

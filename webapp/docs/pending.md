@@ -7,7 +7,6 @@
 Intermediate:
 
 - Distributed rate limiting
-- Leader election
 - Distributed locking and lease expiry
 - Dead letter queues and poison messages
 - Zero-downtime schema migration

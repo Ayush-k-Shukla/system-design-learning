@@ -7,9 +7,7 @@
 Intermediate:
 
 - Distributed rate limiting
-- Dead letter queues and poison messages
 - Zero-downtime schema migration
-- Circuit breaker and cascading failure control
 
 Advanced:
 

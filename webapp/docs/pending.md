@@ -7,7 +7,6 @@
 Intermediate:
 
 - Distributed rate limiting
-- Zero-downtime schema migration
 
 Advanced:
 

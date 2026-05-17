@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #0f172a; }
+      .border-line { stroke: #334155; stroke-width: 2; stroke-dasharray: 4 4; fill: none; }
+      .centroid { fill: #38bdf8; stroke: #0284c7; stroke-width: 2; }
+      .vector { fill: #64748b; opacity: 0.6; }
+      .query { fill: #f43f5e; stroke: #be123c; stroke-width: 2; }
+      .text-title { font-family: system-ui, sans-serif; font-weight: bold; font-size: 16px; fill: #f8fafc; }
+      .text-label { font-family: system-ui, sans-serif; font-size: 12px; fill: #94a3b8; }
+      .search-radius { fill: #f43f5e; fill-opacity: 0.15; stroke: #f43f5e; stroke-width: 1.5; stroke-dasharray: 2 2; }
+      .active-cell { fill: #38bdf8; fill-opacity: 0.05; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" width="800" height="450" rx="8" />
+
+  <!-- Titles -->
+  <text x="30" y="40" class="text-title">IVF Vector Space Partitioning (Voronoi Cells)</text>
+  <text x="30" y="60" class="text-label">Demonstrating Centroids, Cells, and the nprobe Edge Effect</text>
+
+  <!-- Voronoi Regions (Polygons) -->
+  <!-- Cell A (Top Left) -->
+  <polygon points="50,80 320,80 260,250 50,220" class="border-line" />
+  <!-- Cell B (Top Right - Active Query Destination) -->
+  <polygon points="320,80 750,80 680,280 260,250" class="border-line active-cell" />
+  <!-- Cell C (Bottom Left) -->
+  <polygon points="50,220 260,250 190,400 50,400" class="border-line" />
+  <!-- Cell D (Bottom Right) -->
+  <polygon points="260,250 680,280 620,400 190,400" class="border-line" />
+
+  <!-- Vectors Background Noise -->
+  <circle cx="120" cy="130" r="4" class="vector" />
+  <circle cx="180" cy="110" r="4" class="vector" />
+  <circle cx="140" cy="180" r="4" class="vector" />
+
+  <circle cx="100" cy="300" r="4" class="vector" />
+  <circle cx="130" cy="340" r="4" class="vector" />
+
+  <circle cx="450" cy="330" r="4" class="vector" />
+  <circle cx="520" cy="360" r="4" class="vector" />
+
+  <!-- Target Vectors in Cell B (Close to border) -->
+  <circle cx="285" cy="230" r="4" fill="#38bdf8" />
+  <circle cx="295" cy="210" r="4" fill="#38bdf8" />
+  <text x="305" y="215" class="text-label" fill="#38bdf8">True Nearest Neighbors</text>
+
+  <!-- Centroids -->
+  <circle cx="170" cy="140" r="6" class="centroid" />
+  <text x="180" y="144" class="text-label">Centroid A</text>
+
+  <circle cx="480" cy="160" r="6" class="centroid" />
+  <text x="490" y="164" class="text-label">Centroid B</text>
+
+  <circle cx="140" cy="310" r="6" class="centroid" />
+  <text x="150" y="314" class="text-label">Centroid C</text>
+
+  <circle cx="420" cy="310" r="6" class="centroid" />
+  <text x="430" y="314" class="text-label">Centroid D</text>
+
+  <!-- Query Vector & nprobe Mechanics -->
+  <!-- Query sits in Cell B, but right on the edge of Cell A -->
+  <circle cx="280" cy="240" r="35" class="search-radius" />
+  <circle cx="275" cy="245" r="6" class="query" />
+  <text x="290" y="260" class="text-title" fill="#f43f5e" font-size="14px">Query Vector</text>
+
+  <!-- Explanatory Labels -->
+  <g transform="translate(480, 220)">
+    <rect width="290" height="180" rx="6" fill="#1e293b" stroke="#334155" />
+    <text x="15" y="25" class="text-title" font-size="13px">nprobe Search Mechanics</text>
+    <text x="15" y="55" class="text-label" fill="#f8fafc">• If nprobe = 1:</text>
+    <text x="25" y="75" class="text-label">Database ONLY searches inside Cell B.</text>
+    <text x="25" y="95" class="text-label" fill="#ef4444">MISSES the blue vectors in Cell A!</text>
+
+    <text x="15" y="125" class="text-label" fill="#22c55e">• If nprobe ≥ 2:</text>
+    <text x="25" y="145" class="text-label">Database opens Cell A &amp; B simultaneously.</text>
+    <text x="25" y="165" class="text-label">Catches all true nearest neighbors safely.</text>
+  </g>
+</svg>

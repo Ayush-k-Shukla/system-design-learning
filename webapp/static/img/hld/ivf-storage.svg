@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #0f172a; }
+      .box-header { fill: #1e293b; stroke: #475569; stroke-width: 1.5; }
+      .box-memory { fill: #1e293b; stroke: #38bdf8; stroke-width: 1.5; }
+      .box-list { fill: #1e293b; stroke: #10b981; stroke-width: 1.5; }
+      .arrow-pointer { stroke: #f59e0b; stroke-width: 2; fill: none; }
+      .text-title { font-family: system-ui, sans-serif; font-weight: bold; font-size: 16px; fill: #f8fafc; }
+      .text-sub { font-family: system-ui, sans-serif; font-size: 12px; fill: #94a3b8; }
+      .text-code { font-family: monospace; font-size: 12px; fill: #e2e8f0; }
+      .meta-tag { fill: #64748b; font-family: monospace; font-size: 11px; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" width="800" height="450" rx="8" />
+
+  <text x="30" y="40" class="text-title">IVF Structural Storage Layout (Memory Allocation)</text>
+  <text x="30" y="60" class="text-sub">How Centroid Tables maintain pointers to dynamically expanding inverted list buckets</text>
+
+  <!-- ================= CENTROID TABLE (LEFT) ================= -->
+  <g transform="translate(40, 100)">
+    <text x="0" y="-15" class="text-title" font-size="14px" fill="#38bdf8">Centroid Table (Contiguous Array)</text>
+    <rect width="220" height="40" class="box-header" />
+    <text x="10" y="25" class="text-code" fill="#94a3b8">ID | Float32 Coordinates | Pointer</text>
+
+    <!-- Row 0 -->
+    <rect width="220" height="40" class="box-memory" y="40"/>
+    <text x="10" y="65" class="text-code">C0 | [ 0.12, -0.45... ] | 0x7FFF1</text>
+
+    <!-- Row 1 -->
+    <rect width="220" height="40" class="box-memory" y="80"/>
+    <text x="10" y="105" class="text-code">C1 | [ 0.88,  0.23... ] | 0x7FFF5</text>
+
+    <!-- Row 2 -->
+    <rect width="220" height="40" class="box-memory" y="120"/>
+    <text x="10" y="145" class="text-code">C2 | [ -0.3,  0.11... ] | 0x7FFFA</text>
+
+    <!-- Row 3 -->
+    <rect width="220" height="40" class="box-memory" y="160"/>
+    <text x="10" y="185" class="text-code">C3 | [ 0.05,  0.92... ] | 0x7FFFE</text>
+  </g>
+
+  <!-- Pointers Pushing to Lists -->
+  <!-- From C0 -->
+  <path d="M 260 160 L 380 160" class="arrow-pointer" marker-end="url(#ptr-arrow)" />
+  <!-- From C1 -->
+  <path d="M 260 200 L 320 200 L 320 255 L 380 255" class="arrow-pointer" marker-end="url(#ptr-arrow)" />
+
+  <!-- ================= INVERTED LIST STORAGE (RIGHT) ================= -->
+  <!-- Bucket for C0 -->
+  <g transform="translate(400, 100)">
+    <text x="0" y="-15" class="text-title" font-size="14px" fill="#10b981">Inverted List Node Heaps (Segmented Blocks)</text>
+
+    <text x="0" y="15" class="meta-tag">Address: 0x7FFF1 (Cluster C0 Heap Area)</text>
+    <rect width="340" height="60" class="box-list" y="25" />
+    <text x="15" y="50" class="text-code" fill="#10b981">Vector ID: #1002</text>
+    <text x="15" y="70" class="text-sub">Raw Data Dimensions Block: [ 0.11, -0.42, 0.82... ]</text>
+
+    <rect width="340" height="60" class="box-list" y="85" />
+    <text x="15" y="110" class="text-code" fill="#10b981">Vector ID: #4401</text>
+    <text x="15" y="130" class="text-sub">Raw Data Dimensions Block: [ 0.14, -0.47, 0.79... ]</text>
+  </g>
+
+  <!-- Bucket for C1 -->
+  <g transform="translate(400, 280)">
+    <text x="0" y="15" class="meta-tag">Address: 0x7FFF5 (Cluster C1 Heap Area)</text>
+    <rect width="340" height="60" class="box-list" y="25" />
+    <text x="15" y="50" class="text-code" fill="#10b981">Vector ID: #0082</text>
+    <text x="15" y="70" class="text-sub">Raw Data Dimensions Block: [ 0.85, 0.21, -0.02... ]</text>
+  </g>
+
+  <!-- Marker Definition -->
+  <defs>
+    <marker id="ptr-arrow" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f59e0b" />
+    </marker>
+  </defs>
+</svg>

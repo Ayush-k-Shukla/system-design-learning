@@ -12,15 +12,18 @@
    3. Users of system (internal, cust, etc.)
    4. How will user interact (API, web, mobile...)
    5. What actions user allowed to perform
+   6. Try to keep these short (usually top 3-4)
 2. **Non-Functional**
    1. Scale of system in term of users and requests
    2. Data volume we expect
    3. read to write ratio
    4. Availability of how many 9's
+   5. Security
+   6. Compliance (GDPR or else)
 
 ## Capacity estimation
 
-It wont be needed in depth in each so ask intervieewer beforehand.
+It wont be needed in depth in each so ask intervieewer beforehand. Also it is advised to limit it less as it could take much time, only do in depth when it will affect your design completely (like designing a topK system)
 
 1. Daily users count we can expect
 2. Traffic (peak read/write scenarios)

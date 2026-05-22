@@ -3,7 +3,8 @@
 - Back of envelope estimation in SD
 - CoDel Strategy in more detail
 - WAL
-- Temporal and AWS step functions
+- AWS step functions
+- SAGA pattern
 
 Intermediate:
 

@@ -4,7 +4,6 @@
 - CoDel Strategy in more detail
 - WAL
 - AWS step functions
-- SAGA pattern
 
 Intermediate:
 

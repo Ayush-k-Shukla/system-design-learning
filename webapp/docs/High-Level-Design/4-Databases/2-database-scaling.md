@@ -50,7 +50,7 @@
 - Index selective columns.
   - Indexes are most effective on columns with a good spread of data (e.g., index on gender column is less beneficial than index on id).
 
-## Sharding
+## Sharding (Horizontal Partitioning)
 
 - A single machine can only store limited data, so we need to store data in multiple places.
 - It is a type of horizontal scaling used to split large databases into smaller pieces called shards.

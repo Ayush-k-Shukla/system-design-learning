@@ -3,11 +3,6 @@
 - Back of envelope estimation in SD
 - CoDel Strategy in more detail
 - WAL
-- AWS step functions
-
-Intermediate:
-
-- Distributed rate limiting
 
 Advanced:
 

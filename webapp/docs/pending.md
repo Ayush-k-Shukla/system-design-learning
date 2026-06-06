@@ -3,6 +3,10 @@
 - Back of envelope estimation in SD
 - CoDel Strategy in more detail
 - WAL
+- tranformers
+- FFN
+- Attention
+- more about Layer wise LBs
 
 Advanced:
 

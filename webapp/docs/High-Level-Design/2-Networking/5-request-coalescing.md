@@ -20,8 +20,6 @@ With coalescing:
 
 ## 1. In-Memory Request Coalescing (Single Instance)
 
-- Works only
-
 ### Working
 
 - Maintain a **global in-flight map** in server memory
@@ -79,7 +77,6 @@ SET lock:resource:{id} NX PX <ttl>
 
 - Do NOT hit DB
 - Wait until cache is populated
-
   - Poll cache OR
   - Subscribe via Pub/Sub
 

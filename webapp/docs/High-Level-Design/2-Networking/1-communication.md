@@ -12,11 +12,12 @@
 | GET    | Reads a resource                                          | Yes          | Yes  | Yes                                     |
 | POST   | Creates a resource or trigger a process that handles data | No           | No   | Yes if response contains freshness info |
 | PUT    | Creates or replace a resource                             | Yes          | No   | No                                      |
-| PATCH  | Partially updates a resource                              | No           | No   | Yes if response contains freshness info |
+| PATCH  | Partially updates a resource                              | No\*         | No   | Yes if response contains freshness info |
 | DELETE | Deletes a resource                                        | Yes          | No   | No                                      |
 
 - **Idempotent** mean Can be called many times without different outcomes.
 - **Safe** mean whether changes state of DB
+- PATCH is not idempotent, for e.g. you could you fire increment call from it and it will increase counter each time
 
 # HTTP/1.1 vs HTTP/2 vs HTTP/3
 
@@ -114,7 +115,7 @@
   - Single endpoint
   - flexible queries - can fetch multiple related resources in one request
 - **Disadvantages**
-  - Complex to learn anf more setup than REST
+  - Complex to learn and more setup than REST
   - Caching is harder
   - Increased server load (as we fetch all data from DB , only we dont send it to client)
 
@@ -125,13 +126,13 @@
 | **Data Structure**    | Resource-based (nouns) | Function-based (verbs)        | Query-based        | Function-based                       |
 | **Communication**     | HTTP (JSON/XML)        | HTTP (JSON)                   | HTTP (JSON)        | HTTP/2 (Protobuf)                    |
 | **Performance**       | Medium                 | Medium                        | Medium-High        | High (Binary)                        |
-| **Over-fetching**     | Yes                    | Yes                           | No                 | No                                   |
-| **Under-fetching**    | Yes                    | Yes                           | No                 | No                                   |
+| **Over-fetching**     | Yes                    | Yes                           | No                 | Yes                                  |
+| **Under-fetching**    | Yes                    | Yes                           | No                 | Yes                                  |
 | **Streaming Support** | No                     | No                            | No                 | Yes                                  |
 | **Caching**           | Easy (HTTP Caching)    | Hard                          | Hard               | Hard                                 |
 | **Best Use Case**     | Web APIs, Public APIs  | Simple actions, Internal APIs | Client-driven APIs | Microservices, High-performance APIs |
 
-- Caching is hard in others as because there are a lot of combination possible and also shape of response for each parameter compare to REST, so cache hit ration becomes very less
+- Caching is hard in others as because there are a lot of combination possible and also shape of response for each parameter compare to REST, so cache hit ratio becomes very less
 
 ## Websockets
 

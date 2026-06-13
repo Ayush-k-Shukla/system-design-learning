@@ -63,7 +63,6 @@
 
 - Once a transaction is committed, its changes are permanent even in the case of a crash.
 - **How it works**
-
   - This is achieved generally by writing data to a non-volatile storage (SSD, Hard drives, cloud storage) once the transaction is commited.
   - Some things used here are WAL (write ahead log) and Checkpointing.
 
@@ -90,7 +89,7 @@
     - Need to update application logic to determine which database to read and write.
     - Joining data from two database is complex.
 
-### [Sharding](./2-database-scaling.md#sharding)
+### [Sharding](./2-database-scaling.md#sharding-horizontal-partitioning)
 
 ### **SQL Tuning**
 

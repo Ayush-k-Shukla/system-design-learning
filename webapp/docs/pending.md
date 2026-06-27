@@ -6,7 +6,6 @@
 - tranformers
 - FFN
 - Attention
-- more about Layer wise LBs
 
 Advanced:
 

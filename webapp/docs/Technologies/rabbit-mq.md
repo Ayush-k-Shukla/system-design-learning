@@ -95,6 +95,8 @@ Example:
 
 ➡️ Headers `{format=pdf, type=report}` → both A & B receive.
 
+- `x-match=all` means asll header should match while `x-match=any` means any header match
+
 ---
 
 ## 🔗 2. Binding — The Glue
@@ -110,6 +112,8 @@ For e.g.
 
 ```java
 channel.queueBind("orderQueue", "orderExchange", "order.created");
+
+// queue -> binding exchange -> routing key
 ```
 
 ---
@@ -118,9 +122,16 @@ channel.queueBind("orderQueue", "orderExchange", "order.created");
 
 ### Why RabbitMQ Doesn’t Scale Horizontally Like Kafka
 
-- Each **queue lives on one node** → single-node ownership.
-- Scaling = add **more queues + consumers**, not more brokers.
-- Mirroring = replication, not distribution (adds overhead).
+### ⚠️ Why RabbitMQ Doesn't Scale Horizontally Like Kafka
+
+- **Single-Node Queue Ownership:** Every queue lives entirely on **one specific node**. Adding more nodes/brokers to your cluster does _not_ increase the capacity or speed of an existing queue—it is strictly limited by the hardware of its home node.
+- **Scaling requires more Queues, not Brokers:** You cannot split a single queue across multiple machines. To scale throughput horizontally, you must create **multiple distinct queues** across different nodes, scale up your consumers, and manually shard your traffic (e.g., using a Consistent Hash Exchange).
+- **Mirroring is for Resiliency, Not Performance:** Features like Quorum Queues provide **replication, not data distribution**. Because a single leader node still processes all reads/writes and must sync data across followers, mirroring increases network overhead and actually _decreases_ maximum throughput.
+
+#### Quick Contrast
+
+- **RabbitMQ:** Scales **vertically** (requires a larger node for a single queue) or requires complex application-side sharding.
+- **Kafka:** Scales **horizontally** by default because a single topic is natively sliced into _partitions_ distributed across the entire cluster.
 
 Kafka solves this with **partitioned topics**, enabling true horizontal scaling.
 
@@ -148,7 +159,6 @@ Kafka solves this with **partitioned topics**, enabling true horizontal scaling.
 - Tune **prefetch count** for consumer load balancing.
   - it's like conmsumer will prefetch a amount of message so no oveload happens or message bombarding in peak time.
 - Use **lazy queues** for large message backlogs.
-
   - Normally, RabbitMQ stores messages in RAM for speed.
   - But when queues get large (millions of messages), RAM fills up fast → system slows down.
   - To solve this, lazy queues store messages on disk by default, loading them into memory only when needed.
